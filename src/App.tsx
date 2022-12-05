@@ -1,12 +1,25 @@
 import React from "react";
 import "./App.css";
-import { Typography } from "@mui/material";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Fallback, Landing, Login, DashBoard } from "./Routes";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Landing />,
+    errorElement: <Fallback />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/dashboard",
+    element: <DashBoard />,
+  },
+]);
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header"></header>
-    </div>
-  );
+  return <RouterProvider router={router} fallbackElement={<Fallback />} />;
 }
 
 export default App;

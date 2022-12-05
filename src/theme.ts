@@ -1,3 +1,5 @@
+import { createTheme } from "@mui/material/styles";
+
 const theme = {
   palette: {
     primary: {
@@ -42,6 +44,9 @@ const theme = {
       dark: "#B71D18",
       darker: "#7A0916",
     },
+    default: {
+      main: "#C4CDD5",
+    },
     grey: {
       100: "#F9FAFB",
       200: "#F4F6F8",
@@ -56,56 +61,116 @@ const theme = {
   },
   typography: {
     fontFamily: "Public Sans",
-    fontSize: "16px",
+    fontSize: 16,
     h1: {
       fontFamily: "Public Sans",
-      fontSize: "64px",
+      fontSize: 64,
       fontWeight: 800,
       lineHeight: "80px",
       letterSpacing: "0px",
-      textAlign: "left",
     },
     h2: {
       fontFamily: "Public Sans",
-      fontSize: "48px",
+      fontSize: 48,
       fontWeight: 800,
       lineHeight: "64px",
       letterSpacing: "0px",
-      textAlign: "left",
     },
     h3: {
       fontFamily: "Public Sans",
-      fontSize: "32px",
+      fontSize: 32,
       fontWeight: 700,
       lineHeight: "48px",
       letterSpacing: "0px",
-      textAlign: "left",
     },
     h4: {
       fontFamily: "Public Sans",
-      fontSize: "24px",
+      fontSize: 24,
       fontWeight: 700,
       lineHeight: "36px",
       letterSpacing: "0px",
-      textAlign: "left",
     },
     h5: {
       fontFamily: "Public Sans",
-      fontSize: "20px",
+      fontSize: 20,
       fontWeight: 700,
       lineHeight: "30px",
       letterSpacing: "0px",
-      textAlign: "left",
     },
     h6: {
       fontFamily: "Public Sans",
-      fontSize: "18px",
+      fontSize: 18,
       fontWeight: 700,
       lineHeight: "28px",
       letterSpacing: "0px",
-      textAlign: "left",
+    },
+    subtitle1: {
+      fontFamily: "Public Sans",
+      fontSize: 16,
+      fontWeight: 600,
+      lineHeight: "24px",
+      letterSpacing: "0px",
+    },
+    subtitle2: {
+      fontFamily: "Public Sans",
+      fontSize: 14,
+      fontWeight: 600,
+      lineHeight: "22px",
+      letterSpacing: "0px",
+    },
+    body1: {
+      fontFamily: "Public Sans",
+      fontSize: 16,
+      fontWeight: 400,
+      lineHeight: "24px",
+      letterSpacing: "0px",
+    },
+    body2: {
+      fontFamily: "Public Sans",
+      fontSize: 14,
+      fontWeight: 400,
+      lineHeight: "22px",
+      letterSpacing: "0px",
+    },
+    caption: {
+      fontFamily: "Public Sans",
+      fontSize: 12,
+      fontWeight: 400,
+      lineHeight: "18px",
+      letterSpacing: "0px",
+    },
+    overline: {
+      fontFamily: "Public Sans",
+      fontSize: 12,
+      fontWeight: 700,
+      lineHeight: "18px",
+      letterSpacing: "0px",
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "8px",
+          textTransform: "capitalize",
+          fontSize: "15px",
+          fontWeight: 700,
+        },
+        containedPrimary: {
+          "&:hover": {
+            boxShadow: "0px 8px 16px rgba(0, 171, 85, 0.24)",
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: "8px",
+        },
+      },
     },
   },
 };
-
-export default theme;
+// @ts-ignore
+export default createTheme(theme);
