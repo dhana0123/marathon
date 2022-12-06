@@ -65,28 +65,26 @@ const Login = () => {
           </Typography>
           <Divider
             variant="fullWidth"
-            sx={{ width: "100%", my: { xs: 5, sm: 2 } }}
+            sx={{ width: "100%", my: { xs: 3, sm: 2 } }}
           >
-            <Typography variant="body2" color="grey.600" sx={{ mb: "-10px" }}>
+            <Typography variant="body2" color="grey.600" sx={{ mb: "-2px" }}>
               or
             </Typography>
           </Divider>
           <Stack mt={3} direction={"column"} spacing={2}>
             <Button
-              variant="outlined"
               size="large"
-              sx={{ borderColor: "grey.500", color: "grey.600" }}
+              sx={{ bgcolor: "grey.200", color: "grey.800" }}
             >
               <img width={28} src={google} style={{ marginRight: "5px" }} />
-              <Typography variant="body2">Continue with Google</Typography>
+              Continue with Google
             </Button>
             <Button
-              variant="outlined"
               size="large"
-              sx={{ borderColor: "grey.500", color: "grey.600" }}
+              sx={{ bgcolor: "grey.200", color: "grey.800" }}
             >
               <img width={28} src={facebook} style={{ marginRight: "5px" }} />
-              <Typography variant="body2">Continue with Facebook</Typography>
+              Continue with Facebook
             </Button>
           </Stack>
         </Box>
