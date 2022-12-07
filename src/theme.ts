@@ -147,6 +147,16 @@ const theme = {
       letterSpacing: "0px",
     },
   },
+  shadows: {
+    0: "none",
+    1: "0px 1px 2px rgba(145, 158, 171, 0.16)",
+    4: "0px 4px 8px rgba(145, 158, 171, 0.16)",
+    8: "0px 8px 16px rgba(145, 158, 171, 0.16)",
+    12: "0px 12px 24px -4px rgba(145, 158, 171, 0.16)",
+    16: "0px 16px 32px -4px rgba(145, 158, 171, 0.16)",
+    20: "0px 20px 40px -4px rgba(145, 158, 171, 0.16)",
+    24: " 0px 24px 48px rgba(145, 158, 171, 0.16)",
+  },
   components: {
     MuiButton: {
       styleOverrides: {
