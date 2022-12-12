@@ -7,6 +7,6 @@ export type Menu = {
   list: {
     id: number;
     title: string;
-    icon: SvgIcon;
+    icon?: SvgIcon;
   }[];
 };

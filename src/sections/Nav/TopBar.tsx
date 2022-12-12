@@ -11,10 +11,13 @@ import {
   Zoom,
   ClickAwayListener,
 } from "@mui/material";
-import VerifiedIcon from "@mui/icons-material/Verified";
-import SearchPanel from "./SearchPanel";
-import ResultPanel from "./ResultPanel";
-
+import {
+  Verified,
+  PersonRounded,
+  ViewStream,
+} from "@mui/icons-material";
+import SearchPanel from "../Dashboard/SearchPanel";
+import ResultPanel from "../Dashboard/ResultPanel";
 const TopBar = () => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [openSearch, setOpenSearch] = React.useState(false);
@@ -103,13 +106,21 @@ const TopBar = () => {
             </Box>
           </Slide>
           <Stack direction="row" alignItems={"center"} spacing={2}>
-            <Avatar />
+            <IconButton
+              sx={{
+                backgroundColor: "grey.300",
+              }}
+            >
+              <PersonRounded
+                sx={{ color: "grey.500", width: "1.3rem", height: "1.3rem" }}
+              />
+            </IconButton>
             <Button
               size="large"
-              startIcon={<VerifiedIcon />}
+              startIcon={<Verified />}
               variant="contained"
               disableElevation
-              color="secondary"
+              // sx={{ backgroundColor: "primary.lighter" }}
             >
               Upgrade to Pro
             </Button>

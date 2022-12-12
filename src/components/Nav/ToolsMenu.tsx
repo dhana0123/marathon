@@ -4,15 +4,12 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText,
   Collapse,
   Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import {
-  ExpandLess,
   ChevronRight,
-  Drafts,
   ExpandMore,
   FiberManualRecord,
 } from "@mui/icons-material";
@@ -72,11 +69,11 @@ const ToolsMenu = ({
 
   return (
     <>
-      <ListItem sx={{ marginTop: "-.6rem", marginBottom: "0rem" }}>
+      <ListItem sx={{ marginTop: "-.7rem", marginBottom: "0rem" }}>
         <ListItemButton
           sx={{
             borderRadius: "8px",
-            p: 2,
+            p: 1.7,
             my: 0,
           }}
           onClick={handleClick}
@@ -86,8 +83,8 @@ const ToolsMenu = ({
             <tools.icon
               size="small"
               sx={{
-                width: "1.5rem",
-                height: "1.5rem",
+                width: "1.6rem",
+                height: "1.6rem",
                 color: isParentSelcted
                   ? theme.palette.primary.main
                   : theme.palette.grey[500],
