@@ -1,6 +1,6 @@
 import React from "react";
 import { List, ListSubheader } from "@mui/material";
-import { Send } from "@mui/icons-material";
+import { AddHomeRounded, Send } from "@mui/icons-material";
 import { ToolsMenu } from "../../components/Nav";
 import type { Menu } from "../../definations/Nav";
 
@@ -9,7 +9,7 @@ const SideNav = () => {
   const toolMenu: Menu = {
     id: 1,
     title: "product title",
-    icon: Send,
+    icon: AddHomeRounded,
     list: [
       {
         id: 1,
@@ -30,7 +30,7 @@ const SideNav = () => {
     list: [
       {
         id: 1,
-        title: "tool1",
+        title: `Facebook link Description Facebook Link description`,
         icon: Send,
       },
       {

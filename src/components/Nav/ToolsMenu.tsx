@@ -6,8 +6,16 @@ import {
   ListItemIcon,
   ListItemText,
   Collapse,
+  Typography,
 } from "@mui/material";
-import { ExpandLess, Send, Drafts, ExpandMore } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
+import {
+  ExpandLess,
+  ChevronRight,
+  Drafts,
+  ExpandMore,
+  FiberManualRecord,
+} from "@mui/icons-material";
 import type { Menu } from "../../definations/Nav";
 
 type Props = {
@@ -26,6 +34,8 @@ const ToolsMenu = ({
   const [open, setOpen] = React.useState<boolean>(false);
   const [ParentSelected, setParentSelected] = React.useState(false);
   const [currentChildSelectedId, setCurrentChildSelctedId] = React.useState(-1);
+
+  const theme = useTheme();
 
   const handleClick = () => {
     setOpen((p) => !p);
@@ -57,32 +67,101 @@ const ToolsMenu = ({
     }
   };
 
+  const isParentSelcted = ParentSelected && currentChildSelectedId >= 0;
+  const isChildSelected = (idx: number) => currentChildSelectedId === idx;
+
   return (
     <>
-      <ListItem>
+      <ListItem sx={{ marginTop: "-.6rem", marginBottom: "0rem" }}>
         <ListItemButton
+          sx={{
+            borderRadius: "8px",
+            p: 2,
+            my: 0,
+          }}
           onClick={handleClick}
-          selected={ParentSelected && currentChildSelectedId >= 0}
+          selected={isParentSelcted}
         >
           <ListItemIcon>
-            <tools.icon />
+            <tools.icon
+              size="small"
+              sx={{
+                width: "1.5rem",
+                height: "1.5rem",
+                color: isParentSelcted
+                  ? theme.palette.primary.main
+                  : theme.palette.grey[500],
+              }}
+            />
           </ListItemIcon>
-          <ListItemText primary={tools.title} />
-          {open ? <ExpandLess /> : <ExpandMore />}
+          <Typography
+            variant="subtitle2"
+            color={isParentSelcted ? "primary.main" : "grey.600"}
+            sx={{
+              ml: "-1rem",
+            }}
+          >
+            {tools.title}
+          </Typography>
+          {open ? (
+            <ExpandMore
+              sx={{
+                ml: "auto",
+                fontSize: "1.1rem",
+                color: isParentSelcted
+                  ? theme.palette.primary.main
+                  : theme.palette.grey[700],
+              }}
+            />
+          ) : (
+            <ChevronRight
+              sx={{
+                ml: "auto",
+                fontSize: "1.1rem",
+                color: theme.palette.grey[700],
+              }}
+            />
+          )}
         </ListItemButton>
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div">
+        <List component="div" sx={{ my: 0 }}>
           {tools.list.map((tool, idx) => (
-            <ListItem key={tool.id} onClick={() => handleChildClick(idx)}>
+            <ListItem
+              sx={{ mt: "-.7rem" }}
+              key={tool.id}
+              onClick={() => handleChildClick(idx)}
+            >
               <ListItemButton
-                selected={currentChildSelectedId === idx}
-                sx={{ pl: 4 }}
+                selected={isChildSelected(idx)}
+                sx={{
+                  borderRadius: "8px",
+                  my: 0,
+                  p: 1,
+                  pl: 3,
+                }}
               >
                 <ListItemIcon>
-                  <Drafts />
+                  <FiberManualRecord
+                    sx={{
+                      width: isChildSelected(idx) ? ".75rem" : ".55rem",
+                      height: isChildSelected(idx) ? ".75rem" : ".55rem",
+                      color: isChildSelected(idx) ? "primary.main" : "grey.500",
+                    }}
+                  />
                 </ListItemIcon>
-                <ListItemText primary={tool.title} />
+                <Typography
+                  variant={"subtitle2"}
+                  color={isChildSelected(idx) ? "primary.main" : "grey.600"}
+                  noWrap
+                  sx={{
+                    width: "100%",
+                    fontSize: ".758rem",
+                    ml: "-2.3rem",
+                  }}
+                >
+                  {tool.title}
+                </Typography>
               </ListItemButton>
             </ListItem>
           ))}

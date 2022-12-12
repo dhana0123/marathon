@@ -65,7 +65,6 @@ export default function DashBoard() {
       <CssBaseline />
       <Drawer variant="permanent" open>
         <DrawerHeader>
-          <h1>Marathon</h1>
           {/* <IconButton onClick={handleDrawer}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
