@@ -10,7 +10,9 @@ const ProjectCard = () => {
         alignItems={"center"}
         justifyContent="space-between"
       >
-        <Typography variant="subtitle1">My Project Name</Typography>
+        <Typography variant="subtitle1" color="grey.700">
+          My Project Name
+        </Typography>
         <IconButton sx={{ marginRight: -1.8 }}>
           <MoreVert />
         </IconButton>

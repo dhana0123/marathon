@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Grid, Stack, Button, IconButton } from "@mui/material";
+import { Box, Grid, Divider, Button, IconButton } from "@mui/material";
 import ProjectTopBar from "./ProjectTopBar";
 import ProjectCard from "./ProjectCard";
+import ProjectListItem from "./ProjectListItem";
 
 const Projects = () => {
   const [changeProjectView, setChangeProjectView] = React.useState(true);
@@ -21,7 +22,15 @@ const Projects = () => {
           ))}
         </Grid>
       ) : (
-        <p>ool</p>
+        <Box py={2}>
+          <Box boxShadow={(theme) => theme.shadows[4]} borderRadius={"8px"}>
+            <ProjectListItem />
+            <ProjectListItem />
+            <ProjectListItem />
+
+            <ProjectListItem />
+          </Box>
+        </Box>
       )}
     </Box>
   );
