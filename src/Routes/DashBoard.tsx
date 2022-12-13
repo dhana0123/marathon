@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
-import Box from "@mui/material/Box";
+import { Box, SwipeableDrawer, ClickAwayListener } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -58,12 +58,17 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function DashBoard() {
+  const [open, setOpen] = React.useState(false);
   const theme = useTheme();
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <Drawer variant="permanent" open>
+      <Drawer
+        variant="permanent"
+        open
+        sx={{ display: { xs: "none", sm: "block" } }}
+      >
         <DrawerHeader>
           {/* <IconButton onClick={handleDrawer}>
             {theme.direction === "rtl" ? (
@@ -75,8 +80,17 @@ export default function DashBoard() {
         </DrawerHeader>
         <SideNav />
       </Drawer>
+
+      <SwipeableDrawer
+        sx={{ display: { xs: "block", sm: "none" } }}
+        open={open}
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+      >
+        <SideNav />
+      </SwipeableDrawer>
       <Box component="main" width={"100%"} sx={{ position: "relative" }}>
-        <TopBar />
+        <TopBar setOpen={setOpen} />
         <Box px={4} py={1}>
           <Projects />
         </Box>

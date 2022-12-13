@@ -15,10 +15,16 @@ import {
   Verified,
   PersonRounded,
   ViewStream,
+  ViewStreamRounded,
 } from "@mui/icons-material";
 import SearchPanel from "../Dashboard/SearchPanel";
 import ResultPanel from "../Dashboard/ResultPanel";
-const TopBar = () => {
+
+type Props = {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const TopBar = ({ setOpen }: Props) => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [openSearch, setOpenSearch] = React.useState(false);
   const [openResultPanel, setOpenResultPanel] = React.useState(false);
@@ -60,11 +66,27 @@ const TopBar = () => {
   return (
     <ClickAwayListener onClickAway={handleOnClickaway}>
       <Box p={3} sx={{ position: "relative" }}>
-        <Stack direction="row" justifyContent="space-between">
+        <Stack
+          direction="row"
+          alignItems={"center"}
+          justifyContent="space-between"
+        >
+          <IconButton
+            sx={{
+              backgroundColor: "grey.100",
+              display: { xs: "block", sm: "none" },
+              width: "2.8rem",
+              height: "2.8rem",
+            }}
+            onClick={() => setOpen(true)}
+          >
+            <ViewStreamRounded sx={{ color: "grey.500" }} />
+          </IconButton>
+
           <Box sx={{ display: "flex", flexGrow: "1" }}>
             {!openSearch && (
               <>
-                <IconButton>
+                <IconButton onClick={handleSearchFocus}>
                   <SvgIcon fontSize="small" sx={{ color: "grey.600" }}>
                     <path d="m20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8a7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42ZM5 11a6 6 0 1 1 6 6a6 6 0 0 1-6-6Z"></path>
                   </SvgIcon>
@@ -75,6 +97,7 @@ const TopBar = () => {
                     fontSize: "1.18rem",
                     fontWeight: "bold",
                     color: "grey.700",
+                    display: { xs: "none", sm: "block" },
                   }}
                   fullWidth
                   placeholder="Search tools..."
@@ -116,6 +139,7 @@ const TopBar = () => {
               />
             </IconButton>
             <Button
+              sx={{ display: { xs: "none", sm: "block" } }}
               size="large"
               startIcon={<Verified />}
               variant="contained"

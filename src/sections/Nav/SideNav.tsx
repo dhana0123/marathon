@@ -83,7 +83,7 @@ const SideNav = () => {
   const menuLists: Menu[] = [product, digitalAdCopy, statupTool];
 
   return (
-    <Box>
+    <Box sx={{ width: { xs: "260px" } }}>
       <Stack p={2}>
         <Button startIcon={<AddCircle />} sx={{ p: 1.3 }} variant="contained">
           New Project
