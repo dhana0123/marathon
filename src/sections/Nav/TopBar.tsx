@@ -12,12 +12,7 @@ import {
   Zoom,
   ClickAwayListener,
 } from "@mui/material";
-import {
-  Verified,
-  PersonRounded,
-  ViewStream,
-  ViewStreamRounded,
-} from "@mui/icons-material";
+import { Verified, PersonRounded, TableRowsRounded } from "@mui/icons-material";
 import SearchPanel from "../Dashboard/SearchPanel";
 import ResultPanel from "../Dashboard/ResultPanel";
 
@@ -79,7 +74,7 @@ const TopBar = ({ setOpen }: Props) => {
             }}
             onClick={() => setOpen(true)}
           >
-            <ViewStreamRounded sx={{ color: "grey.500" }} />
+            <TableRowsRounded sx={{ color: "grey.500" }} />
           </IconButton>
 
           <Box sx={{ display: "flex", flexGrow: "1" }}>

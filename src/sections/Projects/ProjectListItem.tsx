@@ -1,8 +1,10 @@
 import React from "react";
 import { IconButton, Stack, Typography } from "@mui/material";
 import { DescriptionRounded, MoreVert } from "@mui/icons-material";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const ProjectListItem = () => {
+  const matches = useMediaQuery("(max-width:600px)");
   return (
     <Stack
       direction={"row"}
@@ -12,14 +14,24 @@ const ProjectListItem = () => {
     >
       <Stack direction={"row"} alignItems={"center"}>
         <IconButton sx={{ mr: 1 }}>
-          <DescriptionRounded sx={{ color: "grey.400" }} />
+          <DescriptionRounded
+            fontSize={matches ? "small" : "medium"}
+            sx={{ color: "grey.400" }}
+          />
         </IconButton>
-        <Typography variant="subtitle1" color={"grey.700"}>
+        <Typography
+          variant={matches ? "body2" : "subtitle1"}
+          color={"grey.700"}
+        >
           My Project Name
         </Typography>
       </Stack>
       <Stack direction={"row"} alignItems={"center"}>
-        <Typography variant={"body2"} color="grey.600" sx={{ mr: 1 }}>
+        <Typography
+          variant={matches ? "caption" : "body2"}
+          color="grey.600"
+          sx={{ mr: 1 }}
+        >
           Yesterday
         </Typography>
         <IconButton>
