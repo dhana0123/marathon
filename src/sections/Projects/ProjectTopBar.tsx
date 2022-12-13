@@ -1,8 +1,13 @@
 import React from "react";
 import { Typography, Stack, Button, IconButton } from "@mui/material";
 import { DatasetRounded, ViewStreamRounded } from "@mui/icons-material";
-const ProjectTopBar = () => {
-  const [changeProjectView, setChangeProjectView] = React.useState(false);
+
+type Props = {
+  changeProjectView: boolean;
+  setChangeProjectView: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const ProjectTopBar = ({ changeProjectView, setChangeProjectView }: Props) => {
   return (
     <Stack
       direction={"row"}
@@ -16,7 +21,7 @@ const ProjectTopBar = () => {
         <IconButton
           sx={{
             backgroundColor: "grey.100",
-            display: { xs: "none", sm: "block" },
+            display: { xs: "none", sm: "inherit" },
           }}
           onClick={() => setChangeProjectView((p) => !p)}
         >

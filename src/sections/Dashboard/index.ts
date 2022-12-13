@@ -1,4 +1,4 @@
-import Projects from "./Projects";
+import Projects from "../Projects/Projects";
 import ResultPanel from "./ResultPanel";
 import SearchPanel from "./SearchPanel";
 

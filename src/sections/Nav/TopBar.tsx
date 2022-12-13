@@ -8,6 +8,7 @@ import {
   Avatar,
   Button,
   Slide,
+  Typography,
   Zoom,
   ClickAwayListener,
 } from "@mui/material";
@@ -74,9 +75,7 @@ const TopBar = ({ setOpen }: Props) => {
           <IconButton
             sx={{
               backgroundColor: "grey.100",
-              display: { xs: "block", sm: "none" },
-              width: "2.8rem",
-              height: "2.8rem",
+              display: { xs: "inherit", sm: "none" },
             }}
             onClick={() => setOpen(true)}
           >
@@ -139,12 +138,9 @@ const TopBar = ({ setOpen }: Props) => {
               />
             </IconButton>
             <Button
-              sx={{ display: { xs: "none", sm: "block" } }}
-              size="large"
               startIcon={<Verified />}
               variant="contained"
               disableElevation
-              // sx={{ backgroundColor: "primary.lighter" }}
             >
               Upgrade to Pro
             </Button>
