@@ -10,6 +10,7 @@ type Props = {
 const ProjectTopBar = ({ changeProjectView, setChangeProjectView }: Props) => {
   return (
     <Stack
+      px={4}
       direction={"row"}
       justifyContent={"space-between"}
       alignItems="center"

@@ -9,7 +9,9 @@ const ProjectCard = () => {
       p={3}
       pt={1}
       borderRadius={"16px"}
-      sx={{ cursor: "pointer" }}
+      sx={{
+        cursor: "pointer",
+      }}
       boxShadow={(theme) => theme.shadows[8]}
     >
       <Stack

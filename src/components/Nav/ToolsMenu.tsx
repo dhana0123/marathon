@@ -87,7 +87,7 @@ const ToolsMenu = ({
                 height: "1.6rem",
                 color: isParentSelcted
                   ? theme.palette.primary.main
-                  : theme.palette.grey[500],
+                  : theme.palette.grey[600],
               }}
             />
           </ListItemIcon>

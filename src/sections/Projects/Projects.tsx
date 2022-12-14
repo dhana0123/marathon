@@ -30,7 +30,7 @@ type DesktopViewProps = {
 
 const DesktopView = ({ changeProjectView }: DesktopViewProps) =>
   changeProjectView ? (
-    <Grid py={2} container columnSpacing={2} rowSpacing={3}>
+    <Grid px={4} py={2} container columnSpacing={2} rowSpacing={3}>
       {[1, 2, 3, 4, 5].map((item) => (
         <Grid key={item} item xs={4}>
           <ProjectCard />
@@ -38,7 +38,7 @@ const DesktopView = ({ changeProjectView }: DesktopViewProps) =>
       ))}
     </Grid>
   ) : (
-    <Box py={2}>
+    <Box px={4} py={2}>
       <Box boxShadow={(theme) => theme.shadows[4]} borderRadius={"8px"}>
         <ProjectListItem />
         <ProjectListItem />
@@ -49,7 +49,7 @@ const DesktopView = ({ changeProjectView }: DesktopViewProps) =>
   );
 
 const MobileView = () => (
-  <Box py={2}>
+  <Box px={2} py={2}>
     <Box boxShadow={(theme) => theme.shadows[4]} borderRadius={"8px"}>
       <ProjectListItem />
       <ProjectListItem />
