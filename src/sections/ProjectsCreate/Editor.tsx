@@ -1,7 +1,10 @@
 import React from "react";
+import { Box } from "@mui/material";
 
 const Editor = () => {
-  return <div>Editor</div>;
+  return <Box>
+    
+  </Box>;
 };
 
 export default Editor;
