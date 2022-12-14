@@ -3,10 +3,9 @@ import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import { Box, SwipeableDrawer, ClickAwayListener } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
-
+import { Outlet } from "react-router-dom";
 import SideNav from "../sections/Nav/SideNav";
 import TopBar from "../sections/Nav/TopBar";
-import { Projects } from "../sections/Dashboard";
 
 const drawerWidth = 260;
 
@@ -67,7 +66,9 @@ export default function DashBoard() {
       <Drawer
         variant="permanent"
         open
-        sx={{ display: { xs: "none", sm: "block" } }}
+        sx={{
+          display: { xs: "none", sm: "block" },
+        }}
       >
         <DrawerHeader>
           {/* <IconButton onClick={handleDrawer}>
@@ -91,8 +92,8 @@ export default function DashBoard() {
       </SwipeableDrawer>
       <Box component="main" width={"100%"} sx={{ position: "relative" }}>
         <TopBar setOpen={setOpen} />
-        <Box px={4} py={1}>
-          <Projects />
+        <Box>
+          <Outlet />
         </Box>
       </Box>
     </Box>

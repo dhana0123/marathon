@@ -4,7 +4,14 @@ import { MoreVert } from "@mui/icons-material";
 
 const ProjectCard = () => {
   return (
-    <Box p={3} borderRadius={"8px"} boxShadow={(theme) => theme.shadows[4]}>
+    <Box
+      onClick={() => console.log("cool")}
+      p={3}
+      pt={1}
+      borderRadius={"16px"}
+      sx={{ cursor: "pointer" }}
+      boxShadow={(theme) => theme.shadows[8]}
+    >
       <Stack
         direction="row"
         alignItems={"center"}

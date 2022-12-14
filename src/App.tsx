@@ -1,7 +1,8 @@
 import React from "react";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Fallback, Landing, Login, DashBoard } from "./Routes";
+import { Fallback, Landing, Login, DashBoard, ProjectCreate } from "./Routes";
+import Projects from "./sections/Projects";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -15,6 +16,16 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashBoard />,
+    children: [
+      {
+        path: "/dashboard/projects",
+        element: <Projects />,
+      },
+      {
+        path: "/dashboard/Projects/create",
+        element: <ProjectCreate />,
+      },
+    ],
   },
 ]);
 

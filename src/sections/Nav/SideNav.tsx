@@ -1,13 +1,16 @@
 import React from "react";
 import { List, ListSubheader, Button, Stack, Box } from "@mui/material";
 import { AddHomeRounded, Send, AddCircle } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { ToolsMenu } from "../../components/Nav";
 import type { Menu } from "../../definations/Nav";
 
 const SideNav = () => {
   const [currentSelectedMenu, setCurrentSelectedMenu] = React.useState(-1);
+  const navigate = useNavigate();
   const theme = useTheme();
+
   const product: Menu = {
     id: 1,
     title: "Product",
@@ -83,9 +86,18 @@ const SideNav = () => {
   const menuLists: Menu[] = [product, digitalAdCopy, statupTool];
 
   return (
-    <Box sx={{ width: { xs: "260px" } }}>
+    <Box
+      sx={{
+        width: { xs: "260px" },
+      }}
+    >
       <Stack p={2}>
-        <Button startIcon={<AddCircle />} sx={{ p: 1.3 }} variant="contained">
+        <Button
+          onClick={() => navigate("/dashboard/Projects/create")}
+          startIcon={<AddCircle />}
+          sx={{ p: 1.3 }}
+          variant="contained"
+        >
           New Project
         </Button>
       </Stack>

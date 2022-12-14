@@ -13,7 +13,7 @@ import { dashboard, facebook, google, logo } from "../assets/images";
 const Login = () => {
   const navigate = useNavigate();
   const goToDashBoard = () => {
-    navigate("/dashboard");
+    navigate("/dashboard/projects");
   };
 
   return (
