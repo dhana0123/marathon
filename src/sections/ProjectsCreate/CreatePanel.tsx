@@ -5,7 +5,7 @@ import Results from "./Results";
 
 const CreatePanel = () => {
   return (
-    <Box sx={{ maxWidth: "600px", m: "auto" }}>
+    <Box sx={{ maxWidth: "543px", m: "auto" }}>
       <Typography
         px={4}
         variant="subtitle2"

@@ -7,7 +7,7 @@ const Results = () => {
     <Box px={2} mt={5}>
       <Stack spacing={3}>
         {[1, 2, 4].map((item) => (
-          <ResultCard />
+          <ResultCard key={item} />
         ))}
       </Stack>
     </Box>

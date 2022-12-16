@@ -18,7 +18,7 @@ const Results = () => {
           "&:hover": { backgroundColor: "grey.200" },
         }}
       >
-        <Typography color="grey.700">
+        <Typography variant="body2" color="grey.700">
           ust a few words can make an impact on your business, help you connect
           with customers and drive more sales. But once you’ve written those
           words, how do you get them in front of the right audience? How can you
