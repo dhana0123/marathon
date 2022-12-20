@@ -26,7 +26,7 @@ const PlanCard = ({
     <Box
       p={4}
       borderRadius={"8px"}
-      width="21rem"
+      width={{ xs: "100%", sm: "21rem" }}
       sx={{
         border: `1px solid ${theme.palette.grey[300]}`,
         "&:hover": {

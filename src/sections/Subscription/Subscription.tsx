@@ -9,47 +9,56 @@ const Subscription = () => {
   const theme = useTheme();
 
   const handleMonthlyPlan = () => {
-    const priceId = "price_1MGTaQSEfslAQp0XVe5bOwYB";
-    const user = "639f273951f1a08f98394542";
+    const priceId = "price_1MH3vwSEfslAQp0XHl9ize7y";
+    const user = "63a1bea08c5c5192fb18d2ce";
     axios
       .post(`${config.serverUrl}/subscription/create-checkout-session`, {
         priceId,
         user,
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        window.location.href = res.data.url;
+      })
       .catch((err) => console.log(err));
   };
 
   const handleYearlyPlan = () => {
-    const priceId = "price_1MGTbVSEfslAQp0XWGOGUmzJ";
-    const user = "639f273951f1a08f98394542";
+    const priceId = "price_1MH3vwSEfslAQp0XHl9ize7y";
+    const user = "63a1bea08c5c5192fb18d2ce";
     axios
       .post(`${config.serverUrl}/subscription/create-checkout-session`, {
         priceId,
         user,
       })
-      .then((res) => console.log(res))
+      .then((res) => {
+        window.location.href = res.data.url;
+      })
       .catch((err) => console.log(err));
   };
 
   return (
     <Box
-      width="100%"
       p={2}
       sx={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
+        margin: "auto",
       }}
     >
       <Typography variant="h3" textAlign="center">
         Fast, easy and cost-effective
       </Typography>
-      <Typography my={1.5} variant="body1" sx={{ color: "grey.600" }}>
+      <Typography
+        textAlign={"center"}
+        my={1.5}
+        variant="body1"
+        sx={{ color: "grey.600" }}
+      >
         Flexible plans for your size and needs
       </Typography>
-      <Stack mt={3} direction={"row"} spacing={3}>
+      <Stack mt={3} direction={{ xs: "column", sm: "row" }} spacing={3}>
         <PlanCard
           title="basic"
           price={"Free"}
