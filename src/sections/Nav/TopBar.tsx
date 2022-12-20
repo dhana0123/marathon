@@ -12,6 +12,7 @@ import {
   Zoom,
   ClickAwayListener,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { Verified, PersonRounded, TableRowsRounded } from "@mui/icons-material";
 import SearchPanel from "../Dashboard/SearchPanel";
 import ResultPanel from "../Dashboard/ResultPanel";
@@ -24,6 +25,8 @@ const TopBar = ({ setOpen }: Props) => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [openSearch, setOpenSearch] = React.useState(false);
   const [openResultPanel, setOpenResultPanel] = React.useState(false);
+
+  const navigate = useNavigate();
 
   const handleSearchFocus = () => {
     setOpenSearch(true);
@@ -136,6 +139,7 @@ const TopBar = ({ setOpen }: Props) => {
               startIcon={<Verified />}
               variant="contained"
               disableElevation
+              onClick={() => navigate("/plans")}
             >
               Upgrade to Pro
             </Button>

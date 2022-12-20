@@ -1,8 +1,10 @@
 import React from "react";
 import { Box, Divider, Typography, Stack, IconButton } from "@mui/material";
 import { MoreVert } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
 
 const ProjectCard = () => {
+  const theme = useTheme();
   return (
     <Box
       onClick={() => console.log("cool")}
@@ -11,8 +13,8 @@ const ProjectCard = () => {
       borderRadius={"16px"}
       sx={{
         cursor: "pointer",
+        border: `1px solid ${theme.palette.grey[300]}`,
       }}
-      boxShadow={(theme) => theme.shadows[8]}
     >
       <Stack
         direction="row"
