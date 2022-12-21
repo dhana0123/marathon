@@ -8,9 +8,7 @@ type Props = {
 };
 
 const ResultPanel = ({ searchTerm }: Props) => {
-  return (
-    <Box>{searchTerm.length > 0 ? <p>show results tool</p> : <Alltools />}</Box>
-  );
+  return <Box>show Search Result</Box>;
 };
 
 export default ResultPanel;

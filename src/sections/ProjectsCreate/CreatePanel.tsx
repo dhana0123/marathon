@@ -5,14 +5,13 @@ import Results from "./Results";
 
 const CreatePanel = () => {
   return (
-    <Box sx={{ maxWidth: "543px", m: "auto" }}>
+    <Box sx={{ maxWidth: "543px", m: "auto", mt: 3, px: 4.5 }}>
       <Typography
-        px={4}
         variant="subtitle2"
         color={"grey.600"}
       >{`Tools > Facebook Add`}</Typography>
       <ProjectCreateTopBar />
-      <Box px={4} py={2}>
+      <Box py={2}>
         <TextField
           fullWidth
           placeholder="e.g. Marathon.ai"
@@ -29,7 +28,7 @@ const CreatePanel = () => {
           variant="outlined"
         />
         <Button
-          sx={{ backgroundColor: "grey.800" }}
+          sx={{ backgroundColor: "primary" }}
           fullWidth
           size="large"
           variant="contained"

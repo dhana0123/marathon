@@ -79,7 +79,7 @@ export default function DashBoard() {
           },
         }}
       >
-        <Box sx={{ background: theme.palette.grey[200] }}>
+        <Box sx={{ background: theme.palette.grey[800], height: "100%" }}>
           <DrawerHeader>
             {/* <IconButton onClick={handleDrawer}>
             {theme.direction === "rtl" ? (
@@ -99,6 +99,7 @@ export default function DashBoard() {
             xs: "block",
             sm: "none",
           },
+          height: "100%",
         }}
         open={open}
         onClose={() => setOpen(false)}
@@ -108,7 +109,7 @@ export default function DashBoard() {
       </SwipeableDrawer>
       <Box component="main" width={"100%"} sx={{ position: "relative" }}>
         <TopBar setOpen={setOpen} />
-        <Box>
+        <Box mt={{ xs: 13, sm: 11 }}>
           <Outlet />
         </Box>
       </Box>

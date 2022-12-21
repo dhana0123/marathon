@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Divider, Stack, Button, Slide } from "@mui/material";
-import { useTheme } from "@mui/system";
+import { useTheme } from "@mui/material/styles";
 import CreatePanel from "../sections/ProjectsCreate/CreatePanel";
 import WritingPad from "../sections/ProjectsCreate/WritingPad";
 import { CloseRounded, CreateRounded } from "@mui/icons-material";
@@ -16,8 +16,7 @@ const ProjectCreate = () => {
             xs: "100%",
             sm: isEditorShown ? "60%" : "100%",
             position: "relative",
-            //@ts-ignore
-            transition: theme?.transitions.create(["width"]),
+            transition: theme.transitions.create(["width"]),
           }}
         >
           {!isEditorShown && (
@@ -29,7 +28,7 @@ const ProjectCreate = () => {
               sx={{
                 position: "absolute",
                 top: 130,
-                right: "-3.6%",
+                right: "-34px",
                 transformOrigin: "50%",
                 transform: "rotate(270deg)",
                 backgroundColor: theme.palette.grey[800],

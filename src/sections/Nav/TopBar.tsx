@@ -64,105 +64,122 @@ const TopBar = ({ setOpen }: Props) => {
 
   return (
     <ClickAwayListener onClickAway={handleOnClickaway}>
-      <Box p={3} sx={{ position: "relative" }}>
-        <Stack
-          direction="row"
-          alignItems={"center"}
-          justifyContent="space-between"
-        >
-          <IconButton
-            sx={{
-              backgroundColor: "grey.100",
-              display: { xs: "inherit", sm: "none" },
-            }}
-            onClick={() => setOpen(true)}
+      <Box
+        position={"fixed"}
+        sx={{
+          zIndex: 100,
+          background: "white",
+          left: { xs: "0px", sm: "260px" },
+          right: 0,
+          top: 0,
+          borderWidth: "2px",
+          borderStyle: "dashed",
+          borderTop: "none",
+          borderLeft: "none",
+          borderRight: "none",
+        }}
+        borderColor={(theme) => theme.palette.grey[300]}
+      >
+        <Box p={3}>
+          <Stack
+            direction="row"
+            alignItems={"center"}
+            justifyContent="space-between"
           >
-            <TableRowsRounded sx={{ color: "grey.500" }} />
-          </IconButton>
-
-          <Box sx={{ display: "flex", flexGrow: "1" }}>
-            {!openSearch && (
-              <>
-                <IconButton onClick={handleSearchFocus}>
-                  <SvgIcon fontSize="small" sx={{ color: "grey.600" }}>
-                    <path d="m20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8a7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42ZM5 11a6 6 0 1 1 6 6a6 6 0 0 1-6-6Z"></path>
-                  </SvgIcon>
-                </IconButton>
-                <InputBase
-                  onFocus={handleSearchFocus}
-                  sx={{
-                    fontSize: "1.18rem",
-                    fontWeight: "bold",
-                    color: "grey.700",
-                    display: { xs: "none", sm: "block" },
-                  }}
-                  fullWidth
-                  placeholder="Search tools..."
-                />
-              </>
-            )}
-          </Box>
-          <Slide in={openSearch} direction="down" mountOnEnter unmountOnExit>
-            <Box
-              p={3}
-              boxShadow={(theme) => theme.shadows[20]}
-              sx={{
-                position: "absolute",
-                left: 0,
-                right: 0,
-                top: 0,
-                background: "rgba( 255, 255, 255, 0.75 )",
-                backdropFilter: "blur( 5px )",
-                WebkitBackdropFilter: "blur( 20px )",
-                border: " 1px solid rgba( 255, 255, 255, 0.18 )",
-                zIndex: 100,
-              }}
-            >
-              <SearchPanel
-                searchTerm={searchTerm}
-                handleSearchTerm={handleInputSearch}
-                handleSearchInputClick={handleSearchInputClick}
-              />
-            </Box>
-          </Slide>
-          <Stack direction="row" alignItems={"center"} spacing={2}>
             <IconButton
               sx={{
-                backgroundColor: "grey.300",
+                backgroundColor: "grey.100",
+                display: { xs: "inherit", sm: "none" },
+              }}
+              onClick={() => setOpen(true)}
+            >
+              <TableRowsRounded sx={{ color: "grey.500" }} />
+            </IconButton>
+
+            <Box sx={{ display: "flex", flexGrow: "1" }}>
+              {!openSearch && (
+                <>
+                  <IconButton onClick={handleSearchFocus}>
+                    <SvgIcon fontSize="small" sx={{ color: "grey.600" }}>
+                      <path d="m20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8a7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42ZM5 11a6 6 0 1 1 6 6a6 6 0 0 1-6-6Z"></path>
+                    </SvgIcon>
+                  </IconButton>
+                  <InputBase
+                    onFocus={handleSearchFocus}
+                    sx={{
+                      fontSize: "1.18rem",
+                      fontWeight: "bold",
+                      color: "grey.700",
+                      display: { xs: "none", sm: "block" },
+                    }}
+                    fullWidth
+                    placeholder="Search tools..."
+                  />
+                </>
+              )}
+            </Box>
+            <Slide in={openSearch} direction="down" mountOnEnter unmountOnExit>
+              <Box
+                p={3}
+                boxShadow={(theme) => theme.shadows[20]}
+                sx={{
+                  position: "absolute",
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  background: "rgba( 255, 255, 255, 0.75 )",
+                  backdropFilter: "blur( 5px )",
+                  WebkitBackdropFilter: "blur( 20px )",
+                  border: " 1px solid rgba( 255, 255, 255, 0.18 )",
+                  zIndex: 100,
+                }}
+              >
+                <SearchPanel
+                  searchTerm={searchTerm}
+                  handleSearchTerm={handleInputSearch}
+                  handleSearchInputClick={handleSearchInputClick}
+                />
+              </Box>
+            </Slide>
+            <Stack direction="row" alignItems={"center"} spacing={2}>
+              <IconButton
+                sx={{
+                  backgroundColor: "grey.300",
+                }}
+              >
+                <PersonRounded
+                  sx={{ color: "grey.500", width: "1.3rem", height: "1.3rem" }}
+                />
+              </IconButton>
+              <Button
+                startIcon={<Verified />}
+                variant="contained"
+                disableElevation
+                onClick={() => navigate("/plans")}
+              >
+                Upgrade to Pro
+              </Button>
+            </Stack>
+          </Stack>
+
+          <Zoom in={openResultPanel}>
+            <Box
+              p={3}
+              bgcolor="white"
+              boxShadow={(theme) => theme.shadows[24]}
+              sx={{
+                position: "absolute",
+                top: "6.2rem",
+                left: "1%",
+                right: "1%",
+                zIndex: 100,
+                borderRadius: "8px",
               }}
             >
-              <PersonRounded
-                sx={{ color: "grey.500", width: "1.3rem", height: "1.3rem" }}
-              />
-            </IconButton>
-            <Button
-              startIcon={<Verified />}
-              variant="contained"
-              disableElevation
-              onClick={() => navigate("/plans")}
-            >
-              Upgrade to Pro
-            </Button>
-          </Stack>
-        </Stack>
-
-        <Zoom in={openResultPanel}>
-          <Box
-            p={3}
-            bgcolor="white"
-            boxShadow={(theme) => theme.shadows[24]}
-            sx={{
-              position: "absolute",
-              top: "6.2rem",
-              left: "1%",
-              right: "1%",
-              zIndex: 100,
-              borderRadius: "8px",
-            }}
-          >
-            <ResultPanel searchTerm={searchTerm} />
-          </Box>
-        </Zoom>
+              <ResultPanel searchTerm={searchTerm} />
+            </Box>
+          </Zoom>
+        </Box>
       </Box>
     </ClickAwayListener>
   );

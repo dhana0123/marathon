@@ -22,6 +22,8 @@ const SideNav = () => {
     <Box
       sx={{
         width: { xs: "260px" },
+        backgroundColor: theme.palette.grey[800],
+        height: "100%",
       }}
     >
       <Stack p={2}>
@@ -33,13 +35,13 @@ const SideNav = () => {
           New Project
         </Button>
       </Stack>
-      <Typography variant="subtitle1" px={2}>
+      <Typography color="grey.200" variant="subtitle1" px={2}>
         Tools
       </Typography>
       <List
         component="nav"
         aria-labelledby="nested-list-subheader"
-        sx={{ py: 1 }}
+        sx={{ py: 1, backgroundColor: theme.palette.grey[800] }}
       >
         {(tools || []).map((menu, idx) => (
           <ToolsMenu

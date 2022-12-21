@@ -1,6 +1,16 @@
 import React from "react";
-import { Box, Stack, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Stack,
+  Typography,
+  List,
+  ListItemIcon,
+  ListItem,
+  ListItemText,
+} from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
 import { useTheme } from "@mui/material/styles";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 type Props = {
   plan?: string;
@@ -9,7 +19,9 @@ type Props = {
   description?: string;
   subtitle?: string;
   buttonTitle: string;
+  time: string;
   highlet?: boolean;
+  benfits: string[];
   onButtonOnClick: () => void;
 };
 
@@ -19,9 +31,12 @@ const PlanCard = ({
   description,
   buttonTitle,
   highlet,
+  time,
+  benfits,
   onButtonOnClick,
 }: Props) => {
   const theme = useTheme();
+  const [btnLoading, setBtnLoading] = React.useState(false);
   return (
     <Box
       p={4}
@@ -34,6 +49,7 @@ const PlanCard = ({
         },
         boxShadow: highlet ? theme.shadows[24] : "none",
         backgroundColor: "white",
+        height: "100%",
       }}
     >
       <Box>
@@ -49,6 +65,9 @@ const PlanCard = ({
         <Typography sx={{ display: "inline-block" }} variant="h2">
           {price}
         </Typography>
+        <Typography sx={{ display: "inline-block", ml: "1" }} variant="h5">
+          {time}
+        </Typography>
         <Typography
           my={2}
           color="grey.600"
@@ -59,14 +78,30 @@ const PlanCard = ({
         </Typography>
       </Box>
       <Box>
-        <Button
-          onClick={onButtonOnClick}
+        <List>
+          {(benfits || []).map((benfit) => (
+            <ListItem>
+              <ListItemIcon>
+                <CheckCircleIcon color="primary" />
+              </ListItemIcon>
+              <Typography ml={-2}>{benfit}</Typography>
+            </ListItem>
+          ))}
+        </List>
+        <LoadingButton
+          loading={btnLoading}
+          size="large"
+          loadingPosition="start"
+          onClick={() => {
+            onButtonOnClick();
+            setBtnLoading(true);
+          }}
           fullWidth
           variant="contained"
           sx={{ mt: 2 }}
         >
           {buttonTitle}
-        </Button>
+        </LoadingButton>
       </Box>
     </Box>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Grid, Divider, Button, IconButton } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import ProjectTopBar from "./ProjectTopBar";
 import ProjectCard from "./ProjectCard";
 import ProjectListItem from "./ProjectListItem";
@@ -28,8 +29,10 @@ type DesktopViewProps = {
   changeProjectView: boolean;
 };
 
-const DesktopView = ({ changeProjectView }: DesktopViewProps) =>
-  changeProjectView ? (
+const DesktopView = ({ changeProjectView }: DesktopViewProps) => {
+  const theme = useTheme();
+
+  return changeProjectView ? (
     <Grid px={4} py={2} container columnSpacing={2} rowSpacing={3}>
       {[1, 2, 3, 4, 5].map((item) => (
         <Grid key={item} item xs={4}>
@@ -39,7 +42,11 @@ const DesktopView = ({ changeProjectView }: DesktopViewProps) =>
     </Grid>
   ) : (
     <Box px={4} py={2}>
-      <Box boxShadow={(theme) => theme.shadows[4]} borderRadius={"8px"}>
+      <Box
+        sx={{ border: `1px solid ${theme.palette.grey[200]}` }}
+        boxShadow={(theme) => theme.shadows[4]}
+        borderRadius={"8px"}
+      >
         <ProjectListItem />
         <ProjectListItem />
         <ProjectListItem />
@@ -47,15 +54,23 @@ const DesktopView = ({ changeProjectView }: DesktopViewProps) =>
       </Box>
     </Box>
   );
+};
 
-const MobileView = () => (
-  <Box px={2} py={2}>
-    <Box boxShadow={(theme) => theme.shadows[4]} borderRadius={"8px"}>
-      <ProjectListItem />
-      <ProjectListItem />
-      <ProjectListItem />
-      <ProjectListItem />
+const MobileView = () => {
+  const theme = useTheme();
+  return (
+    <Box px={2} py={2}>
+      <Box
+        sx={{ border: `1px solid ${theme.palette.grey[200]}` }}
+        boxShadow={(theme) => theme.shadows[4]}
+        borderRadius={"8px"}
+      >
+        <ProjectListItem />
+        <ProjectListItem />
+        <ProjectListItem />
+        <ProjectListItem />
+      </Box>
     </Box>
-  </Box>
-);
+  );
+};
 export default Projects;

@@ -4,7 +4,6 @@ import { Typography, Box, Stack, Button } from "@mui/material";
 const ProjectCreateTopBar = () => {
   return (
     <Stack
-      px={4}
       py={1}
       direction={"row"}
       justifyContent="space-between"

@@ -69,7 +69,13 @@ const ToolsMenu = ({
 
   return (
     <>
-      <ListItem sx={{ marginTop: "-.7rem", marginBottom: "0rem" }}>
+      <ListItem
+        sx={{
+          marginTop: "-.7rem",
+          marginBottom: "0rem",
+          backgroundColor: theme.palette.grey[800],
+        }}
+      >
         <ListItemButton
           sx={{
             borderRadius: "8px",
@@ -87,14 +93,14 @@ const ToolsMenu = ({
                 width: "1.4rem",
                 height: "1.4rem",
                 color: isParentSelcted
-                  ? theme.palette.primary.main
+                  ? theme.palette.primary.light
                   : theme.palette.primary.main,
               }}
             />
           </ListItemIcon>
           <Typography
             variant="subtitle2"
-            color={isParentSelcted ? "primary.main" : "grey.700"}
+            color={isParentSelcted ? "primary.light" : "grey.200"}
             sx={{
               ml: "-1rem",
             }}
@@ -108,7 +114,7 @@ const ToolsMenu = ({
                 fontSize: "1.1rem",
                 color: isParentSelcted
                   ? theme.palette.primary.main
-                  : theme.palette.grey[700],
+                  : theme.palette.grey[600],
               }}
             />
           ) : (
@@ -116,7 +122,7 @@ const ToolsMenu = ({
               sx={{
                 ml: "auto",
                 fontSize: "1.1rem",
-                color: theme.palette.grey[700],
+                color: theme.palette.grey[600],
               }}
             />
           )}
@@ -144,13 +150,15 @@ const ToolsMenu = ({
                     sx={{
                       width: isChildSelected(idx) ? ".75rem" : ".55rem",
                       height: isChildSelected(idx) ? ".75rem" : ".55rem",
-                      color: isChildSelected(idx) ? "primary.main" : "grey.500",
+                      color: isChildSelected(idx)
+                        ? "primary.light"
+                        : "grey.500",
                     }}
                   />
                 </ListItemIcon>
                 <Typography
                   variant={"subtitle2"}
-                  color={isChildSelected(idx) ? "primary.main" : "grey.700"}
+                  color={isChildSelected(idx) ? "primary.light" : "grey.200"}
                   noWrap
                   sx={{
                     width: "100%",

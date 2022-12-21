@@ -5,6 +5,27 @@ import { useTheme } from "@mui/material/styles";
 import PlanCard from "./PlanCard";
 import config from "../../config";
 
+const freePlanBenfits = [
+  "2,000 words per month",
+  "Unlimited projects",
+  "90+ copywriting tools",
+];
+
+const monthlyPlan = [
+  "Unlimited words",
+  "Unlimited projects",
+  "90+ copywriting tools",
+  "Priority support",
+];
+
+const yearlyPlan = [
+  "Unlimited words",
+  "Unlimited projects",
+  "90+ copywriting tools",
+  "Priority support",
+  "Access to our newest features",
+];
+
 const Subscription = () => {
   const theme = useTheme();
 
@@ -62,8 +83,10 @@ const Subscription = () => {
       </Typography>
       <Stack mt={3} direction={{ xs: "column", sm: "row" }} spacing={3}>
         <PlanCard
+          benfits={freePlanBenfits}
           title="basic"
           price={"Free"}
+          time={""}
           description={"2,000 words per month"}
           subtitle={"No Credit card required"}
           buttonTitle={"Sign up for free"}
@@ -72,18 +95,22 @@ const Subscription = () => {
           }}
         />
         <PlanCard
+          benfits={monthlyPlan}
           title={"monthly"}
           price={"45"}
-          description={"Unlimited words per month"}
+          time="/monthly"
+          description={"$45 Billed Monthly"}
           subtitle={"No Credit card required"}
           highlet={true}
           buttonTitle={"Choose Monthly"}
           onButtonOnClick={handleMonthlyPlan}
         />
         <PlanCard
+          benfits={yearlyPlan}
           title={"yearly"}
+          time="/monthly"
           price={"39"}
-          description={"Unlimited words per month"}
+          description={"$420 Billed Yearly"}
           subtitle={"No Credit card required"}
           buttonTitle={"Choose Yearly"}
           onButtonOnClick={handleYearlyPlan}

@@ -14,6 +14,10 @@ const ProjectCard = () => {
       sx={{
         cursor: "pointer",
         border: `1px solid ${theme.palette.grey[300]}`,
+        "&:hover": {
+          backgroundColor: theme.palette.grey[100],
+          boxShadow: theme.shadows[4],
+        },
       }}
     >
       <Stack

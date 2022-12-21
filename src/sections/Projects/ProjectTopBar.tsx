@@ -14,6 +14,9 @@ const ProjectTopBar = ({ changeProjectView, setChangeProjectView }: Props) => {
       direction={"row"}
       justifyContent={"space-between"}
       alignItems="center"
+      sx={{
+        marginTop: "7rem",
+      }}
     >
       <Typography variant="h4" color="grey.800">
         Projects
