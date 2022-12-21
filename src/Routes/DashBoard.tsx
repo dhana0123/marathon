@@ -73,19 +73,24 @@ export default function DashBoard() {
         variant="permanent"
         open
         sx={{
-          display: { xs: "none", sm: "block" },
+          display: {
+            xs: "none",
+            sm: "block",
+          },
         }}
       >
-        <DrawerHeader>
-          {/* <IconButton onClick={handleDrawer}>
+        <Box sx={{ background: theme.palette.grey[200] }}>
+          <DrawerHeader>
+            {/* <IconButton onClick={handleDrawer}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
               <ChevronLeftIcon />
             )}
           </IconButton> */}
-        </DrawerHeader>
-        <SideNav />
+          </DrawerHeader>
+          <SideNav />
+        </Box>
       </Drawer>
 
       <SwipeableDrawer

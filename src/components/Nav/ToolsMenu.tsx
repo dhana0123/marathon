@@ -94,7 +94,7 @@ const ToolsMenu = ({
           </ListItemIcon>
           <Typography
             variant="subtitle2"
-            color={isParentSelcted ? "primary.main" : "grey.600"}
+            color={isParentSelcted ? "primary.main" : "grey.700"}
             sx={{
               ml: "-1rem",
             }}
@@ -150,7 +150,7 @@ const ToolsMenu = ({
                 </ListItemIcon>
                 <Typography
                   variant={"subtitle2"}
-                  color={isChildSelected(idx) ? "primary.main" : "grey.600"}
+                  color={isChildSelected(idx) ? "primary.main" : "grey.700"}
                   noWrap
                   sx={{
                     width: "100%",

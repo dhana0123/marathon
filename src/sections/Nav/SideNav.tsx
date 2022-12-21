@@ -1,5 +1,12 @@
 import React from "react";
-import { List, ListSubheader, Button, Stack, Box } from "@mui/material";
+import {
+  List,
+  ListSubheader,
+  Button,
+  Stack,
+  Box,
+  Typography,
+} from "@mui/material";
 import { AddCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
@@ -26,22 +33,12 @@ const SideNav = () => {
           New Project
         </Button>
       </Stack>
+      <Typography variant="subtitle1" px={2}>
+        Tools
+      </Typography>
       <List
         component="nav"
         aria-labelledby="nested-list-subheader"
-        subheader={
-          <ListSubheader
-            sx={{
-              mb: 1,
-              color: "grey.500",
-              ...theme.typography.subtitle2,
-            }}
-            component="div"
-            id="nested-list-subheader"
-          >
-            TOOLS
-          </ListSubheader>
-        }
         sx={{ py: 1 }}
       >
         {(tools || []).map((menu, idx) => (
