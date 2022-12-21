@@ -45,16 +45,18 @@ const Subscription = () => {
         alignItems: "center",
         justifyContent: "center",
         margin: "auto",
+        backgroundColor: theme.palette.primary.main,
+        borderRadius: "1rem",
       }}
     >
-      <Typography variant="h3" textAlign="center">
+      <Typography variant="h3" color="white" textAlign="center">
         Fast, easy and cost-effective
       </Typography>
       <Typography
         textAlign={"center"}
         my={1.5}
         variant="body1"
-        sx={{ color: "grey.600" }}
+        sx={{ color: "grey.100" }}
       >
         Flexible plans for your size and needs
       </Typography>

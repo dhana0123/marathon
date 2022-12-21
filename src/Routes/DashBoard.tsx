@@ -89,7 +89,12 @@ export default function DashBoard() {
       </Drawer>
 
       <SwipeableDrawer
-        sx={{ display: { xs: "block", sm: "none" } }}
+        sx={{
+          display: {
+            xs: "block",
+            sm: "none",
+          },
+        }}
         open={open}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}

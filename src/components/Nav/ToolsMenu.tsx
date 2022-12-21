@@ -73,7 +73,8 @@ const ToolsMenu = ({
         <ListItemButton
           sx={{
             borderRadius: "8px",
-            p: 1.7,
+            p: 1.5,
+            py: 1.1,
             my: 0,
           }}
           onClick={handleClick}
@@ -83,8 +84,8 @@ const ToolsMenu = ({
             <tools.icon
               size="small"
               sx={{
-                width: "1.6rem",
-                height: "1.6rem",
+                width: "1.4rem",
+                height: "1.4rem",
                 color: isParentSelcted
                   ? theme.palette.primary.main
                   : theme.palette.primary.main,

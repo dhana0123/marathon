@@ -8,6 +8,7 @@ import {
   DashBoard,
   ProjectCreate,
   Plans,
+  Contact,
 } from "./Routes";
 import Projects from "./sections/Projects";
 const router = createBrowserRouter([
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/plans",
     element: <Plans />,
+  },
+  {
+    path: "/contact",
+    element: <Contact />,
   },
   {
     path: "/dashboard",

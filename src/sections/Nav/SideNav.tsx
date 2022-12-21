@@ -31,7 +31,11 @@ const SideNav = () => {
         aria-labelledby="nested-list-subheader"
         subheader={
           <ListSubheader
-            sx={{ color: "grey.500", ...theme.typography.subtitle2 }}
+            sx={{
+              mb: 1,
+              color: "grey.500",
+              ...theme.typography.subtitle2,
+            }}
             component="div"
             id="nested-list-subheader"
           >

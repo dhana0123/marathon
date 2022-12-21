@@ -33,6 +33,7 @@ const PlanCard = ({
           boxShadow: theme.shadows[24],
         },
         boxShadow: highlet ? theme.shadows[24] : "none",
+        backgroundColor: "white",
       }}
     >
       <Box>
