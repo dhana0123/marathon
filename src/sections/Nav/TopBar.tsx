@@ -8,12 +8,26 @@ import {
   Avatar,
   Button,
   Slide,
+  Menu,
+  List,
+  ListItem,
+  ListItemIcon,
+  Divider,
+  Tooltip,
+  MenuItem,
   Typography,
   Zoom,
   ClickAwayListener,
+  useTheme,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { Verified, PersonRounded, TableRowsRounded } from "@mui/icons-material";
+import {
+  Verified,
+  PersonRounded,
+  TableRowsRounded,
+  SettingsRounded,
+  LockRounded,
+} from "@mui/icons-material";
 import SearchPanel from "../Dashboard/SearchPanel";
 import ResultPanel from "../Dashboard/ResultPanel";
 
@@ -25,7 +39,8 @@ const TopBar = ({ setOpen }: Props) => {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [openSearch, setOpenSearch] = React.useState(false);
   const [openResultPanel, setOpenResultPanel] = React.useState(false);
-
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const theme = useTheme();
   const navigate = useNavigate();
 
   const handleSearchFocus = () => {
@@ -54,6 +69,14 @@ const TopBar = ({ setOpen }: Props) => {
       setOpenResultPanel(true);
     }
   }, [searchTerm]);
+
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <ClickAwayListener onClickAway={handleOnClickaway}>
@@ -136,15 +159,23 @@ const TopBar = ({ setOpen }: Props) => {
               </Box>
             </Slide>
             <Stack direction="row" alignItems={"center"} spacing={2}>
-              <IconButton
-                sx={{
-                  backgroundColor: "grey.300",
-                }}
-              >
-                <PersonRounded
-                  sx={{ color: "grey.500", width: "1.3rem", height: "1.3rem" }}
-                />
-              </IconButton>
+              <Tooltip title="Account settings">
+                <IconButton
+                  onClick={handleClick}
+                  sx={{
+                    backgroundColor: "grey.300",
+                  }}
+                >
+                  <PersonRounded
+                    sx={{
+                      color: "grey.500",
+                      width: "1.3rem",
+                      height: "1.3rem",
+                    }}
+                  />
+                </IconButton>
+              </Tooltip>
+
               <Button
                 startIcon={<Verified />}
                 variant="contained"
@@ -155,6 +186,71 @@ const TopBar = ({ setOpen }: Props) => {
               </Button>
             </Stack>
           </Stack>
+
+          <Menu
+            anchorEl={anchorEl}
+            id="account-menu"
+            open={open}
+            onClose={handleClose}
+            onClick={handleClose}
+            PaperProps={{
+              elevation: 0,
+              sx: {
+                overflow: "visible",
+                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.2))",
+                border: `1px solid ${theme.palette.grey[200]}`,
+                p: 1,
+                width: 150,
+                mt: 1.5,
+                borderRadius: "16px",
+                "& .MuiAvatar-root": {
+                  width: 30,
+                  height: 32,
+                  ml: -0.5,
+                  mr: 1,
+                },
+                "&:before": {
+                  content: '""',
+                  display: "block",
+                  position: "absolute",
+                  top: 0,
+                  right: 14,
+                  width: 10,
+                  height: 10,
+                  bgcolor: "background.paper",
+                  transform: "translateY(-50%) rotate(45deg)",
+                  zIndex: 0,
+                },
+              },
+            }}
+            transformOrigin={{ horizontal: "right", vertical: "top" }}
+            anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+          >
+            <MenuItem sx={{ borderRadius: "8px", mb: 0.5 }}>
+              <ListItemIcon>
+                <PersonRounded fontSize="small" sx={{ color: "grey.700" }} />
+              </ListItemIcon>
+              <Typography variant="subtitle2" color="grey.700">
+                Profile
+              </Typography>
+            </MenuItem>
+            <MenuItem sx={{ borderRadius: "8px", my: 0.5 }}>
+              <ListItemIcon>
+                <SettingsRounded fontSize="small" sx={{ color: "grey.700" }} />
+              </ListItemIcon>
+              <Typography variant="subtitle2" color="grey.700">
+                Settings
+              </Typography>
+            </MenuItem>
+            <MenuItem sx={{ borderRadius: "8px", mt: 0.5 }}>
+              <ListItemIcon>
+                <LockRounded fontSize="small" color="error" />
+              </ListItemIcon>
+              <Typography variant="subtitle2" color="grey.700">
+                Logout
+              </Typography>
+            </MenuItem>
+          </Menu>
 
           <Zoom in={openResultPanel}>
             <Box
