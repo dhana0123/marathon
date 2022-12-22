@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography, useTheme } from "@mui/material";
 import {
   BookmarkAddOutlined,
   FileCopyOutlined,
@@ -8,14 +8,18 @@ import {
 } from "@mui/icons-material";
 
 const Results = () => {
+  const theme = useTheme();
   return (
     <>
       <Box
-        p={2}
+        py={4}
+        px={2}
         sx={{
+          border: `1px solid ${theme.palette.grey[200]}`,
+          backgroundColor: "white",
           borderRadius: "8px",
           cursor: "pointer",
-          "&:hover": { backgroundColor: "grey.200" },
+          "&:hover": { boxShadow: theme.shadows[4] },
         }}
       >
         <Typography variant="body2" color="grey.700">
@@ -55,17 +59,6 @@ const Results = () => {
           </Button>
         </Stack>
       </Box>
-      <Box
-        sx={{
-          width: "100%",
-          borderWidth: "1.7px",
-          borderStyle: "dashed",
-          borderColor: "grey.400",
-          borderTop: "none",
-          borderLeft: "none",
-          borderRight: "none",
-        }}
-      ></Box>
     </>
   );
 };

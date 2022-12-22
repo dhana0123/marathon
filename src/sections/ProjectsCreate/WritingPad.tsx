@@ -23,8 +23,9 @@ const WritingPad = () => {
             minHeight: "80vh",
             padding: "1em",
             paddingTop: 0,
+            background: "white",
           }}
-          toolbarStyle={{ backgroundColor: theme.palette.grey[200] }}
+          toolbarStyle={{ backgroundColor: theme.palette.grey[300] }}
           toolbar={{
             options: ["inline", "blockType", "fontSize", "list", "history"],
             inline: {

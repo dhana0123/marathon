@@ -109,7 +109,7 @@ export default function DashBoard() {
       </SwipeableDrawer>
       <Box component="main" width={"100%"} sx={{ position: "relative" }}>
         <TopBar setOpen={setOpen} />
-        <Box mt={{ xs: 13, sm: 11 }}>
+        <Box mt={{ xs: 13, sm: 11, background: "#F2F8F9", height: "100%" }}>
           <Outlet />
         </Box>
       </Box>

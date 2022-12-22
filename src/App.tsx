@@ -10,6 +10,7 @@ import {
   Plans,
   Contact,
 } from "./Routes";
+import DetailTools from "./sections/DetailTools";
 import Projects from "./sections/Projects";
 const router = createBrowserRouter([
   {
@@ -35,7 +36,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard/projects",
-        element: <Projects />,
+        element: <DetailTools />,
       },
       {
         path: "/dashboard/Projects/create",

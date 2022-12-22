@@ -126,7 +126,7 @@ const TopBar = ({ setOpen }: Props) => {
                     sx={{
                       fontSize: "1.18rem",
                       fontWeight: "bold",
-                      color: "grey.700",
+                      color: "grey.800",
                       display: { xs: "none", sm: "block" },
                     }}
                     fullWidth

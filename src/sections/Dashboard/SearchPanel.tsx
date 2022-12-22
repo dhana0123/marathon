@@ -30,7 +30,7 @@ const SearchPanel = ({
         sx={{
           fontSize: "1.18rem",
           fontWeight: "bold",
-          color: "grey.700",
+          color: "grey.800",
         }}
         fullWidth
         placeholder="Search tools..."
