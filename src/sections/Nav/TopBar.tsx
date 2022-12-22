@@ -55,13 +55,6 @@ const TopBar = ({ setOpen }: Props) => {
     }
   }, [searchTerm]);
 
-  React.useEffect(() => {
-    const interval = setTimeout(() => {
-      console.log("search the terms");
-    }, 2000);
-    return () => clearTimeout(interval);
-  }, [searchTerm]);
-
   return (
     <ClickAwayListener onClickAway={handleOnClickaway}>
       <Box
@@ -138,6 +131,7 @@ const TopBar = ({ setOpen }: Props) => {
                   searchTerm={searchTerm}
                   handleSearchTerm={handleInputSearch}
                   handleSearchInputClick={handleSearchInputClick}
+                  handleOnClickaway={handleOnClickaway}
                 />
               </Box>
             </Slide>
@@ -167,12 +161,16 @@ const TopBar = ({ setOpen }: Props) => {
               p={3}
               bgcolor="white"
               boxShadow={(theme) => theme.shadows[24]}
+              border={(theme) => `1px solid ${theme.palette.grey[200]}`}
               sx={{
                 position: "absolute",
                 top: "6.2rem",
                 left: "1%",
                 right: "1%",
                 zIndex: 100,
+                minHeight: "40vh",
+                maxHeight: "60vh",
+                overflowY: "scroll",
                 borderRadius: "8px",
               }}
             >

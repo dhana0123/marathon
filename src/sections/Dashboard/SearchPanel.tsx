@@ -1,16 +1,19 @@
 import React from "react";
 import { Box, IconButton, InputBase, SvgIcon } from "@mui/material";
+import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 type Props = {
   searchTerm: string;
   handleSearchTerm: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearchInputClick: () => void;
+  handleOnClickaway: () => void;
 };
 
 const SearchPanel = ({
   searchTerm,
   handleSearchTerm,
   handleSearchInputClick,
+  handleOnClickaway,
 }: Props) => {
   return (
     <Box sx={{ display: "flex", flexGrow: "1" }}>
@@ -32,6 +35,9 @@ const SearchPanel = ({
         fullWidth
         placeholder="Search tools..."
       />
+      <IconButton onClick={handleOnClickaway}>
+        <CloseRoundedIcon />
+      </IconButton>
     </Box>
   );
 };
