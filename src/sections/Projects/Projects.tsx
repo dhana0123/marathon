@@ -46,6 +46,7 @@ const DesktopView = ({ changeProjectView }: DesktopViewProps) => {
         sx={{ border: `1px solid ${theme.palette.grey[200]}` }}
         boxShadow={(theme) => theme.shadows[4]}
         borderRadius={"8px"}
+        px={2}
       >
         <ProjectListItem />
         <ProjectListItem />
@@ -64,6 +65,7 @@ const MobileView = () => {
         sx={{ border: `1px solid ${theme.palette.grey[200]}` }}
         boxShadow={(theme) => theme.shadows[4]}
         borderRadius={"8px"}
+        px={2}
       >
         <ProjectListItem />
         <ProjectListItem />

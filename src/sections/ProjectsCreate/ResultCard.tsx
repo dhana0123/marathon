@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import {
-  FileCopyRounded,
-  BookmarkRounded,
-  FavoriteRounded,
-  CancelRounded,
+  BookmarkAddOutlined,
+  FileCopyOutlined,
+  FavoriteBorderRounded,
+  CancelOutlined,
 } from "@mui/icons-material";
 
 const Results = () => {
@@ -27,28 +27,28 @@ const Results = () => {
         <Stack spacing={1} direction="row" justifyContent="space-around" mt={2}>
           <Button
             sx={{ fontSize: { xs: "13px", sm: "14px" } }}
-            startIcon={<FileCopyRounded fontSize="small" />}
+            startIcon={<FileCopyOutlined fontSize="small" />}
             size="small"
           >
             Copy
           </Button>
           <Button
             sx={{ fontSize: { xs: "13px", sm: "14px" } }}
-            startIcon={<BookmarkRounded fontSize="small" />}
+            startIcon={<BookmarkAddOutlined fontSize="small" />}
             size="small"
           >
             Save
           </Button>
           <Button
             sx={{ fontSize: { xs: "13px", sm: "14px" } }}
-            startIcon={<FavoriteRounded fontSize="small" />}
+            startIcon={<FavoriteBorderRounded fontSize="small" />}
             size="small"
           >
             More Like This
           </Button>
           <Button
             sx={{ fontSize: { xs: "13px", sm: "14px" } }}
-            startIcon={<CancelRounded fontSize="small" />}
+            startIcon={<CancelOutlined fontSize="small" />}
             size="small"
           >
             Remove

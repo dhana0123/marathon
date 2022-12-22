@@ -25,8 +25,9 @@ import {
   Verified,
   PersonRounded,
   TableRowsRounded,
-  SettingsRounded,
   LockRounded,
+  PersonOutlined,
+  SettingsOutlined,
 } from "@mui/icons-material";
 import SearchPanel from "../Dashboard/SearchPanel";
 import ResultPanel from "../Dashboard/ResultPanel";
@@ -197,11 +198,12 @@ const TopBar = ({ setOpen }: Props) => {
               elevation: 0,
               sx: {
                 overflow: "visible",
-                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.2))",
+                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.1))",
                 border: `1px solid ${theme.palette.grey[200]}`,
-                p: 1,
-                width: 150,
+
+                width: 190,
                 mt: 1.5,
+                p: 1,
                 borderRadius: "16px",
                 "& .MuiAvatar-root": {
                   width: 30,
@@ -226,9 +228,19 @@ const TopBar = ({ setOpen }: Props) => {
             transformOrigin={{ horizontal: "right", vertical: "top" }}
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
-            <MenuItem sx={{ borderRadius: "8px", mb: 0.5 }}>
+            <Box
+              sx={{
+                pb: 1.5,
+                px: 0.5,
+                borderBottom: `1px dashed ${theme.palette.grey[400]}`,
+              }}
+            >
+              <Typography variant="subtitle2">Email</Typography>
+              <Typography variant="caption">BsanthoshDhan@gamil.com</Typography>
+            </Box>
+            <MenuItem sx={{ borderRadius: "8px", my: 0.5, mt: 1 }}>
               <ListItemIcon>
-                <PersonRounded fontSize="small" sx={{ color: "grey.700" }} />
+                <PersonOutlined fontSize="small" sx={{ color: "grey.700" }} />
               </ListItemIcon>
               <Typography variant="subtitle2" color="grey.700">
                 Profile
@@ -236,7 +248,7 @@ const TopBar = ({ setOpen }: Props) => {
             </MenuItem>
             <MenuItem sx={{ borderRadius: "8px", my: 0.5 }}>
               <ListItemIcon>
-                <SettingsRounded fontSize="small" sx={{ color: "grey.700" }} />
+                <SettingsOutlined fontSize="small" sx={{ color: "grey.700" }} />
               </ListItemIcon>
               <Typography variant="subtitle2" color="grey.700">
                 Settings
