@@ -15,7 +15,7 @@ const WritingPad = () => {
   };
 
   return (
-    <Box>
+    <Box sx={{ background: "white", width: "100%" }}>
       <Box>
         <Editor
           editorState={editorState}

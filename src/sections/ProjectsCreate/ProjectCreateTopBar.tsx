@@ -1,7 +1,12 @@
 import React from "react";
-import { Typography, Box, Stack, Button } from "@mui/material";
+import { Typography, Box, Stack, Tabs, Tab } from "@mui/material";
 
 const ProjectCreateTopBar = () => {
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    setValue(newValue);
+  };
+
   return (
     <Stack
       py={1}
@@ -13,8 +18,15 @@ const ProjectCreateTopBar = () => {
         My Project Name
       </Typography>
       <Box>
-        <Button variant="text">Create</Button>
-        <Button variant="text">Saved</Button>
+        <Tabs
+          sx={{ mt: -4 }}
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
+          <Tab sx={{ fontSize: "0.85rem" }} label="Create" />
+          <Tab sx={{ fontSize: "0.85rem" }} label="Saved" />
+        </Tabs>
       </Box>
     </Stack>
   );
