@@ -98,7 +98,7 @@ const PlanCard = ({
           }}
           fullWidth
           variant="contained"
-          sx={{ mt: 2 }}
+          sx={{ mt: 2, backgroundColor: "grey.800" }}
         >
           {buttonTitle}
         </LoadingButton>
