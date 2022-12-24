@@ -11,7 +11,7 @@ const ToolBanner = () => {
 
   return (
     <Box sx={{ maxWidth: "960px", margin: "auto", py: 10 }}>
-      <Typography textAlign={"center"} sx={{ color: "grey.800" }} variant="h3">
+      <Typography textAlign={"center"} sx={{ color: "grey.800" }} variant="h2">
         90+ Tools For You
       </Typography>
       <Box sx={{ position: "relative" }}>

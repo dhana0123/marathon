@@ -122,7 +122,9 @@ const TopNavbar = () => {
           spacing={2}
         >
           <Button variant="text">Login/Signup</Button>
-          <Button variant="contained">Start free trial</Button>
+          <Button variant="contained" sx={{ backgroundColor: "grey.800" }}>
+            Start free trial
+          </Button>
         </Stack>
       </Stack>
     </Container>

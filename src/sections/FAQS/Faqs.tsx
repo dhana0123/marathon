@@ -53,19 +53,20 @@ export default function ControlledAccordions() {
 
   return (
     <Box p={2} width={{ sm: "70%" }} margin="auto">
-      <Typography pt={3} pb={5} textAlign={"center"} variant="h3">
+      <Typography pt={3} pb={5} textAlign={"center"} variant="h2">
         Frequently Asked Questions
       </Typography>
       <Box boxShadow={(theme) => theme.shadows[8]}>
         {(accordionDetails || []).map((panel) => {
           return (
             <Accordion
+              key={panel.title}
               sx={{ px: { xs: 1, sm: 4 }, py: 2 }}
               expanded={expanded === panel.title}
               onChange={handleChange(panel.title)}
             >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon color="primary" />}
                 aria-controls="panel1bh-content"
                 id="panel1bh-header"
               >

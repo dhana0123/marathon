@@ -6,14 +6,16 @@ import Footer from "../sections/Footer";
 import FAQS from "../sections/FAQS";
 import ToolBanner from "../sections/ToolsBanner";
 import Subscription from "../sections/Subscription";
+import Steps from "../sections/Steps";
+import Banner from "../sections/Banner";
 const Landing = () => {
   const theme = useTheme();
   return (
     <Box
       sx={{
-        // backgroundColor: theme.palette.primary.main,
+        backgroundColor: "#F2F8F9",
         height: "100vh",
-        pt: 18,
+        pt: 15,
       }}
     >
       <Container
@@ -30,20 +32,26 @@ const Landing = () => {
       >
         <TopNavbar />
       </Container>
+      {/* banner */}
+      <Box sx={{ backgroundColor: "#F2F8F9", margn: "auto", pb: 6 }}>
+        <Box maxWidth={"1500px"} margin="auto">
+          <Banner />
+        </Box>
+      </Box>
+      {/* steps */}
+      <Box sx={{ backgroundColor: "#F2F8F9", margn: "auto" }}>
+        <Container>
+          <Steps />
+        </Container>
+      </Box>
       {/* ToolBanner */}
-      <Box
-        sx={{ backgroundColor: "#F2F8F9", margn: "auto" }}
-        borderTop={(theme) => `3px dashed ${theme.palette.grey[300]}`}
-      >
+      <Box sx={{ backgroundColor: "#F2F8F9", margn: "auto" }}>
         <Container>
           <ToolBanner />
         </Container>
       </Box>
       {/* plans */}
-      <Box
-        sx={{ backgroundColor: "primary.lighter", py: 4, margn: "auto" }}
-        borderTop={(theme) => `3px dashed ${theme.palette.grey[300]}`}
-      >
+      <Box sx={{ backgroundColor: "#F2F8F9", py: 4, margn: "auto" }}>
         <Container>
           <Subscription />
         </Container>
@@ -53,7 +61,7 @@ const Landing = () => {
         sx={{
           pt: 3,
           pb: 10,
-          backgroundColor: "secondary.lighter",
+          backgroundColor: "#F2F8F9",
           margn: "auto",
         }}
       >

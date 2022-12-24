@@ -68,7 +68,7 @@ const Subscription = () => {
         margin: "auto",
       }}
     >
-      <Typography variant="h3" textAlign="center">
+      <Typography variant="h2" textAlign="center">
         Fast, easy and cost-effective
       </Typography>
       <Typography textAlign={"center"} my={1.5} variant="body1">

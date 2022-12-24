@@ -80,7 +80,7 @@ const PlanCard = ({
       <Box>
         <List>
           {(benfits || []).map((benfit) => (
-            <ListItem>
+            <ListItem key={benfit}>
               <ListItemIcon>
                 <CheckCircleIcon color="primary" />
               </ListItemIcon>
@@ -91,14 +91,13 @@ const PlanCard = ({
         <LoadingButton
           loading={btnLoading}
           size="large"
-          loadingPosition="start"
           onClick={() => {
             onButtonOnClick();
             setBtnLoading(true);
           }}
           fullWidth
           variant="contained"
-          sx={{ mt: 2, backgroundColor: "grey.800" }}
+          sx={{ mt: 2 }}
         >
           {buttonTitle}
         </LoadingButton>
