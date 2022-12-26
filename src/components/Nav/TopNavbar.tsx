@@ -29,7 +29,7 @@ const TopNavbar = () => {
           justifyContent="space-between"
           alignItems={"center"}
         >
-          <Box>Marathon</Box>
+          <Box onClick={() => navigate("/")}>Marathon</Box>
           <IconButton
             sx={{ backgroundColor: "grey.100" }}
             onClick={() => setToggleNav(true)}
@@ -87,7 +87,9 @@ const TopNavbar = () => {
         px={1}
         py={2}
       >
-        <Box sx={{ width: "200px" }}>Marathon</Box>
+        <Box onClick={() => navigate("/")} sx={{ width: "200px" }}>
+          Marathon
+        </Box>
         <Stack
           direction={"row"}
           justifyContent="center"
@@ -121,8 +123,14 @@ const TopNavbar = () => {
           direction={"row"}
           spacing={2}
         >
-          <Button variant="text">Login/Signup</Button>
-          <Button variant="contained" sx={{ backgroundColor: "grey.800" }}>
+          <Button variant="text" onClick={() => navigate("/login")}>
+            Login/Signup
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => navigate("/login")}
+            sx={{ backgroundColor: "grey.800" }}
+          >
             Start free trial
           </Button>
         </Stack>

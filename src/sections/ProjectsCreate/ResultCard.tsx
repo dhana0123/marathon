@@ -22,7 +22,7 @@ const Results = () => {
           "&:hover": { boxShadow: theme.shadows[4] },
         }}
       >
-        <Typography variant="body2" color="grey.700">
+        <Typography sx={{ fontSize: ".975rem" }} color="grey.700">
           ust a few words can make an impact on your business, help you connect
           with customers and drive more sales. But once you’ve written those
           words, how do you get them in front of the right audience? How can you
