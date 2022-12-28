@@ -1,8 +1,9 @@
 import React from "react";
-import { Typography, Box, Stack, Tabs, Tab } from "@mui/material";
+import { Typography, Box, Stack, Tabs, Tab, TextField } from "@mui/material";
 
 const ProjectCreateTopBar = () => {
   const [value, setValue] = React.useState(0);
+  const [projectName, setProjectName] = React.useState("Project Name");
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -10,16 +11,25 @@ const ProjectCreateTopBar = () => {
   return (
     <Stack
       py={1}
+      pt={2}
       direction={"row"}
       justifyContent="space-between"
       alignItems="center"
     >
-      <Typography variant="h5" color="grey.700">
+      {/* <Typography variant="h5" color="grey.700">
         My Project Name
-      </Typography>
+      </Typography> */}
+      <TextField
+        required
+        onBlur={() => console.log("cool")}
+        value={projectName}
+        margin="none"
+        onChange={(e) => setProjectName(e.target.value)}
+        variant="standard"
+      />
       <Box>
         <Tabs
-          sx={{ mt: -4 }}
+          sx={{ mt: -2.6 }}
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"

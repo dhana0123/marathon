@@ -36,6 +36,7 @@ const ProjectListItem = () => {
       p={1}
       sx={{
         cursor: "pointer",
+        background: "white",
         borderRadius: "8px",
         borderBottom: `2px dashed ${theme.palette.grey[200]}`,
         "&:hover": {

@@ -35,6 +35,7 @@ const ProjectCard = () => {
       borderRadius={"16px"}
       sx={{
         cursor: "pointer",
+        background: "white",
         border: `1px solid ${theme.palette.grey[300]}`,
         "&:hover": {
           boxShadow: theme.shadows[4],

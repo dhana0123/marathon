@@ -32,12 +32,13 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="plans" element={<Plans />} />
             <Route path="contact" element={<Contact />} />
+            <Route path="*" element={<Landing />} />
           </Route>
         ) : (
           <>
             <Route path="/" element={<DashBoard />}>
+              <Route index element={<DetailTools />} />
               <Route path="projects" element={<Projects />} />
-              <Route path="tools" element={<DetailTools />} />
               <Route path="Projects/create" element={<ProjectCreate />} />
               <Route path="*" element={<DetailTools />} />
             </Route>

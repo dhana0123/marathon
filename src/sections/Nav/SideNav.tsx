@@ -28,11 +28,18 @@ const SideNav = () => {
     >
       <Stack p={2}>
         <Button
-          onClick={() => navigate("/dashboard/Projects/create")}
+          onClick={() => navigate("/Projects/create")}
           startIcon={<AddCircle />}
           variant="contained"
         >
           New Project
+        </Button>
+        <Button
+          sx={{ mt: 2 }}
+          onClick={() => navigate("/projects")}
+          variant="outlined"
+        >
+          Projects
         </Button>
       </Stack>
       <Typography color="grey.200" variant="subtitle1" px={2}>

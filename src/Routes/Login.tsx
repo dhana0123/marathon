@@ -6,7 +6,6 @@ import {
   TextField,
   Divider,
   Button,
-  useMediaQuery,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { MuiOtpInput } from "mui-one-time-password-input";
@@ -29,7 +28,7 @@ const Login = () => {
   const [otpResendMessage, setOtpResendMessaage] = React.useState("");
   const [emailLoading, setEmailLoading] = React.useState(false);
   const [otpLoading, setOtpLoading] = React.useState(false);
-  const matches = useMediaQuery("(max-width:600px)");
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -102,7 +101,7 @@ const Login = () => {
         localStorage.setItem("refreshToken", res.data.data.refreshToken);
         localStorage.setItem("login", "true");
         dispatch(loggedIn());
-        navigate("/tools");
+        navigate("/");
         setOtpLoading(false);
         setOtpError("");
       })

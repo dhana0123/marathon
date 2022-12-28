@@ -18,7 +18,7 @@ const Projects = () => {
   const matches = useMediaQuery("(max-width:600px)");
 
   return (
-    <Box>
+    <Box sx={{ minHeight: "75vh" }}>
       <ProjectTopBar
         changeProjectView={changeProjectView}
         setChangeProjectView={setChangeProjectView}
@@ -56,7 +56,6 @@ const DesktopView = ({ changeProjectView }: DesktopViewProps) => {
           sx={{ border: `1px solid ${theme.palette.grey[200]}` }}
           boxShadow={(theme) => theme.shadows[4]}
           borderRadius={"8px"}
-          px={2}
         >
           <ProjectListItem />
           <ProjectListItem />

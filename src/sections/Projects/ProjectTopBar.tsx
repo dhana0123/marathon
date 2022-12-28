@@ -15,7 +15,8 @@ const ProjectTopBar = ({ changeProjectView, setChangeProjectView }: Props) => {
       justifyContent={"space-between"}
       alignItems="center"
       sx={{
-        marginTop: "7rem",
+        marginTop: "4rem",
+        pt: 3,
       }}
     >
       <Typography variant="h4" color="grey.800">
@@ -30,9 +31,9 @@ const ProjectTopBar = ({ changeProjectView, setChangeProjectView }: Props) => {
           onClick={() => setChangeProjectView((p) => !p)}
         >
           {changeProjectView ? (
-            <DatasetRounded sx={{ color: "grey.500" }} />
+            <DatasetRounded sx={{ color: "grey.600" }} />
           ) : (
-            <ViewStreamRounded sx={{ color: "grey.500" }} />
+            <ViewStreamRounded sx={{ color: "grey.600" }} />
           )}
         </IconButton>
       </Stack>

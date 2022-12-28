@@ -1,9 +1,14 @@
 import React from "react";
 import { Box, TextField, Button, Typography } from "@mui/material";
 import ProjectCreateTopBar from "./ProjectCreateTopBar";
+import config from "../../config";
 import Results from "./Results";
 
 const CreatePanel = () => {
+  React.useEffect(() => {
+    config.axios.post("/auth/verify", { data: {} });
+  }, []);
+
   return (
     <Box
       sx={{
