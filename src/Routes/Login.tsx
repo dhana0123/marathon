@@ -10,9 +10,12 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { MuiOtpInput } from "mui-one-time-password-input";
+import LoadingButton from "@mui/lab/LoadingButton";
 import config from "../config";
 import { validateEmail } from "../uitils/validators";
 import { dashboard, facebook, google, logo } from "../assets/images";
+import { useAppDispatch } from "../redux/store";
+import { loggedIn } from "../redux/userSlice";
 
 type State = "Email" | "Otp";
 
@@ -22,22 +25,97 @@ const Login = () => {
   const [otp, setOtp] = React.useState("");
   const [emailError, setEmailError] = React.useState("");
   const [otpError, setOtpError] = React.useState("");
+  const [emailVerifactionId, setEmailVerificationId] = React.useState("");
+  const [otpResendMessage, setOtpResendMessaage] = React.useState("");
+  const [emailLoading, setEmailLoading] = React.useState(false);
+  const [otpLoading, setOtpLoading] = React.useState(false);
   const matches = useMediaQuery("(max-width:600px)");
   const navigate = useNavigate();
-
-  console.log(matches);
+  const dispatch = useAppDispatch();
 
   const getEmailVerificationOtp = React.useCallback(() => {
+    setEmailLoading(true);
     const isEmailValid = validateEmail(email);
     if (isEmailValid) {
       setEmailError("");
-      setState("Otp");
+      config.axios
+        .post(`${config.serverUrl}/auth/signup`, {
+          email,
+        })
+        .then((res) => {
+          setEmailLoading(false);
+          setEmailVerificationId(res.data.data.verificationId);
+          setState("Otp");
+        })
+        .catch((error) => {
+          setEmailLoading(false);
+          if (error.response.data.message) {
+            setEmailError(error.response.data.message);
+          }
+          if (error.response.data.errors) {
+            setEmailError(error.response.data.errors[0].msg);
+          }
+        });
+    } else {
+      setEmailLoading(false);
+      setEmailError("Email is invalid");
+    }
+  }, [email]);
+
+  const resendOtp = React.useCallback(() => {
+    const isEmailValid = validateEmail(email);
+    if (isEmailValid) {
+      setEmailError("");
+      config.axios
+        .post(`${config.serverUrl}/auth/signup`, {
+          email,
+        })
+        .then((res) => {
+          setEmailVerificationId(res.data.data.verificationId);
+          setOtpResendMessaage("Otp Sent Again");
+          setTimeout(() => {
+            setOtpResendMessaage("");
+          }, 8000);
+        })
+        .catch((error) => {
+          if (error.response.data) {
+            setOtpResendMessaage("");
+            setEmailError(error.response.data.errors[0].msg);
+          }
+        });
     } else {
       setEmailError("Email is invalid");
     }
   }, [email]);
 
-  console.log(otp);
+  const verifyOtp = React.useCallback(() => {
+    setOtpLoading(true);
+    config.axios
+      .post(`${config.serverUrl}/auth/verify`, {
+        type: "email",
+        id: emailVerifactionId,
+        otp,
+      })
+      .then((res) => {
+        localStorage.setItem("userId", res.data.data.userId);
+        localStorage.setItem("accessToken", res.data.data.accessToken);
+        localStorage.setItem("refreshToken", res.data.data.refreshToken);
+        localStorage.setItem("login", "true");
+        dispatch(loggedIn());
+        navigate("/tools");
+        setOtpLoading(false);
+        setOtpError("");
+      })
+      .catch((err) => {
+        setOtpLoading(false);
+        if (err.response.data.message) {
+          setOtpError(err.response.data.message);
+        }
+        if (err.response.data.errors) {
+          setOtpError(err.response.data.errors[0].msg);
+        }
+      });
+  }, [otp]);
 
   return (
     <Stack direction={{ xs: "column", sm: "row" }}>
@@ -63,7 +141,7 @@ const Login = () => {
           <Box sx={{ maxWidth: "350px" }}>
             <img src={logo} width="60px" style={{ marginBottom: "1rem" }} />
             <Typography variant="h4" color="grey.800">
-              Log in or create an account to Marathon
+              Log in or create an account to Writy.ai
             </Typography>
             <Typography variant="body2" color="grey.500" mb={{ xs: 2, sm: 1 }}>
               Quickly get started by signing in using your existing accounts.
@@ -79,7 +157,8 @@ const Login = () => {
               fullWidth
               sx={{ mt: "1rem", mb: 1 }}
             />
-            <Button
+            <LoadingButton
+              loading={emailLoading}
               size="large"
               fullWidth
               variant="contained"
@@ -87,7 +166,7 @@ const Login = () => {
               onClick={getEmailVerificationOtp}
             >
               Continue
-            </Button>
+            </LoadingButton>
             <Typography variant="caption" color="grey.500" textAlign={"center"}>
               We’ll email you a code for a password-free registration.
             </Typography>
@@ -128,27 +207,48 @@ const Login = () => {
             <Typography sx={{ mb: 4 }} variant="subtitle2" color="grey.800">
               {email}
             </Typography>
+            {emailError && (
+              <Typography variant="caption" color="error.main">
+                {emailError}
+              </Typography>
+            )}
             <MuiOtpInput
               length={5}
               TextFieldsProps={{
                 placeholder: "-",
                 error: otpError !== "",
-                helperText: otpError,
                 type: "tel",
               }}
               value={otp}
               onChange={(newOtp) => setOtp(newOtp)}
             />
-            <Button sx={{ mt: 3 }}>Resend Otp</Button>
-            <Button
+            <Typography
+              sx={{ display: "block", my: 2 }}
+              variant="caption"
+              textAlign={"center"}
+              color="error.main"
+            >
+              {otpError}
+            </Typography>
+            <Typography
+              sx={{ display: "block", my: 2 }}
+              variant="caption"
+              textAlign={"center"}
+              color="warning.main"
+            >
+              {otpResendMessage}
+            </Typography>
+            <Button onClick={resendOtp}>Resend Otp</Button>
+            <LoadingButton
+              loading={otpLoading}
               size="large"
               fullWidth
               variant="contained"
               sx={{ my: 1, mt: 2, mb: 2 }}
-              onClick={getEmailVerificationOtp}
+              onClick={verifyOtp}
             >
               Verify Otp
-            </Button>
+            </LoadingButton>
             <Typography variant="caption" color="grey.500" textAlign={"center"}>
               We’ll email you a code for a password-free registration.
             </Typography>

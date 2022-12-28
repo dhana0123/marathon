@@ -70,8 +70,12 @@ const TopNavbar = () => {
             >
               Contact
             </Typography>
-            <Button variant="outlined">Login/Signup</Button>
-            <Button variant="contained">Start free trial</Button>
+            <Button variant="outlined" onClick={() => navigate("/login")}>
+              Login/Signup
+            </Button>
+            <Button variant="contained" onClick={() => navigate("/login")}>
+              Start free trial
+            </Button>
           </Stack>
         </SwipeableDrawer>
       </Box>
