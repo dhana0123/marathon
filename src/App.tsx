@@ -19,6 +19,7 @@ import DetailTools from "./sections/DetailTools";
 import Projects from "./sections/Projects";
 import { useAppSelector } from "./redux/store";
 import { selectLogin } from "./redux/userSlice";
+import Main from "./Routes/Main";
 
 function App() {
   const isLogin = useAppSelector(selectLogin);
@@ -36,9 +37,12 @@ function App() {
           </Route>
         ) : (
           <>
-            <Route path="/" element={<DashBoard />}>
+            <Route path="/" element={<Main />}>
               <Route index element={<DetailTools />} />
               <Route path="projects" element={<Projects />} />
+            </Route>
+            <Route path="/" element={<DashBoard />}>
+              <Route index element={<DetailTools />} />
               <Route path="Projects/create" element={<ProjectCreate />} />
               <Route path="*" element={<DetailTools />} />
             </Route>

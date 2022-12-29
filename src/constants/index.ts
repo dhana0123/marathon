@@ -534,32 +534,32 @@ const Brainstorming: Menu = {
 
 const PersonalTools: Menu = {
   id: 1,
-  title: "Product Tools",
+  title: "Personal Tools",
   icon: EmojiEmotionsRounded,
   list: [
     {
       id: 1,
-      category: "product tool",
+      category: "Personal tool",
       title: "Birthday Card",
     },
     {
       id: 2,
-      category: "product tool",
+      category: "Personal tool",
       title: "Clubhouse Bio",
     },
     {
       id: 3,
-      category: "product tool",
+      category: "Personal tool",
       title: "Cover Letter",
     },
     {
       id: 4,
-      category: "product tool",
+      category: "Personal tool",
       title: "Love Letter",
     },
     {
       id: 5,
-      category: "product tool",
+      category: "Personal tool",
       title: "Resume Bullet Points",
     },
   ],

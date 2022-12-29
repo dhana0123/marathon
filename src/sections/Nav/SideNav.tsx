@@ -2,19 +2,26 @@ import React from "react";
 import {
   List,
   ListSubheader,
+  Snackbar,
   Button,
   Stack,
   Box,
+  Alert,
   Typography,
+  AlertColor,
 } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
 import { AddCircle } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { ToolsMenu } from "../../components/Nav";
 import { tools } from "../../constants";
+import config from "../../config";
 
 const SideNav = () => {
   const [currentSelectedMenu, setCurrentSelectedMenu] = React.useState(-1);
+
+  React.useState<AlertColor>("success");
   const navigate = useNavigate();
   const theme = useTheme();
 
@@ -27,13 +34,13 @@ const SideNav = () => {
       }}
     >
       <Stack p={2}>
-        <Button
-          onClick={() => navigate("/Projects/create")}
+        <LoadingButton
+          loadingPosition="start"
           startIcon={<AddCircle />}
           variant="contained"
         >
           New Project
-        </Button>
+        </LoadingButton>
         <Button
           sx={{ mt: 2 }}
           onClick={() => navigate("/projects")}
