@@ -105,7 +105,9 @@ const ProjectCreateTopBar = () => {
           mt: "-1rem",
           color: "grey.700",
           fontWeight: "bold",
-          borderBottom: isProjectInputFocus ? "2.4px solid red" : "inherit",
+          borderBottom: isProjectInputFocus
+            ? `2.4px solid ${theme.palette.primary.main}`
+            : "inherit",
           mr: 3,
         }}
         onChange={(e) => {

@@ -1,26 +1,27 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
 import ToolDetail from "./ToolDetail";
+import { useAppSelector } from "../../redux/store";
+import { selectTool } from "../../redux/toolsSlice";
+import { tools } from "../../constants";
 
 const Detail = () => {
-  const [value, setValue] = React.useState(0);
+  const { currentDetailTool } = useAppSelector(selectTool);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+  const getToolsDetailList = React.useCallback(() => {
+    return tools.find((toollist) => toollist.title === currentDetailTool);
+  }, [currentDetailTool]);
 
   return (
-    <Box sx={{ maxWidth: "960px", margin: "auto" }}>
+    <Box sx={{ maxWidth: "960px", margin: "auto", minHeight: "77.8vh" }}>
       <Grid container pt={11} spacing={2}>
-        <Grid xs={12} sm={4} item>
-          <ToolDetail />
-        </Grid>
-        <Grid xs={12} sm={4} item>
-          <ToolDetail />
-        </Grid>
-        <Grid xs={12} sm={4} item>
-          <ToolDetail />
-        </Grid>
+        {(getToolsDetailList()?.list || []).map((tool) => {
+          return (
+            <Grid key={tool.id} xs={12} sm={4} item>
+              <ToolDetail />
+            </Grid>
+          );
+        })}
       </Grid>
     </Box>
   );

@@ -96,6 +96,13 @@ export default function ResponsiveDialog({ open, setOpen }: Props) {
           </Alert>
         </Snackbar>
         <Dialog
+          PaperProps={{
+            sx: {
+              position: "absolute",
+              top: { xs: "inherit", sm: 70 },
+              left: { xs: "inherit", sm: "37%" },
+            },
+          }}
           fullScreen={fullScreen}
           open={open}
           onClose={handleClose}

@@ -17,30 +17,32 @@ import { useTheme } from "@mui/material/styles";
 import { ToolsMenu } from "../../components/Nav";
 import { tools } from "../../constants";
 import NewProjectDialog from "../Projects/NewProjectDialog";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { addCurrentDetailTool, selectTool } from "../../redux/toolsSlice";
 
-const SideNav = () => {
-  const [currentSelectedTool, setCurrentSelectedTool] = React.useState(
-    tools[0].title
-  );
+const SideNavTools = () => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
+  const { currentDetailTool } = useAppSelector(selectTool);
+  const dispatch = useAppDispatch();
 
   const isSelected = React.useCallback(
     (tool: string) => {
-      if (tool === currentSelectedTool) {
+      if (tool === currentDetailTool) {
         return true;
       }
       return false;
     },
-    [currentSelectedTool]
+    [currentDetailTool]
   );
 
   const handleClick = React.useCallback(
     (tool: string) => {
-      setCurrentSelectedTool(tool);
+      dispatch(addCurrentDetailTool(tool));
+      navigate("/");
     },
-    [setCurrentSelectedTool]
+    [dispatch]
   );
 
   const handleNewProject = React.useCallback(() => {
@@ -119,4 +121,4 @@ const SideNav = () => {
   );
 };
 
-export default SideNav;
+export default SideNavTools;
