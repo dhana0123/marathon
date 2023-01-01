@@ -38,13 +38,11 @@ function App() {
         ) : (
           <>
             <Route path="/" element={<Main />}>
-              <Route index element={<DetailTools />} />
-              <Route path="projects" element={<Projects />} />
+              <Route index element={<Projects />} />
+              <Route path="create" element={<ProjectCreate />} />
             </Route>
-            <Route path="/" element={<DashBoard />}>
+            <Route path="/dashbord" element={<DashBoard />}>
               <Route index element={<DetailTools />} />
-              <Route path="Projects/create" element={<ProjectCreate />} />
-              <Route path="*" element={<DetailTools />} />
             </Route>
             <Route path="plans" element={<Plans />} />
           </>

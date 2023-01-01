@@ -12,13 +12,14 @@ import ProjectTopBar from "./ProjectTopBar";
 import ProjectCard from "./ProjectCard";
 import ProjectListItem from "./ProjectListItem";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import CreateProjectCard from "./CreateProjectCard";
 
 const Projects = () => {
   const [changeProjectView, setChangeProjectView] = React.useState(true);
   const matches = useMediaQuery("(max-width:600px)");
 
   return (
-    <Box sx={{ minHeight: "75vh" }}>
+    <Container  sx={{ px: 5 }}>
       <ProjectTopBar
         changeProjectView={changeProjectView}
         setChangeProjectView={setChangeProjectView}
@@ -28,7 +29,7 @@ const Projects = () => {
       ) : (
         <DesktopView changeProjectView={changeProjectView} />
       )}
-    </Box>
+    </Container>
   );
 };
 
@@ -41,7 +42,10 @@ const DesktopView = ({ changeProjectView }: DesktopViewProps) => {
 
   return changeProjectView ? (
     <Container>
-      <Grid px={4} py={2} container columnSpacing={2} rowSpacing={3}>
+      <Grid py={2} container columnSpacing={2} rowSpacing={3}>
+        <Grid item xs={4}>
+          <CreateProjectCard />
+        </Grid>
         {[1, 2, 3, 4, 5].map((item) => (
           <Grid key={item} item xs={4}>
             <ProjectCard />
@@ -51,7 +55,7 @@ const DesktopView = ({ changeProjectView }: DesktopViewProps) => {
     </Container>
   ) : (
     <Container>
-      <Box px={4} py={2}>
+      <Box py={2}>
         <Box
           sx={{ border: `1px solid ${theme.palette.grey[200]}` }}
           boxShadow={(theme) => theme.shadows[4]}

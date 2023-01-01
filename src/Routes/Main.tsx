@@ -6,6 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { Outlet } from "react-router-dom";
 import SideNavTools from "../sections/Nav/SideNavTools";
 import TopBar from "../sections/Nav/TopBar";
+import DetailModal from "../sections/DetailTools/DetailModal";
 
 const drawerWidth = 260;
 
@@ -107,10 +108,15 @@ export default function DashBoard() {
       >
         <SideNavTools />
       </SwipeableDrawer>
-      <Box component="main" width={"100%"} sx={{ position: "relative" }}>
-        <TopBar setOpen={setOpen} />
-        <Box mt={{ xs: 13, sm: 11, background: "#F2F8F9", height: "100%" }}>
+      <Box
+        component="main"
+        width={"100%"}
+        sx={{ position: "relative", background: "#F2F8F9", minHeight: "100vh" }}
+      >
+        <Box sx={{ overflowY: "hidden", height: "100vh" }}>
+          <TopBar />
           <Outlet />
+          <DetailModal />
         </Box>
       </Box>
     </Box>
