@@ -16,12 +16,12 @@ const DetailModal = () => {
         right: "00px",
         bottom: "30px",
         height: showTools ? "99vh" : "0px",
-        transition: "1.5s",
+        transition: ".4s",
         zIndex: 100,
         overflow: "hidden",
       }}
     >
-      <Collapse in={showTools} timeout={{ appear: 200, enter: 200, exit: 600 }}>
+      <Collapse in={showTools}>
         <Box
           sx={{
             borderRadius: "16px",

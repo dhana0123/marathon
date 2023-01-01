@@ -29,6 +29,9 @@ import {
 } from "@mui/icons-material";
 import SearchPanel from "../Dashboard/SearchPanel";
 import ResultPanel from "../Dashboard/ResultPanel";
+import { useDispatch } from "react-redux";
+import { loggedOut } from "../../redux/userSlice";
+import Edit from "@mui/icons-material/Edit";
 
 const TopBar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -43,8 +46,19 @@ const TopBar = () => {
     setAnchorEl(null);
   };
 
+  const dispatch = useDispatch();
+
   return (
-    <Box sx={{ py: 1, px: 3 }}>
+    <Box
+      sx={{
+        py: 2,
+        px: 3,
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        background: "white",
+      }}
+    >
       <Stack
         direction={"row"}
         justifyContent={"space-between"}
@@ -54,7 +68,10 @@ const TopBar = () => {
           <Typography variant="caption" sx={{ color: "grey.800" }}>
             Project Name
           </Typography>
-          <Typography variant="h5">Project Name</Typography>
+          <Typography variant="h5">
+            Project Name{" "}
+            <Edit sx={{ width: "1.4rem", color: "primary.main", mb: -0.5 }} />
+          </Typography>
         </Box>
         <Box>
           <Stack
@@ -166,7 +183,10 @@ const TopBar = () => {
                 Settings
               </Typography>
             </MenuItem>
-            <MenuItem sx={{ borderRadius: "8px", mt: 0.5 }}>
+            <MenuItem
+              sx={{ borderRadius: "8px", mt: 0.5 }}
+              onClick={() => dispatch(loggedOut())}
+            >
               <ListItemIcon>
                 <LockRounded fontSize="small" color="error" />
               </ListItemIcon>

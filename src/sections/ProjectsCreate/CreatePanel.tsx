@@ -16,11 +16,12 @@ const CreatePanel = () => {
         border={(theme) => `1px solid ${theme.palette.grey[200]}`}
         sx={{ mt: 3, px: 4.5, py: 3, borderRadius: "8px", background: "white" }}
       >
-        <Typography
-          variant="subtitle2"
-          color={"grey.600"}
-        >{`Tools > Facebook Add`}</Typography>
         <ProjectCreateTopBar />
+        <Typography
+          sx={{ mt: "-1rem" }}
+          variant="h5"
+          color={"grey.800"}
+        >{`Facebook Ad`}</Typography>
         <Box py={2}>
           <TextField
             fullWidth

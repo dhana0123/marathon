@@ -113,10 +113,10 @@ export default function DashBoard() {
         width={"100%"}
         sx={{ position: "relative", background: "#F2F8F9", minHeight: "100vh" }}
       >
-        <Box sx={{ overflowY: "hidden", height: "100vh" }}>
-          <TopBar />
+        <DetailModal />
+        <TopBar />
+        <Box height={"90vh"} sx={{ overflowY: "scroll" }}>
           <Outlet />
-          <DetailModal />
         </Box>
       </Box>
     </Box>

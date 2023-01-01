@@ -19,7 +19,7 @@ const Projects = () => {
   const matches = useMediaQuery("(max-width:600px)");
 
   return (
-    <Container  sx={{ px: 5 }}>
+    <Container sx={{ mt: 2 }}>
       <ProjectTopBar
         changeProjectView={changeProjectView}
         setChangeProjectView={setChangeProjectView}
@@ -46,7 +46,7 @@ const DesktopView = ({ changeProjectView }: DesktopViewProps) => {
         <Grid item xs={4}>
           <CreateProjectCard />
         </Grid>
-        {[1, 2, 3, 4, 5].map((item) => (
+        {[1, 2, 3, 4, 5, 6, 67, 77, 32].map((item) => (
           <Grid key={item} item xs={4}>
             <ProjectCard />
           </Grid>

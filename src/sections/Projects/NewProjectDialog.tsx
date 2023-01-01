@@ -50,7 +50,7 @@ export default function ResponsiveDialog({ open, setOpen }: Props) {
         if (res.data.result) {
           const { projectId, name } = res.data.result;
           localStorage.setItem("projectId", projectId);
-          navigate("projects/create");
+          navigate("/create");
         }
         setSnackBarOpen(false);
       })

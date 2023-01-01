@@ -26,7 +26,7 @@ const ProjectCreate = () => {
   }, []);
 
   return (
-    <Box height={"94vh"} overflow={"scroll"}>
+    <Box>
       <Stack direction={"row"}>
         <Box
           width={{
