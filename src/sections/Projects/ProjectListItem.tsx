@@ -14,9 +14,16 @@ import {
   ModeEditOutlineOutlined,
   DeleteOutlineOutlined,
 } from "@mui/icons-material";
+import moment from "moment";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Project } from "../../definations/project";
 
-const ProjectListItem = () => {
+type Props = {
+  project: Project;
+  deleteProject: (arg: string) => void;
+};
+
+const ProjectListItem = ({ project, deleteProject }: Props) => {
   const matches = useMediaQuery("(max-width:600px)");
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -49,7 +56,7 @@ const ProjectListItem = () => {
           <DescriptionOutlined sx={{ color: "grey.700", fontSize: "22px" }} />
         </IconButton>
         <Typography variant={"body2"} color={"grey.700"}>
-          My Project Name
+          {project.name}
         </Typography>
       </Stack>
       <Stack direction={"row"} alignItems={"center"}>
@@ -58,7 +65,7 @@ const ProjectListItem = () => {
           color="grey.600"
           sx={{ mr: 1 }}
         >
-          Yesterday
+          {moment(project.createdAt).fromNow()}
         </Typography>
         <IconButton onClick={handleClick}>
           <MoreVert />
@@ -113,7 +120,10 @@ const ProjectListItem = () => {
               Edit
             </Typography>
           </MenuItem>
-          <MenuItem sx={{ borderRadius: "8px", my: 0.5 }}>
+          <MenuItem
+            sx={{ borderRadius: "8px", my: 0.5 }}
+            onClick={() => deleteProject(project._id)}
+          >
             <ListItemIcon>
               <DeleteOutlineOutlined fontSize="small" color="error" />
             </ListItemIcon>

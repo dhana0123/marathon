@@ -14,9 +14,16 @@ import {
   ModeEditOutlineOutlined,
   DeleteOutlineOutlined,
 } from "@mui/icons-material";
+import moment from "moment";
 import { useTheme } from "@mui/material/styles";
+import { Project } from "../../definations/project";
 
-const ProjectCard = () => {
+type ProjectCardProps = {
+  project: Project;
+  deleteProject: (arg: string) => void;
+};
+
+const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -48,11 +55,16 @@ const ProjectCard = () => {
         justifyContent="space-between"
       >
         <Typography variant="subtitle1" color="grey.700">
-          My Project Name
+          {project.name}
         </Typography>
-        <IconButton onClick={handleClick} sx={{ marginRight: -1.8 }}>
-          <MoreVert />
-        </IconButton>
+        <Box>
+          <Typography variant="caption" color="grey.700">
+            {moment(project.createdAt).fromNow()}
+          </Typography>
+          <IconButton onClick={handleClick} sx={{ marginRight: -1.8 }}>
+            <MoreVert />
+          </IconButton>
+        </Box>
         <Menu
           anchorEl={anchorEl}
           id="account-menu"
@@ -103,7 +115,10 @@ const ProjectCard = () => {
               Edit
             </Typography>
           </MenuItem>
-          <MenuItem sx={{ borderRadius: "8px", my: 0.5 }}>
+          <MenuItem
+            sx={{ borderRadius: "8px", my: 0.5 }}
+            onClick={() => deleteProject(project._id)}
+          >
             <ListItemIcon>
               <DeleteOutlineOutlined fontSize="small" color="error" />
             </ListItemIcon>

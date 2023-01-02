@@ -115,7 +115,7 @@ export default function DashBoard() {
       >
         <DetailModal />
         <TopBar />
-        <Box height={"90vh"} sx={{ overflowY: "scroll" }}>
+        <Box height={"87vh"} sx={{ overflowY: "scroll" }}>
           <Outlet />
         </Box>
       </Box>
