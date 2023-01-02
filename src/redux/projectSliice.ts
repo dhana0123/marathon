@@ -45,10 +45,19 @@ export const projectSlice = createSlice({
     updageProjectName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
+    clearProject: (state) => {
+      state.id = "";
+      state.name = "";
+      state.user = "";
+      state.toolsUsed = [];
+      state.createdAt = "";
+      state.updatedAt = "";
+    },
   },
 });
 
-export const { addProject, updageProjectName } = projectSlice.actions;
+export const { addProject, updageProjectName, clearProject } =
+  projectSlice.actions;
 export const selectProject = (state: RootState) => state.project;
 
 export default projectSlice.reducer;

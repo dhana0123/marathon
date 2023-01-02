@@ -16,11 +16,15 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import CreateProjectCard from "./CreateProjectCard";
 import config from "../../config";
 import { Project } from "../../definations/project";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { clearProject, selectProject } from "../../redux/projectSliice";
 
 const Projects = () => {
   const [changeProjectView, setChangeProjectView] = React.useState(true);
   const [projectList, setProjectList] = React.useState<Project[]>([]);
+  const { id, name } = useAppSelector(selectProject);
   const matches = useMediaQuery("(max-width:600px)");
+  const dispatch = useAppDispatch();
 
   const [snackOpen, setSnackOpen] = React.useState(false);
   const [snackMessage, setSnackMessage] = React.useState("");
@@ -38,14 +42,18 @@ const Projects = () => {
       .catch((err) => console.log(err));
   };
 
-  const deleteProject = (id: string) => {
+  const deleteProject = (_id: string) => {
     config.axios
-      .delete(`/project/${id}`)
+      .delete(`/project/${_id}`)
       .then((res) => {
         setSnackOpen(true);
         setErroType("success");
         setSnackMessage(res.data.message);
         getProjectList();
+        if (id === _id) {
+          localStorage.removeItem("projectId");
+          dispatch(clearProject());
+        }
       })
       .catch((err) => {
         console.log(err);

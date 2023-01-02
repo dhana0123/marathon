@@ -15,6 +15,8 @@ import { LoadingButton } from "@mui/lab";
 import { useTheme } from "@mui/material/styles";
 import config from "../../config";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/store";
+import { addProject } from "../../redux/projectSliice";
 
 type Props = {
   open: boolean;
@@ -27,6 +29,7 @@ export default function ResponsiveDialog({ open, setOpen }: Props) {
   const [snackbarOpen, setSnackBarOpen] = React.useState(false);
   const [alertType, setAlertType] = React.useState<AlertColor>("success");
   const [alertMessage, setAlertMessage] = React.useState("");
+  const dispatch = useAppDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -50,6 +53,8 @@ export default function ResponsiveDialog({ open, setOpen }: Props) {
         if (res.data.result) {
           const { projectId, name } = res.data.result;
           localStorage.setItem("projectId", projectId);
+          dispatch(addProject({ _id: projectId, ...res.data.result }));
+          setProjectName("");
           navigate("/create");
         }
         setSnackBarOpen(false);

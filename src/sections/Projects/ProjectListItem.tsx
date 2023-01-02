@@ -17,6 +17,8 @@ import {
 import moment from "moment";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Project } from "../../definations/project";
+import { useAppSelector } from "../../redux/store";
+import { selectProject } from "../../redux/projectSliice";
 
 type Props = {
   project: Project;
@@ -24,6 +26,7 @@ type Props = {
 };
 
 const ProjectListItem = ({ project, deleteProject }: Props) => {
+  const { id, name } = useAppSelector(selectProject);
   const matches = useMediaQuery("(max-width:600px)");
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -56,7 +59,7 @@ const ProjectListItem = ({ project, deleteProject }: Props) => {
           <DescriptionOutlined sx={{ color: "grey.700", fontSize: "22px" }} />
         </IconButton>
         <Typography variant={"body2"} color={"grey.700"}>
-          {project.name}
+          {id === project._id ? name : project.name}
         </Typography>
       </Stack>
       <Stack direction={"row"} alignItems={"center"}>

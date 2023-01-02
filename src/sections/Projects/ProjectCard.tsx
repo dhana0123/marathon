@@ -17,6 +17,8 @@ import {
 import moment from "moment";
 import { useTheme } from "@mui/material/styles";
 import { Project } from "../../definations/project";
+import { useAppSelector } from "../../redux/store";
+import { selectProject } from "../../redux/projectSliice";
 
 type ProjectCardProps = {
   project: Project;
@@ -24,6 +26,7 @@ type ProjectCardProps = {
 };
 
 const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
+  const { id, name } = useAppSelector(selectProject);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -55,7 +58,7 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
         justifyContent="space-between"
       >
         <Typography variant="subtitle1" color="grey.700">
-          {project.name}
+          {id === project._id ? name : project.name}
         </Typography>
         <Box>
           <Typography variant="caption" color="grey.700">

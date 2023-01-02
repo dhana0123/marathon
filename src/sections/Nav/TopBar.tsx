@@ -100,43 +100,47 @@ const TopBar = () => {
         justifyContent={"space-between"}
         alignItems="center"
       >
-        <Box>
-          <Typography variant="caption" sx={{ color: "grey.800" }}>
-            Project Name
-          </Typography>
-
+        {name ? (
           <Box>
-            <InputBase
-              inputRef={projectInput}
-              required
-              onBlur={updateProjectName}
-              value={name}
-              sx={{
-                color: "grey.800",
-                fontWeight: "bold",
-                pr: 3.7,
-                width: "16rem",
-                fontSize: "1.3rem",
-                mt: "-.5rem",
-                borderBottom: isProjectInputFocus
-                  ? `2px dashed ${theme.palette.grey[500]}`
-                  : `1.5px dashed ${theme.palette.grey[300]}`,
-              }}
-              onChange={(e) => {
-                dispatch(updageProjectName(e.target.value));
-                setIsProjectInputFocus(true);
-              }}
-            />
-            <Edit
-              sx={{
-                width: "1.4rem",
-                color: "primary.main",
-                mb: -0.6,
-                ml: "-1.8rem",
-              }}
-            />
+            <Typography variant="caption" sx={{ color: "grey.800" }}>
+              Project Name
+            </Typography>
+
+            <Box>
+              <InputBase
+                inputRef={projectInput}
+                required
+                onBlur={updateProjectName}
+                value={name}
+                sx={{
+                  color: "grey.800",
+                  fontWeight: "bold",
+                  pr: 3.7,
+                  width: "16rem",
+                  fontSize: "1.3rem",
+                  mt: "-.5rem",
+                  borderBottom: isProjectInputFocus
+                    ? `2px dashed ${theme.palette.grey[500]}`
+                    : `1.5px dashed ${theme.palette.grey[300]}`,
+                }}
+                onChange={(e) => {
+                  dispatch(updageProjectName(e.target.value));
+                  setIsProjectInputFocus(true);
+                }}
+              />
+              <Edit
+                sx={{
+                  width: "1.4rem",
+                  color: "primary.main",
+                  mb: -0.6,
+                  ml: "-1.8rem",
+                }}
+              />
+            </Box>
           </Box>
-        </Box>
+        ) : (
+          <Box></Box>
+        )}
         <Box>
           <Stack
             direction="row"
