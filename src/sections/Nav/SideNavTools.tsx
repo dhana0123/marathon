@@ -13,16 +13,15 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { ToolsMenu } from "../../components/Nav";
 import { tools } from "../../constants";
-import NewProjectDialog from "../Projects/NewProjectDialog";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import {
   addCurrentDetailTool,
   hideTools,
   selectTool,
 } from "../../redux/toolsSlice";
+import { openNewProjectModal } from "../../redux/projectSliice";
 
 const SideNavTools = () => {
-  const [openDialog, setOpenDialog] = React.useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
   const { currentDetailTool } = useAppSelector(selectTool);
@@ -45,9 +44,9 @@ const SideNavTools = () => {
     [dispatch]
   );
 
-  const handleNewProject = React.useCallback(() => {
-    setOpenDialog(true);
-  }, [openDialog]);
+  const handleNewProject = () => {
+    dispatch(openNewProjectModal());
+  };
 
   const handleProjectBtn = () => {
     navigate("/");
@@ -117,7 +116,6 @@ const SideNavTools = () => {
           </ListItemButton>
         ))}
       </List>
-      <NewProjectDialog open={openDialog} setOpen={setOpenDialog} />
     </Box>
   );
 };

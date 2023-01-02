@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Grid,
-  Divider,
-  Alert,
-  Snackbar,
-  Container,
-  AlertColor,
-} from "@mui/material";
+import { Box, Grid, Container } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import ProjectTopBar from "./ProjectTopBar";
 import ProjectCard from "./ProjectCard";
@@ -18,6 +10,8 @@ import config from "../../config";
 import { Project } from "../../definations/project";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { clearProject, selectProject } from "../../redux/projectSliice";
+import { updateSnack } from "../../redux/SnackMessage";
+import CreateProjectList from "./CreateProjectList";
 
 const Projects = () => {
   const [changeProjectView, setChangeProjectView] = React.useState(true);
@@ -25,10 +19,6 @@ const Projects = () => {
   const { id, name } = useAppSelector(selectProject);
   const matches = useMediaQuery("(max-width:600px)");
   const dispatch = useAppDispatch();
-
-  const [snackOpen, setSnackOpen] = React.useState(false);
-  const [snackMessage, setSnackMessage] = React.useState("");
-  const [errorType, setErroType] = React.useState<AlertColor>("success");
 
   React.useEffect(() => {
     getProjectList();
@@ -46,9 +36,13 @@ const Projects = () => {
     config.axios
       .delete(`/project/${_id}`)
       .then((res) => {
-        setSnackOpen(true);
-        setErroType("success");
-        setSnackMessage(res.data.message);
+        dispatch(
+          updateSnack({
+            isModalOpen: true,
+            message: res.data.message,
+            messageType: "success",
+          })
+        );
         getProjectList();
         if (id === _id) {
           localStorage.removeItem("projectId");
@@ -57,34 +51,36 @@ const Projects = () => {
       })
       .catch((err) => {
         console.log(err);
-        setSnackOpen(true);
-        setErroType("error");
         if (err.response.data.message) {
-          setSnackMessage(err.response.data.message);
+          dispatch(
+            updateSnack({
+              isModalOpen: true,
+              message: err.response.data.message,
+              messageType: "error",
+            })
+          );
         } else if (err.response.data.msg) {
-          setSnackMessage(err.response.data.msg);
+          dispatch(
+            updateSnack({
+              isModalOpen: true,
+              message: err.response.data.msg,
+              messageType: "error",
+            })
+          );
         } else {
-          setSnackMessage(err.message);
+          dispatch(
+            updateSnack({
+              isModalOpen: true,
+              message: err.message,
+              messageType: "error",
+            })
+          );
         }
       });
   };
 
   return (
     <Container sx={{ mt: 2 }}>
-      <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        open={snackOpen}
-        autoHideDuration={6000}
-        onClose={() => setSnackOpen(false)}
-      >
-        <Alert
-          onClose={() => setSnackOpen(false)}
-          severity={errorType}
-          sx={{ width: "100%" }}
-        >
-          {snackMessage}
-        </Alert>
-      </Snackbar>
       <ProjectTopBar
         changeProjectView={changeProjectView}
         setChangeProjectView={setChangeProjectView}
@@ -136,6 +132,7 @@ const DesktopView = ({
           boxShadow={(theme) => theme.shadows[4]}
           borderRadius={"8px"}
         >
+          <CreateProjectList />
           {(projectList || []).map((project) => {
             return (
               <ProjectListItem
@@ -167,6 +164,7 @@ const MobileView = ({ projectList, deleteProject }: MobileProps) => {
           borderRadius={"8px"}
           px={2}
         >
+          <CreateProjectList />
           {(projectList || []).map((project) => {
             return (
               <ProjectListItem

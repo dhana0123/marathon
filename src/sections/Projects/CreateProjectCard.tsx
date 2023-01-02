@@ -2,12 +2,15 @@ import React from "react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { Add } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
+import { useAppDispatch } from "../../redux/store";
+import { openNewProjectModal } from "../../redux/projectSliice";
 
 const CreateProjectCard = () => {
+  const dispatch = useAppDispatch();
   const theme = useTheme();
   return (
     <Box
-      onClick={() => console.log("cool")}
+      onClick={() => dispatch(openNewProjectModal())}
       p={3}
       pt={1}
       borderRadius={"16px"}

@@ -100,7 +100,7 @@ const TopBar = () => {
         justifyContent={"space-between"}
         alignItems="center"
       >
-        {name ? (
+        {id ? (
           <Box>
             <Typography variant="caption" sx={{ color: "grey.800" }}>
               Project Name

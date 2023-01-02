@@ -3,9 +3,10 @@ import { useDispatch, useSelector, TypedUseSelectorHook } from "react-redux";
 import user from "./userSlice";
 import project from "./projectSliice";
 import tool from "./toolsSlice";
+import snackbar from "./SnackMessage";
 
 export const store = configureStore({
-  reducer: { user, project, tool },
+  reducer: { user, project, tool, snackbar },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

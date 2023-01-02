@@ -68,7 +68,7 @@ const ProjectListItem = ({ project, deleteProject }: Props) => {
           color="grey.600"
           sx={{ mr: 1 }}
         >
-          {moment(project.createdAt).fromNow()}
+          {moment(project.updatedAt).fromNow()}
         </Typography>
         <IconButton onClick={handleClick}>
           <MoreVert />

@@ -1,15 +1,23 @@
 import * as React from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
-import { Box, SwipeableDrawer, ClickAwayListener } from "@mui/material";
+import {
+  Box,
+  SwipeableDrawer,
+  ClickAwayListener,
+  Snackbar,
+  Alert,
+} from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Outlet } from "react-router-dom";
 import SideNavTools from "../sections/Nav/SideNavTools";
 import TopBar from "../sections/Nav/TopBar";
 import DetailModal from "../sections/DetailTools/DetailModal";
+import NewProjectDialog from "../sections/Projects/NewProjectDialog";
 import { addProject } from "../redux/projectSliice";
-import { useAppDispatch } from "../redux/store";
+import { useAppDispatch, useAppSelector } from "../redux/store";
 import config from "../config";
+import { closeSnack, selectSnackbar } from "../redux/SnackMessage";
 
 const drawerWidth = 260;
 
@@ -68,6 +76,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Main() {
   const [open, setOpen] = React.useState(false);
+  const { isModalOpen, message, messageType } = useAppSelector(selectSnackbar);
   const theme = useTheme();
 
   const dispatch = useAppDispatch();
@@ -131,11 +140,28 @@ export default function Main() {
         sx={{ position: "relative", background: "#F2F8F9", minHeight: "100vh" }}
       >
         <DetailModal />
-        <TopBar />
-        <Box height={"87vh"} sx={{ overflowY: "scroll" }}>
-          <Outlet />
+        <Box sx={{ position: "relative" }}>
+          <Box sx={{ height: "100vh", overflowY: "scroll" }}>
+            <TopBar />
+            <Outlet />
+          </Box>
         </Box>
       </Box>
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        open={isModalOpen}
+        autoHideDuration={6000}
+        onClose={() => dispatch(closeSnack())}
+      >
+        <Alert
+          onClose={() => dispatch(closeSnack())}
+          severity={messageType}
+          sx={{ width: "100%" }}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
+      <NewProjectDialog />
     </Box>
   );
 }

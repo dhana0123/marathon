@@ -17,8 +17,9 @@ import {
 import moment from "moment";
 import { useTheme } from "@mui/material/styles";
 import { Project } from "../../definations/project";
-import { useAppSelector } from "../../redux/store";
-import { selectProject } from "../../redux/projectSliice";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { addProject, selectProject } from "../../redux/projectSliice";
+import { useNavigate } from "react-router-dom";
 
 type ProjectCardProps = {
   project: Project;
@@ -29,6 +30,10 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
   const { id, name } = useAppSelector(selectProject);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -36,7 +41,12 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
     setAnchorEl(null);
   };
 
-  const theme = useTheme();
+  const handlProjectClick = () => {
+    dispatch(addProject(project));
+    localStorage.setItem("projectId", project._id);
+    navigate("/create");
+  };
+
   return (
     <Box
       onClick={() => console.log("cool")}
@@ -44,9 +54,11 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
       pt={1}
       borderRadius={"16px"}
       sx={{
-        cursor: "pointer",
         background: "white",
-        border: `1px solid ${theme.palette.grey[300]}`,
+        border:
+          id === project._id
+            ? `2px solid ${theme.palette.primary.main}`
+            : `1px solid ${theme.palette.grey[300]}`,
         "&:hover": {
           boxShadow: theme.shadows[4],
         },
@@ -60,14 +72,25 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
         <Typography variant="subtitle1" color="grey.700">
           {id === project._id ? name : project.name}
         </Typography>
-        <Box>
-          <Typography variant="caption" color="grey.700">
-            {moment(project.createdAt).fromNow()}
-          </Typography>
+        <Stack direction={"row"} alignItems="center">
+          <Box>
+            <Typography
+              sx={{ display: "block" }}
+              variant="caption"
+              color="grey.700"
+            >
+              {moment(project.updatedAt).fromNow()}
+            </Typography>
+            {id === project._id ? (
+              <Typography variant="caption" sx={{ color: "primary.main" }}>
+                active
+              </Typography>
+            ) : null}
+          </Box>
           <IconButton onClick={handleClick} sx={{ marginRight: -1.8 }}>
             <MoreVert />
           </IconButton>
-        </Box>
+        </Stack>
         <Menu
           anchorEl={anchorEl}
           id="account-menu"
@@ -132,7 +155,7 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
         </Menu>
       </Stack>
       <Divider />
-      <Box>
+      <Box sx={{ cursor: "pointer" }} onClick={handlProjectClick}>
         <Box my={2}>
           <Typography variant="subtitle2" color="gray.700">
             Product/Brand Name

@@ -3,11 +3,8 @@ import Button from "@mui/material/Button";
 import {
   Dialog,
   TextField,
-  Snackbar,
   DialogActions,
-  Alert,
   Box,
-  AlertColor,
   DialogTitle,
   useMediaQuery,
 } from "@mui/material";
@@ -15,31 +12,27 @@ import { LoadingButton } from "@mui/lab";
 import { useTheme } from "@mui/material/styles";
 import config from "../../config";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../redux/store";
-import { addProject } from "../../redux/projectSliice";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import {
+  addProject,
+  closeNewProjectModal,
+  selectProjectModal,
+} from "../../redux/projectSliice";
+import { updateSnack } from "../../redux/SnackMessage";
 
-type Props = {
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export default function ResponsiveDialog({ open, setOpen }: Props) {
+export default function ResponsiveDialog() {
+  const open = useAppSelector(selectProjectModal);
   const [projectName, setProjectName] = React.useState("");
   const [loading, setLoading] = React.useState(false);
-  const [snackbarOpen, setSnackBarOpen] = React.useState(false);
-  const [alertType, setAlertType] = React.useState<AlertColor>("success");
-  const [alertMessage, setAlertMessage] = React.useState("");
+
   const dispatch = useAppDispatch();
   const theme = useTheme();
   const navigate = useNavigate();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
-    setOpen(false);
+    dispatch(closeNewProjectModal());
+    setProjectName("");
   };
 
   const handlCreateProject = () => {
@@ -48,58 +41,40 @@ export default function ResponsiveDialog({ open, setOpen }: Props) {
     config.axios
       .put("/project/create", { name: projectName, user: userId })
       .then((res) => {
-        setOpen(false);
+        handleClose();
         setLoading(false);
         if (res.data.result) {
           const { projectId, name } = res.data.result;
           localStorage.setItem("projectId", projectId);
           dispatch(addProject({ _id: projectId, ...res.data.result }));
-          setProjectName("");
           navigate("/create");
+          dispatch(
+            updateSnack({
+              isModalOpen: true,
+              message: "project create succefully",
+              messageType: "success",
+            })
+          );
         }
-        setSnackBarOpen(false);
       })
       .catch((err) => {
-        setOpen(false);
-
-        if (err.response.data.errors) {
-          setAlertType("error");
-          setAlertMessage(err.response.data.errors[0].msg);
-          setSnackBarOpen(true);
-          setLoading(false);
-        } else if (err.message) {
-          setAlertType("error");
-          setAlertMessage(err.message);
-          setSnackBarOpen(true);
-          setLoading(false);
-        }
+        setLoading(false);
+        handleClose();
+        dispatch(
+          updateSnack({
+            isModalOpen: true,
+            message: err.message,
+            messageType: "error",
+          })
+        );
       });
-
-    if (alertMessage) {
-      setTimeout(() => {
-        setSnackBarOpen(false);
-      }, 6000);
-    }
   };
 
-  const newProjectSnackBarOpen = () => {
-    setSnackBarOpen(true);
-  };
-  const newProjectSnackBarClose = () => {
-    setSnackBarOpen(false);
-  };
+  console.log("...");
+
   return (
     <div>
       <Box px={{ xs: 3, sm: "inherit" }}>
-        <Snackbar
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          open={snackbarOpen}
-          onClose={newProjectSnackBarClose}
-        >
-          <Alert severity={alertType} sx={{ width: "100%" }}>
-            {alertMessage}
-          </Alert>
-        </Snackbar>
         <Dialog
           PaperProps={{
             sx: {
