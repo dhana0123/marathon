@@ -18,7 +18,9 @@ import moment from "moment";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Project } from "../../definations/project";
 import { useAppSelector } from "../../redux/store";
-import { selectProject } from "../../redux/projectSliice";
+import { addProject, selectProject } from "../../redux/projectSliice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   project: Project;
@@ -29,6 +31,8 @@ const ProjectListItem = ({ project, deleteProject }: Props) => {
   const { id, name } = useAppSelector(selectProject);
   const matches = useMediaQuery("(max-width:600px)");
   const theme = useTheme();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -38,8 +42,15 @@ const ProjectListItem = ({ project, deleteProject }: Props) => {
     setAnchorEl(null);
   };
 
+  const handlProjectClick = () => {
+    dispatch(addProject(project));
+    localStorage.setItem("projectId", project._id);
+    navigate("/create");
+  };
+
   return (
     <Stack
+      onClick={handlProjectClick}
       direction={"row"}
       alignItems={"center"}
       justifyContent="space-between"

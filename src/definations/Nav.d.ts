@@ -10,5 +10,6 @@ export type Menu = {
     category: string;
     icon?: SvgIcon;
     detail?: string;
+    endPoint?: string;
   }[];
 };

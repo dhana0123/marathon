@@ -49,7 +49,6 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
 
   return (
     <Box
-      onClick={() => console.log("cool")}
       p={3}
       pt={1}
       borderRadius={"16px"}

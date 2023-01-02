@@ -22,6 +22,7 @@ const product: Menu = {
       id: 1,
       category: "Product tool",
       title: "Product Descriptions",
+      endPoint: "productDescription",
     },
   ],
 };

@@ -6,6 +6,9 @@ export type Project = {
   id: string;
   name: string;
   toolsUsed: string[];
+  productName: string;
+  tone: string;
+  description: string;
   user: string;
   createdAt: string;
   updatedAt: string;
@@ -18,6 +21,9 @@ const initialState: Project = {
   id: "",
   name: "",
   toolsUsed: [],
+  productName: "",
+  description: "",
+  tone: "",
   user: "",
   createdAt: "",
   updatedAt: "",
@@ -28,9 +34,18 @@ type AddProjectPayload = {
   _id: string;
   name: string;
   toolsUsed: string[];
+  productName?: "";
+  description?: "";
+  tone?: "";
   user: string;
   createdAt: string;
   updatedAt: string;
+};
+
+type ContentPayload = {
+  productName?: string;
+  description?: string;
+  tone?: string;
 };
 
 export const projectSlice = createSlice({
@@ -44,6 +59,18 @@ export const projectSlice = createSlice({
       state.toolsUsed = action.payload.toolsUsed;
       state.createdAt = action.payload.createdAt;
       state.updatedAt = action.payload.updatedAt;
+      if (action.payload.productName)
+        state.productName = action.payload.productName;
+      if (action.payload.description)
+        state.description = action.payload.description;
+      if (action.payload.tone) state.tone = action.payload.tone;
+    },
+    addContent: (state, action: PayloadAction<ContentPayload>) => {
+      if (action.payload.productName)
+        state.productName = action.payload.productName;
+      if (action.payload.description)
+        state.description = action.payload.description;
+      if (action.payload.tone) state.tone = action.payload.tone;
     },
     updageProjectName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
@@ -71,6 +98,7 @@ export const {
   clearProject,
   openNewProjectModal,
   closeNewProjectModal,
+  addContent,
 } = projectSlice.actions;
 export const selectProject = (state: RootState) => state.project;
 export const selectProjectModal = (state: RootState) =>

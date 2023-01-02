@@ -70,8 +70,6 @@ export default function ResponsiveDialog() {
       });
   };
 
-  console.log("...");
-
   return (
     <div>
       <Box px={{ xs: 3, sm: "inherit" }}>

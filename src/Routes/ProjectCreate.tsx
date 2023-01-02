@@ -10,7 +10,7 @@ const ProjectCreate = () => {
   const theme = useTheme();
 
   return (
-    <Box>
+    <Box pb={5}>
       <Stack direction={"row"}>
         <Box
           width={{

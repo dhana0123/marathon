@@ -7,7 +7,11 @@ import {
   CancelOutlined,
 } from "@mui/icons-material";
 
-const Results = () => {
+type Props = {
+  text: string;
+};
+
+const Results = ({ text }: Props) => {
   const theme = useTheme();
   return (
     <>
@@ -22,13 +26,15 @@ const Results = () => {
           "&:hover": { boxShadow: theme.shadows[4] },
         }}
       >
-        <Typography sx={{ fontSize: ".975rem" }} color="grey.700">
-          ust a few words can make an impact on your business, help you connect
-          with customers and drive more sales. But once you’ve written those
-          words, how do you get them in front of the right audience? How can you
-          make
+        <Typography sx={{ fontSize: "1.01rem" }} color="grey.800">
+          {text}
         </Typography>
-        <Stack spacing={1} direction="row" justifyContent="space-around" mt={2}>
+        <Stack
+          spacing={1}
+          mt={2.2}
+          direction="row"
+          justifyContent="space-around"
+        >
           <Button
             sx={{ fontSize: { xs: "13px", sm: "14px" } }}
             startIcon={<FileCopyOutlined fontSize="small" />}

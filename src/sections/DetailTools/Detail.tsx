@@ -42,7 +42,7 @@ const Detail = () => {
         {(getToolsDetailList()?.list || []).map((tool) => {
           return (
             <Grid key={tool.id} xs={12} sm={4} item>
-              <ToolDetail />
+              <ToolDetail tool={tool} />
             </Grid>
           );
         })}

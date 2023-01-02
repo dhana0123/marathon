@@ -7,3 +7,12 @@ export type Project = {
   updatedAt: string;
   __v: 0;
 };
+
+export type Tool = {
+  id: number;
+  title: string;
+  category: string;
+  icon?: any;
+  detail?: string | undefined;
+  endPoint?: string;
+};
