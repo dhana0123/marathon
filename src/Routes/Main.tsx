@@ -7,6 +7,9 @@ import { Outlet } from "react-router-dom";
 import SideNavTools from "../sections/Nav/SideNavTools";
 import TopBar from "../sections/Nav/TopBar";
 import DetailModal from "../sections/DetailTools/DetailModal";
+import { addProject } from "../redux/projectSliice";
+import { useAppDispatch } from "../redux/store";
+import config from "../config";
 
 const drawerWidth = 260;
 
@@ -63,9 +66,23 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function DashBoard() {
+export default function Main() {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
+
+  const dispatch = useAppDispatch();
+
+  React.useEffect(() => {
+    const projectId = localStorage.getItem("projectId");
+    config.axios
+      .get(`/project/${projectId}`)
+      .then((res) => {
+        dispatch(addProject(res.data.project));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <Box sx={{ display: "flex" }}>

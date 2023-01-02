@@ -1,29 +1,13 @@
 import React from "react";
-import { Box, Divider, Stack, Button, Slide } from "@mui/material";
+import { Box, Stack, Button, Slide } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import CreatePanel from "../sections/ProjectsCreate/CreatePanel";
 import WritingPad from "../sections/ProjectsCreate/WritingPad";
 import { CloseRounded, CreateRounded } from "@mui/icons-material";
-import { addProject } from "../redux/projectSliice";
-import { useAppDispatch } from "../redux/store";
-import config from "../config";
 
 const ProjectCreate = () => {
   const [isEditorShown, setIsEditorShown] = React.useState(true);
   const theme = useTheme();
-  const dispatch = useAppDispatch();
-
-  React.useEffect(() => {
-    const projectId = localStorage.getItem("projectId");
-    config.axios
-      .get(`/project/${projectId}`)
-      .then((res) => {
-        dispatch(addProject(res.data.project));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
   return (
     <Box>

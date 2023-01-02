@@ -9,10 +9,6 @@ import {
   InputBase,
   Alert,
   AlertColor,
-  Menu,
-  IconButton,
-  ListItemIcon,
-  MenuItem,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { selectProject, updageProjectName } from "../../redux/projectSliice";
@@ -115,7 +111,7 @@ const ProjectCreateTopBar = () => {
 
       <Box>
         <Tabs
-          sx={{ mt: -2.6 }}
+          sx={{ mt: -6 }}
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"

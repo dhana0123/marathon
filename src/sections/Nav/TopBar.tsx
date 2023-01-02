@@ -2,21 +2,18 @@ import React, { FormEvent } from "react";
 import {
   Box,
   IconButton,
-  Stack,
-  InputBase,
-  SvgIcon,
-  Avatar,
   Button,
-  Slide,
+  Stack,
+  Snackbar,
+  Alert,
+  AlertColor,
   Menu,
   ListItemIcon,
-  Divider,
   Tooltip,
   MenuItem,
   Typography,
-  Zoom,
-  ClickAwayListener,
   useTheme,
+  InputBase,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import {
@@ -27,16 +24,24 @@ import {
   PersonOutlined,
   SettingsOutlined,
 } from "@mui/icons-material";
-import SearchPanel from "../Dashboard/SearchPanel";
-import ResultPanel from "../Dashboard/ResultPanel";
-import { useDispatch } from "react-redux";
 import { loggedOut } from "../../redux/userSlice";
 import Edit from "@mui/icons-material/Edit";
+import config from "../../config";
+import { selectProject, updageProjectName } from "../../redux/projectSliice";
+import { useAppSelector, useAppDispatch } from "../../redux/store";
 
 const TopBar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const theme = useTheme();
   const navigate = useNavigate();
+  const { name, id } = useAppSelector(selectProject);
+  const dispatch = useAppDispatch();
+
+  const [snackOpen, setSnackOpen] = React.useState(false);
+  const [snackMessage, setSnackMessage] = React.useState("");
+  const [errorType, setErroType] = React.useState<AlertColor>("success");
+  const [isProjectInputFocus, setIsProjectInputFocus] = React.useState(false);
+  const projectInput = React.useRef<HTMLFormElement>(null);
 
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -46,7 +51,24 @@ const TopBar = () => {
     setAnchorEl(null);
   };
 
-  const dispatch = useDispatch();
+  const updateProjectName = React.useCallback(() => {
+    setIsProjectInputFocus(false);
+    const projectId = localStorage.getItem("projectId");
+    config.axios
+      .post(`project/${projectId}`, { name })
+      .then((res) => {
+        setErroType("success");
+        setSnackOpen(true);
+        setSnackMessage("Project Name Renamed Succesfully");
+      })
+      .catch((err) => {
+        if (err.response.data) {
+          setSnackOpen(true);
+          setSnackMessage(err.response.data.message);
+          setErroType("error");
+        }
+      });
+  }, [name]);
 
   return (
     <Box
@@ -59,6 +81,20 @@ const TopBar = () => {
         background: "white",
       }}
     >
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        open={snackOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackOpen(false)}
+      >
+        <Alert
+          onClose={() => setSnackOpen(false)}
+          severity={errorType}
+          sx={{ width: "100%" }}
+        >
+          {snackMessage}
+        </Alert>
+      </Snackbar>
       <Stack
         direction={"row"}
         justifyContent={"space-between"}
@@ -68,10 +104,38 @@ const TopBar = () => {
           <Typography variant="caption" sx={{ color: "grey.800" }}>
             Project Name
           </Typography>
-          <Typography variant="h5">
-            Project Name{" "}
-            <Edit sx={{ width: "1.4rem", color: "primary.main", mb: -0.5 }} />
-          </Typography>
+
+          <Box>
+            <InputBase
+              inputRef={projectInput}
+              required
+              onBlur={updateProjectName}
+              value={name}
+              sx={{
+                color: "grey.800",
+                fontWeight: "bold",
+                pr: 3.7,
+                width: "16rem",
+                fontSize: "1.3rem",
+                mt: "-.5rem",
+                borderBottom: isProjectInputFocus
+                  ? `2px dashed ${theme.palette.grey[500]}`
+                  : `1.5px dashed ${theme.palette.grey[300]}`,
+              }}
+              onChange={(e) => {
+                dispatch(updageProjectName(e.target.value));
+                setIsProjectInputFocus(true);
+              }}
+            />
+            <Edit
+              sx={{
+                width: "1.4rem",
+                color: "primary.main",
+                mb: -0.6,
+                ml: "-1.8rem",
+              }}
+            />
+          </Box>
         </Box>
         <Box>
           <Stack
