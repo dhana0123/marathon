@@ -1,20 +1,44 @@
 import React from "react";
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, IconButton, Typography, Stack } from "@mui/material";
 import ToolDetail from "./ToolDetail";
-import { useAppSelector } from "../../redux/store";
-import { selectTool } from "../../redux/toolsSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+import { hideTools, selectTool } from "../../redux/toolsSlice";
 import { tools } from "../../constants";
+import { Cancel } from "@mui/icons-material";
 
 const Detail = () => {
   const { currentDetailTool } = useAppSelector(selectTool);
-
   const getToolsDetailList = React.useCallback(() => {
     return tools.find((toollist) => toollist.title === currentDetailTool);
   }, [currentDetailTool]);
 
+  const dispatch = useAppDispatch();
+
   return (
-    <Box sx={{ maxWidth: "960px", margin: "auto", minHeight: "77.8vh" }}>
-      <Grid container pt={11} spacing={2}>
+    <Box sx={{ margin: "auto", maxWidth: "1150px", position: "relative" }}>
+      <Stack
+        position={"sticky"}
+        bgcolor="white"
+        top={0}
+        px={4}
+        py={1}
+        direction={"row"}
+        alignItems="center"
+        justifyContent="space-between"
+      >
+        <Typography variant="h4" py={2} sx={{ color: "grey.800" }}>
+          {currentDetailTool}
+        </Typography>
+        <Box>
+          <IconButton
+            sx={{ color: "grey.800" }}
+            onClick={() => dispatch(hideTools())}
+          >
+            <Cancel fontSize={"medium"} />
+          </IconButton>
+        </Box>
+      </Stack>
+      <Grid container spacing={2} px={4}>
         {(getToolsDetailList()?.list || []).map((tool) => {
           return (
             <Grid key={tool.id} xs={12} sm={4} item>

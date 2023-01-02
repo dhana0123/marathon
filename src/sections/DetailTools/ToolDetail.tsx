@@ -6,14 +6,15 @@ const ToolDetail = () => {
   const theme = useTheme();
   return (
     <Box
-      border={(theme) => `1px solid ${theme.palette.grey[200]}`}
+      border={(theme) => `1px solid ${theme.palette.grey[300]}`}
       p={2}
       borderRadius={"8px"}
       sx={{
         cursor: "pointer",
         background: "white",
         "&:hover": {
-          boxShadow: theme.shadows[4],
+          boxShadow: theme.shadows[8],
+          backgorund: "primary.lighter",
         },
       }}
     >

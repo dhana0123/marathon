@@ -9,6 +9,8 @@ export type Project = {
   user: string;
   createdAt: string;
   updatedAt: string;
+} & {
+  createNewProjectModal: boolean;
 };
 
 // Define the initial state using that type
@@ -19,6 +21,7 @@ const initialState: Project = {
   user: "",
   createdAt: "",
   updatedAt: "",
+  createNewProjectModal: false,
 };
 
 type AddProjectPayload = {
@@ -45,10 +48,32 @@ export const projectSlice = createSlice({
     updageProjectName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
+    clearProject: (state) => {
+      state.id = "";
+      state.name = "";
+      state.user = "";
+      state.toolsUsed = [];
+      state.createdAt = "";
+      state.updatedAt = "";
+    },
+    openNewProjectModal: (state) => {
+      state.createNewProjectModal = true;
+    },
+    closeNewProjectModal: (state) => {
+      state.createNewProjectModal = false;
+    },
   },
 });
 
-export const { addProject, updageProjectName } = projectSlice.actions;
+export const {
+  addProject,
+  updageProjectName,
+  clearProject,
+  openNewProjectModal,
+  closeNewProjectModal,
+} = projectSlice.actions;
 export const selectProject = (state: RootState) => state.project;
+export const selectProjectModal = (state: RootState) =>
+  state.project.createNewProjectModal;
 
 export default projectSlice.reducer;

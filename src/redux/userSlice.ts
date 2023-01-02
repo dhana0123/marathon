@@ -29,6 +29,7 @@ export const userSlice = createSlice({
     },
     loggedOut: (state) => {
       state.isLogin = false;
+      localStorage.clear();
     },
   },
 });

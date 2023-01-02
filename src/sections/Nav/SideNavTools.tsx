@@ -1,14 +1,11 @@
 import React from "react";
 import {
   List,
-  ListSubheader,
   ListItemButton,
   ListItemIcon,
   Button,
   Stack,
   Box,
-  Dialog,
-  TextField,
   Typography,
 } from "@mui/material";
 import { AddCircle } from "@mui/icons-material";
@@ -16,12 +13,15 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import { ToolsMenu } from "../../components/Nav";
 import { tools } from "../../constants";
-import NewProjectDialog from "../Projects/NewProjectDialog";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
-import { addCurrentDetailTool, selectTool } from "../../redux/toolsSlice";
+import {
+  addCurrentDetailTool,
+  hideTools,
+  selectTool,
+} from "../../redux/toolsSlice";
+import { openNewProjectModal } from "../../redux/projectSliice";
 
 const SideNavTools = () => {
-  const [openDialog, setOpenDialog] = React.useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
   const { currentDetailTool } = useAppSelector(selectTool);
@@ -40,14 +40,18 @@ const SideNavTools = () => {
   const handleClick = React.useCallback(
     (tool: string) => {
       dispatch(addCurrentDetailTool(tool));
-      navigate("/");
     },
     [dispatch]
   );
 
-  const handleNewProject = React.useCallback(() => {
-    setOpenDialog(true);
-  }, [openDialog]);
+  const handleNewProject = () => {
+    dispatch(openNewProjectModal());
+  };
+
+  const handleProjectBtn = () => {
+    navigate("/");
+    dispatch(hideTools());
+  };
 
   return (
     <Box
@@ -65,11 +69,7 @@ const SideNavTools = () => {
         >
           New Project
         </Button>
-        <Button
-          sx={{ mt: 2 }}
-          onClick={() => navigate("/projects")}
-          variant="outlined"
-        >
+        <Button sx={{ mt: 2 }} onClick={handleProjectBtn} variant="outlined">
           Projects
         </Button>
       </Stack>
@@ -116,7 +116,6 @@ const SideNavTools = () => {
           </ListItemButton>
         ))}
       </List>
-      <NewProjectDialog open={openDialog} setOpen={setOpenDialog} />
     </Box>
   );
 };

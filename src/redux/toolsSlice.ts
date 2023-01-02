@@ -6,12 +6,14 @@ import type { RootState } from "./store";
 interface InitialState {
   currentSelectedTool: string;
   currentDetailTool: string;
+  showTools: boolean;
 }
 
 // Define the initial state using that type
 const initialState: InitialState = {
   currentSelectedTool: "Product tool",
   currentDetailTool: "Social Media Tools",
+  showTools: false,
 };
 
 export const toolSlice = createSlice({
@@ -20,15 +22,14 @@ export const toolSlice = createSlice({
   reducers: {
     addSelectedCurrentTool: (state, action: PayloadAction<string>) => {
       state.currentSelectedTool = action.payload;
+      state.showTools = false;
     },
     addCurrentDetailTool: (state, action: PayloadAction<string>) => {
       state.currentDetailTool = action.payload;
+      state.showTools = true;
     },
-    resetSelectedCurrentTool: (state) => {
-      state.currentSelectedTool = "Product tool";
-    },
-    resetCurrentDetailTool: (state) => {
-      state.currentDetailTool = "Social Media Tools";
+    hideTools: (state) => {
+      state.showTools = false;
     },
     resetToolSelections: (state) => {
       state.currentDetailTool = "Social Media Tools";
@@ -40,9 +41,8 @@ export const toolSlice = createSlice({
 export const {
   addSelectedCurrentTool,
   addCurrentDetailTool,
-  resetSelectedCurrentTool,
-  resetCurrentDetailTool,
   resetToolSelections,
+  hideTools,
 } = toolSlice.actions;
 
 export const selectTool = (state: RootState) => state.tool;

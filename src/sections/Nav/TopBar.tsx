@@ -2,23 +2,18 @@ import React, { FormEvent } from "react";
 import {
   Box,
   IconButton,
-  Stack,
-  InputBase,
-  SvgIcon,
-  Avatar,
   Button,
-  Slide,
+  Stack,
+  Snackbar,
+  Alert,
+  AlertColor,
   Menu,
-  List,
-  ListItem,
   ListItemIcon,
-  Divider,
   Tooltip,
   MenuItem,
   Typography,
-  Zoom,
-  ClickAwayListener,
   useTheme,
+  InputBase,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import {
@@ -29,47 +24,24 @@ import {
   PersonOutlined,
   SettingsOutlined,
 } from "@mui/icons-material";
-import SearchPanel from "../Dashboard/SearchPanel";
-import ResultPanel from "../Dashboard/ResultPanel";
+import { loggedOut } from "../../redux/userSlice";
+import Edit from "@mui/icons-material/Edit";
+import config from "../../config";
+import { selectProject, updageProjectName } from "../../redux/projectSliice";
+import { useAppSelector, useAppDispatch } from "../../redux/store";
 
-type Props = {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-const TopBar = ({ setOpen }: Props) => {
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [openSearch, setOpenSearch] = React.useState(false);
-  const [openResultPanel, setOpenResultPanel] = React.useState(false);
+const TopBar = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const theme = useTheme();
   const navigate = useNavigate();
+  const { name, id } = useAppSelector(selectProject);
+  const dispatch = useAppDispatch();
 
-  const handleSearchFocus = () => {
-    setOpenSearch(true);
-  };
-
-  const handleOnClickaway = () => {
-    setSearchTerm("");
-    setOpenSearch(false);
-    setOpenResultPanel(false);
-  };
-
-  const handleInputSearch = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSearchTerm(e.target.value);
-    },
-    [searchTerm]
-  );
-
-  const handleSearchInputClick = React.useCallback(() => {
-    setOpenResultPanel(true);
-  }, [searchTerm]);
-
-  React.useEffect(() => {
-    if (searchTerm.length > 0) {
-      setOpenResultPanel(true);
-    }
-  }, [searchTerm]);
+  const [snackOpen, setSnackOpen] = React.useState(false);
+  const [snackMessage, setSnackMessage] = React.useState("");
+  const [errorType, setErroType] = React.useState<AlertColor>("success");
+  const [isProjectInputFocus, setIsProjectInputFocus] = React.useState(false);
+  const projectInput = React.useRef<HTMLFormElement>(null);
 
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -79,25 +51,97 @@ const TopBar = ({ setOpen }: Props) => {
     setAnchorEl(null);
   };
 
+  const updateProjectName = React.useCallback(() => {
+    setIsProjectInputFocus(false);
+    const projectId = localStorage.getItem("projectId");
+    config.axios
+      .post(`project/${projectId}`, { name })
+      .then((res) => {
+        setErroType("success");
+        setSnackOpen(true);
+        setSnackMessage("Project Name Renamed Succesfully");
+      })
+      .catch((err) => {
+        if (err.response.data) {
+          setSnackOpen(true);
+          setSnackMessage(err.response.data.message);
+          setErroType("error");
+        }
+      });
+  }, [name]);
+
   return (
-    <ClickAwayListener onClickAway={handleOnClickaway}>
-      <Box
-        position={"fixed"}
-        sx={{
-          zIndex: 100,
-          background: "white",
-          left: { xs: "0px", sm: "260px" },
-          right: 0,
-          top: 0,
-          borderWidth: "2px",
-          borderStyle: "dashed",
-          borderTop: "none",
-          borderLeft: "none",
-          borderRight: "none",
-        }}
-        borderColor={(theme) => theme.palette.grey[300]}
+    <Box
+      sx={{
+        py: 2,
+        px: 3,
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+        background: "white",
+      }}
+    >
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+        open={snackOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackOpen(false)}
       >
-        <Box p={3}>
+        <Alert
+          onClose={() => setSnackOpen(false)}
+          severity={errorType}
+          sx={{ width: "100%" }}
+        >
+          {snackMessage}
+        </Alert>
+      </Snackbar>
+      <Stack
+        direction={"row"}
+        justifyContent={"space-between"}
+        alignItems="center"
+      >
+        {id ? (
+          <Box>
+            <Typography variant="caption" sx={{ color: "grey.800" }}>
+              Project Name
+            </Typography>
+
+            <Box>
+              <InputBase
+                inputRef={projectInput}
+                required
+                onBlur={updateProjectName}
+                value={name}
+                sx={{
+                  color: "grey.800",
+                  fontWeight: "bold",
+                  pr: 3.7,
+                  width: "16rem",
+                  fontSize: "1.3rem",
+                  mt: "-.5rem",
+                  borderBottom: isProjectInputFocus
+                    ? `2px dashed ${theme.palette.grey[500]}`
+                    : `1.5px dashed ${theme.palette.grey[300]}`,
+                }}
+                onChange={(e) => {
+                  dispatch(updageProjectName(e.target.value));
+                  setIsProjectInputFocus(true);
+                }}
+              />
+              <Edit
+                sx={{
+                  width: "1.4rem",
+                  color: "primary.main",
+                  mb: -0.6,
+                  ml: "-1.8rem",
+                }}
+              />
+            </Box>
+          </Box>
+        ) : (
+          <Box></Box>
+        )}
+        <Box>
           <Stack
             direction="row"
             alignItems={"center"}
@@ -108,57 +152,10 @@ const TopBar = ({ setOpen }: Props) => {
                 backgroundColor: "grey.100",
                 display: { xs: "inherit", sm: "none" },
               }}
-              onClick={() => setOpen(true)}
             >
               <TableRowsRounded sx={{ color: "grey.500" }} />
             </IconButton>
 
-            <Box sx={{ display: "flex", flexGrow: "1" }}>
-              {!openSearch && (
-                <>
-                  <IconButton onClick={handleSearchFocus}>
-                    <SvgIcon fontSize="small" sx={{ color: "grey.600" }}>
-                      <path d="m20.71 19.29l-3.4-3.39A7.92 7.92 0 0 0 19 11a8 8 0 1 0-8 8a7.92 7.92 0 0 0 4.9-1.69l3.39 3.4a1 1 0 0 0 1.42 0a1 1 0 0 0 0-1.42ZM5 11a6 6 0 1 1 6 6a6 6 0 0 1-6-6Z"></path>
-                    </SvgIcon>
-                  </IconButton>
-                  <InputBase
-                    onFocus={handleSearchFocus}
-                    sx={{
-                      fontSize: "1.18rem",
-                      fontWeight: "bold",
-                      color: "grey.800",
-                      display: { xs: "none", sm: "block" },
-                    }}
-                    fullWidth
-                    placeholder="Search tools..."
-                  />
-                </>
-              )}
-            </Box>
-            <Slide in={openSearch} direction="down" mountOnEnter unmountOnExit>
-              <Box
-                p={3}
-                boxShadow={(theme) => theme.shadows[20]}
-                sx={{
-                  position: "absolute",
-                  left: 0,
-                  right: 0,
-                  top: 0,
-                  background: "rgba( 255, 255, 255, 0.75 )",
-                  backdropFilter: "blur( 5px )",
-                  WebkitBackdropFilter: "blur( 20px )",
-                  border: " 1px solid rgba( 255, 255, 255, 0.18 )",
-                  zIndex: 100,
-                }}
-              >
-                <SearchPanel
-                  searchTerm={searchTerm}
-                  handleSearchTerm={handleInputSearch}
-                  handleSearchInputClick={handleSearchInputClick}
-                  handleOnClickaway={handleOnClickaway}
-                />
-              </Box>
-            </Slide>
             <Stack direction="row" alignItems={"center"} spacing={2}>
               <Tooltip title="Account settings">
                 <IconButton
@@ -254,7 +251,10 @@ const TopBar = ({ setOpen }: Props) => {
                 Settings
               </Typography>
             </MenuItem>
-            <MenuItem sx={{ borderRadius: "8px", mt: 0.5 }}>
+            <MenuItem
+              sx={{ borderRadius: "8px", mt: 0.5 }}
+              onClick={() => dispatch(loggedOut())}
+            >
               <ListItemIcon>
                 <LockRounded fontSize="small" color="error" />
               </ListItemIcon>
@@ -263,31 +263,9 @@ const TopBar = ({ setOpen }: Props) => {
               </Typography>
             </MenuItem>
           </Menu>
-
-          <Zoom in={openResultPanel}>
-            <Box
-              p={3}
-              bgcolor="white"
-              boxShadow={(theme) => theme.shadows[24]}
-              border={(theme) => `1px solid ${theme.palette.grey[200]}`}
-              sx={{
-                position: "absolute",
-                top: "6.2rem",
-                left: "1%",
-                right: "1%",
-                zIndex: 100,
-                minHeight: "40vh",
-                maxHeight: "60vh",
-                overflowY: "scroll",
-                borderRadius: "8px",
-              }}
-            >
-              <ResultPanel searchTerm={searchTerm} />
-            </Box>
-          </Zoom>
         </Box>
-      </Box>
-    </ClickAwayListener>
+      </Stack>
+    </Box>
   );
 };
 

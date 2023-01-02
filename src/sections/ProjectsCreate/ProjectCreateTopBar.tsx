@@ -9,10 +9,6 @@ import {
   InputBase,
   Alert,
   AlertColor,
-  Menu,
-  IconButton,
-  ListItemIcon,
-  MenuItem,
 } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { selectProject, updageProjectName } from "../../redux/projectSliice";
@@ -86,7 +82,6 @@ const ProjectCreateTopBar = () => {
         onClose={() => setSnakOpen(false)}
       >
         <Alert
-          variant="filled"
           onClose={() => setSnakOpen(false)}
           severity={alertType}
           sx={{ width: "100%" }}
@@ -101,12 +96,10 @@ const ProjectCreateTopBar = () => {
         onBlur={updateProjectName}
         value={name}
         sx={{
-          fontSize: "1.3rem",
+          color: "grey.800",
           mt: "-1rem",
-          color: "grey.700",
-          fontWeight: "bold",
           borderBottom: isProjectInputFocus
-            ? `2.4px solid ${theme.palette.primary.main}`
+            ? `1.4px dashed ${theme.palette.grey[400]}`
             : "inherit",
           mr: 3,
         }}
@@ -118,7 +111,7 @@ const ProjectCreateTopBar = () => {
 
       <Box>
         <Tabs
-          sx={{ mt: -2.6 }}
+          sx={{ mt: -6 }}
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
