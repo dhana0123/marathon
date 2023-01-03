@@ -13,12 +13,18 @@ interface InitialState {
 // Define the initial state using that type
 const initialState: InitialState = {
   currentTool: {
-    title: "",
-    id: -1,
+    title: "Product Descriptions",
+    id: 1,
     icon: "",
-    category: "",
+    category: "Product tool",
+    endPoint: "productDescription",
+    toneRequired: true,
+    brandNameRequired: true,
+    descriptionRequired: true,
+    brandName: "What is your product called?",
+    descriptionName: "Describe your product",
   },
-  currentDetailTool: "Social Media Tools",
+  currentDetailTool: "Product Tools",
   showTools: false,
 };
 

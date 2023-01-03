@@ -3,24 +3,26 @@ import { Box, Stack, Typography, useTheme } from "@mui/material";
 import google from "../../assets/images/google.png";
 import { useDispatch } from "react-redux";
 import { addSelectedCurrentTool } from "../../redux/toolsSlice";
+import { useNavigate } from "react-router-dom";
+import type { Tool } from "../../definations/project";
 
 type Props = {
-  tool: {
-    id: number;
-    title: string;
-    category: string;
-    icon?: any;
-    detail?: string | undefined;
-  };
+  tool: Tool;
 };
 
 const ToolDetail = ({ tool }: Props) => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleToolSelect = () => {
+    dispatch(addSelectedCurrentTool(tool));
+    navigate("/create");
+  };
 
   return (
     <Box
-      onClick={() => dispatch(addSelectedCurrentTool(tool))}
+      onClick={handleToolSelect}
       border={(theme) => `1px solid ${theme.palette.grey[300]}`}
       p={2}
       borderRadius={"8px"}

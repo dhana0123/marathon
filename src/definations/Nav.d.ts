@@ -11,5 +11,12 @@ export type Menu = {
     icon?: SvgIcon;
     detail?: string;
     endPoint?: string;
+    toneRequired: boolean;
+    brandNameRequired: boolean;
+    descriptionRequired: boolean;
+    brandName?: string;
+    descriptionName?: string;
+    brandPlaceholder?: string;
+    descriptionPlaceholder?: string;
   }[];
 };

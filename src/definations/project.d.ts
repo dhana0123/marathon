@@ -15,4 +15,11 @@ export type Tool = {
   icon?: any;
   detail?: string | undefined;
   endPoint?: string;
+  toneRequired: boolean;
+  brandNameRequired: boolean;
+  descriptionRequired: boolean;
+  brandName?: string;
+  descriptionName?: string;
+  brandPlaceholder?: string;
+  descriptionPlaceholder?: string;
 };

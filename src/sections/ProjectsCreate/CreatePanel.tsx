@@ -1,5 +1,14 @@
 import React from "react";
-import { Box, TextField, Button, Typography } from "@mui/material";
+import {
+  Box,
+  TextField,
+  FormControl,
+  Typography,
+  InputLabel,
+  MenuItem,
+  SelectChangeEvent,
+  Select,
+} from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import ProjectCreateTopBar from "./ProjectCreateTopBar";
 import config from "../../config";
@@ -19,7 +28,10 @@ const CreatePanel = () => {
   const [content, setContent] = React.useState<string[]>([]);
   const dispatch = useAppDispatch();
 
-  const generateContentHandler = () => {
+  const generateContentHandler = (position?: string) => {
+    if (position === "main") {
+      setContent([]);
+    }
     dispatch(
       addContent({
         productName: productVal,
@@ -50,6 +62,10 @@ const CreatePanel = () => {
       });
   };
 
+  const handleToneChange = (event: SelectChangeEvent) => {
+    setToneVal(event.target.value as string);
+  };
+
   return (
     <Box
       sx={{
@@ -66,29 +82,74 @@ const CreatePanel = () => {
         </Typography>
         <ProjectCreateTopBar />
         <Box py={2}>
-          <TextField
-            fullWidth
-            placeholder="e.g. Marathon.ai"
-            label="What is your product called?"
-            variant="outlined"
-            value={productVal}
-            onChange={(e) => setProductVal(e.target.value)}
-          />
-          <TextField
-            sx={{ my: 3 }}
-            fullWidth
-            multiline
-            minRows={5}
-            placeholder="e.g. Marathon.ai"
-            label="What is your product called?"
-            variant="outlined"
-            value={descriptionVal}
-            onChange={(e) => setDescriptionVal(e.target.value)}
-          />
+          {currentTool.brandNameRequired && (
+            <TextField
+              fullWidth
+              placeholder={
+                currentTool.brandPlaceholder
+                  ? currentTool.brandPlaceholder
+                  : "e.g. Writy.ai"
+              }
+              label={
+                currentTool.brandName
+                  ? currentTool.brandName
+                  : "What is your product called?"
+              }
+              variant="outlined"
+              value={productVal}
+              onChange={(e) => setProductVal(e.target.value)}
+            />
+          )}
+          {currentTool.descriptionRequired && (
+            <TextField
+              sx={{ my: 3 }}
+              fullWidth
+              multiline
+              minRows={5}
+              placeholder={
+                currentTool.descriptionPlaceholder
+                  ? currentTool.descriptionPlaceholder
+                  : "e.g. Writy.ai is an AI powered first simplest copy writing tool."
+              }
+              label={
+                currentTool.descriptionName
+                  ? currentTool.descriptionName
+                  : "Describe your product"
+              }
+              variant="outlined"
+              value={descriptionVal}
+              onChange={(e) => setDescriptionVal(e.target.value)}
+            />
+          )}
+          {currentTool.toneRequired && (
+            <FormControl fullWidth sx={{ mb: 3 }}>
+              <InputLabel id="demo-simple-select-label">
+                Choose a tone
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={toneVal}
+                label="Choose a tone"
+                onChange={handleToneChange}
+              >
+                <MenuItem value={"friendly"}>😄 Friendly</MenuItem>
+                <MenuItem value={"luxury"}>💍 Luxury</MenuItem>
+                <MenuItem value={"funny"}>😆 Funny</MenuItem>
+                <MenuItem value={"relaxed"}>🤟🏼 Relaxed</MenuItem>
+                <MenuItem value={"professional"}>💼 Professional</MenuItem>
+                <MenuItem value={"bold"}> 🦾 Bold</MenuItem>
+                <MenuItem value={"adventurous"}> 👨‍🚀 Adventurous</MenuItem>
+                <MenuItem value={"persuasive"}> 👋 Persuasive</MenuItem>
+                <MenuItem value={"empathetic"}> 🤗 Empathetic</MenuItem>
+                <MenuItem value={"witty"}> 😎 Witty</MenuItem>
+              </Select>
+            </FormControl>
+          )}
           <LoadingButton
             loading={loading}
             loadingPosition="start"
-            onClick={generateContentHandler}
+            onClick={() => generateContentHandler("main")}
             sx={{ backgroundColor: "grey.800", py: 1.3 }}
             fullWidth
             size="large"
