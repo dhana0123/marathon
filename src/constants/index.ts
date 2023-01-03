@@ -134,6 +134,7 @@ const statupTool: Menu = {
       brandNameRequired: false,
       descriptionRequired: true,
       descriptionName: "Describe your audience",
+      descriptionPlaceholder: "e.g. small business owners",
     },
     {
       id: 2,
@@ -244,6 +245,7 @@ const WebsiteCopy: Menu = {
       brandNameRequired: false,
       descriptionRequired: true,
       descriptionName: "What are you generating questions for?",
+      descriptionPlaceholder: "e.g. best email service",
     },
     {
       id: 8,
@@ -272,6 +274,8 @@ const WebsiteCopy: Menu = {
       brandNameRequired: true,
       descriptionRequired: true,
       descriptionName: "Your Testimonial",
+      descriptionPlaceholder:
+        "writy.ai is simple to use and saves my valuable time and resource!",
     },
   ],
 };
@@ -291,6 +295,8 @@ const Blog: Menu = {
       descriptionRequired: true,
       brandName: "What is your blog topic?",
       descriptionName: "What is the blog about?",
+      brandPlaceholder: "e.g. The AI and future technoloagy",
+      descriptionPlaceholder: "e.g. Ai is used in many domains in feature.",
     },
     {
       id: 2,
@@ -311,6 +317,10 @@ const Blog: Menu = {
       descriptionRequired: true,
       brandName: "What is your blog title?",
       descriptionName: "What is the blog about?",
+      brandPlaceholder:
+        "e.g. 3 reasons to use AI powered Writy.ai copy writing tool",
+      descriptionPlaceholder:
+        "e.g. A blog about utilizing Writy.ai to save time and simplicity.",
     },
     {
       id: 4,
@@ -322,6 +332,10 @@ const Blog: Menu = {
       descriptionRequired: true,
       brandName: "What is your blog title?",
       descriptionName: "What is the blog about?",
+      brandPlaceholder:
+        "e.g. 3 reasons to use AI powered Writy.ai copy writing tool",
+      descriptionPlaceholder:
+        "e.g. A blog about utilizing Writy.ai to save time and simplicity.",
     },
     {
       id: 5,
@@ -332,6 +346,8 @@ const Blog: Menu = {
       brandNameRequired: false,
       descriptionRequired: true,
       descriptionName: "Describe your blog topic",
+      descriptionPlaceholder:
+        "e.g. a blog about the ai copy writing tool for small business",
     },
     {
       id: 6,
@@ -342,6 +358,8 @@ const Blog: Menu = {
       brandNameRequired: false,
       descriptionRequired: true,
       descriptionName: "Describe your blog topic",
+      descriptionPlaceholder:
+        "e.g. a blog about the ai copy writing tool for small business",
     },
     {
       id: 7,
@@ -353,6 +371,9 @@ const Blog: Menu = {
       descriptionRequired: true,
       brandName: "Blog Topic",
       descriptionName: "Write the main point of the paragraph?",
+      brandPlaceholder: "e.g. How to use AI for small business",
+      descriptionPlaceholder:
+        "e.g. Marketing the product with ai based writy.ai copy writing tool.",
     },
     {
       id: 8,
@@ -364,6 +385,9 @@ const Blog: Menu = {
       descriptionRequired: true,
       brandName: "What are you looking to create?",
       descriptionName: "What are the main points you want to cover?",
+      brandPlaceholder: "e.g. a sales email etc",
+      descriptionPlaceholder:
+        "e.g. Marketing the product with ai based writy.ai copy writing tool.",
     },
     {
       id: 9,
@@ -374,376 +398,574 @@ const Blog: Menu = {
       brandNameRequired: false,
       descriptionRequired: true,
       descriptionName: "What topic are you posting about?",
+      descriptionPlaceholder: "e.g. Life Hacks",
     },
   ],
 };
 
-// const Email: Menu = {
-//   id: 6,
-//   title: "Email/Letter",
-//   icon: EmailRounded,
-//   list: [
-//     {
-//       id: 1,
-//       category: "Email/Letter tool",
-//       title: "Cancellation Email",
-//     },
-//     {
-//       id: 2,
-//       category: "Email/Letter tool",
-//       title: "Catchy Email Subject Lines",
-//     },
-//     {
-//       id: 3,
-//       category: "Email/Letter tool",
-//       title: "Confirmation Emails",
-//     },
-//     {
-//       id: 4,
-//       category: "Email/Letter tool",
-//       title: "Follow Up Email",
-//     },
-//     {
-//       id: 5,
-//       category: "Email/Letter tool",
-//       title: "Thank You Note",
-//     },
-//     {
-//       id: 6,
-//       category: "Email/Letter tool",
-//       title: "Welcome Email",
-//     },
-//   ],
-// };
+const Email: Menu = {
+  id: 6,
+  title: "Email/Letter",
+  icon: EmailRounded,
+  list: [
+    {
+      id: 1,
+      category: "Email/Letter tool",
+      title: "Cancellation Email",
+      detail: "Draft the perfect cancellation email.",
+      toneRequired: true,
+      brandNameRequired: true,
+      descriptionRequired: true,
+    },
+    {
+      id: 2,
+      category: "Email/Letter tool",
+      title: "Catchy Email Subject Lines",
+      detail: "Draft the perfect email subject lines.",
+      toneRequired: true,
+      brandNameRequired: true,
+      descriptionRequired: true,
+    },
+    {
+      id: 3,
+      category: "Email/Letter tool",
+      title: "Confirmation Emails",
+      detail: "Write a confirmation email template",
+      toneRequired: true,
+      brandNameRequired: false,
+      descriptionRequired: true,
+      descriptionName: "What is the email for?",
+      descriptionPlaceholder: "e.g. Signing up to a Email service",
+    },
+    {
+      id: 4,
+      category: "Email/Letter tool",
+      title: "Follow Up Email",
+      detail: "Draft a follow-up email after a meeting",
+      toneRequired: true,
+      brandNameRequired: false,
+      descriptionRequired: true,
+      descriptionName: "What is the email for?",
+      descriptionPlaceholder: "e.g. Signing up to a Email service",
+    },
+    {
+      id: 5,
+      category: "Email/Letter tool",
+      title: "Thank You Note",
+      detail: "Write a heartfelt thank you note.",
+      toneRequired: true,
+      brandNameRequired: true,
+      descriptionRequired: true,
+      brandName: "Who is the message for?",
+      descriptionName: "What would you like to thank them for?",
+      brandPlaceholder: "e.g. my friend",
+      descriptionPlaceholder: "e.g. Joining me on this startup journey",
+    },
+    {
+      id: 6,
+      category: "Email/Letter tool",
+      title: "Welcome Email",
+      detail: "Generate a welcome email for new customers.",
+      toneRequired: true,
+      brandNameRequired: false,
+      descriptionRequired: true,
+      descriptionName: "What is the email for?",
+      descriptionPlaceholder: "e.g. Signing up to a Email service",
+    },
+  ],
+};
 
-// const social: Menu = {
-//   id: 7,
-//   title: "Social Media Tools",
-//   icon: Recommend,
-//   list: [
-//     {
-//       id: 1,
-//       category: "Social Media tool",
-//       title: "Add Emoji To List",
-//     },
-//     {
-//       id: 2,
-//       category: "Social Media tool",
-//       title: "Bullet Points",
-//     },
-//     {
-//       id: 3,
-//       category: "Social Media tool",
-//       title: "Carousel Post",
-//     },
-//     {
-//       id: 4,
-//       category: "Social Media tool",
-//       title: "Crazy Youtube Ideas",
-//     },
-//     {
-//       id: 5,
-//       category: "Social Media tool",
-//       title: "Hashtag Generator",
-//     },
-//     {
-//       id: 6,
-//       category: "Social Media tool",
-//       title: "Hook Generator",
-//     },
-//     {
-//       id: 7,
-//       category: "Social Media tool",
-//       title: "Instagram Captions",
-//     },
-//     {
-//       id: 8,
-//       category: "Social Media tool",
-//       title: "Instagram Product Showcase",
-//     },
-//     {
-//       id: 9,
-//       category: "Social Media tool",
-//       title: "Keyword Generator",
-//     },
-//     {
-//       id: 10,
-//       category: "Social Media tool",
-//       title: "Launch Your Product",
-//     },
-//     {
-//       id: 11,
-//       category: "Social Media tool",
-//       title: "Relatable Experiences",
-//     },
-//     {
-//       id: 12,
-//       category: "Social Media tool",
-//       title: "Short Text Hook",
-//     },
-//     {
-//       id: 13,
-//       category: "Social Media tool",
-//       title: "TikTok Brainstorm Topics",
-//     },
-//     {
-//       id: 14,
-//       category: "Social Media tool",
-//       title: "Video Call To Action",
-//     },
-//     {
-//       id: 15,
-//       category: "Social Media tool",
-//       title: "YouTube Description Intro",
-//     },
-//     {
-//       id: 16,
-//       category: "Social Media tool",
-//       title: "YouTube Video Title",
-//     },
-//   ],
-// };
-// const sales: Menu = {
-//   id: 1,
-//   title: "Sales Tools",
-//   icon: Loyalty,
-//   list: [
-//     {
-//       id: 1,
-//       category: "Sales Tool",
-//       title: "Attention-Interest-Desire-Action",
-//     },
-//     {
-//       id: 2,
-//       category: "Sales Tool",
-//       title: "Before-After-Bridge",
-//     },
-//     {
-//       id: 3,
-//       category: "Sales Tool",
-//       title: "Feature to Benefits",
-//     },
-//     {
-//       id: 4,
-//       category: "Sales Tool",
-//       title: "Feature-Advantage-Benefit",
-//     },
-//     {
-//       id: 5,
-//       category: "Sales Tool",
-//       title: "Marketing Angles",
-//     },
-//     {
-//       id: 6,
-//       category: "Sales Tool",
-//       title: "Pain-Agitate-Solution",
-//     },
-//     {
-//       id: 7,
-//       category: "Sales Tool",
-//       title: "Problem-Promise-Proof-Proposal",
-//     },
-//     {
-//       id: 8,
-//       category: "Sales Tool",
-//       title: "QUEST Copywriting",
-//     },
-//   ],
-// };
+const social: Menu = {
+  id: 7,
+  title: "Social Media Tools",
+  icon: Recommend,
+  list: [
+    {
+      id: 1,
+      category: "Social Media tool",
+      title: "Add Emoji To List",
+      detail: "Find right emoji for any list",
+      toneRequired: false,
+      brandNameRequired: false,
+      descriptionRequired: true,
+      descriptionName: "Write your list below",
+      descriptionPlaceholder: `e.g.
+        faster and cheep
+        High quality
+        Simple to use
+      `,
+    },
+    {
+      id: 2,
+      category: "Social Media tool",
+      title: "Bullet Points",
+      detail: "Draft an outline for your any social media post",
+      toneRequired: true,
+      brandNameRequired: false,
+      descriptionRequired: true,
+    },
+    {
+      id: 3,
+      category: "Social Media tool",
+      title: "Carousel Post",
+      detail: "Generate carousel post for any Social media app",
+      toneRequired: true,
+      brandNameRequired: false,
+      descriptionRequired: true,
+      descriptionName: "What is your topic?",
+      descriptionPlaceholder: "e.g. Best ways to start a business",
+    },
+    {
+      id: 4,
+      category: "Social Media tool",
+      title: "Crazy Youtube Ideas",
+      detail: "Brainstorm crazy video ideas.",
+      toneRequired: false,
+      brandNameRequired: false,
+      descriptionRequired: true,
+    },
+    {
+      id: 5,
+      category: "Social Media tool",
+      title: "Hashtag Generator",
+      detail: "Find a best hashtag to any post",
+      toneRequired: false,
+      brandNameRequired: false,
+      descriptionRequired: true,
+      descriptionName: "What is your post about",
+    },
+    {
+      id: 6,
+      category: "Social Media tool",
+      title: "Hook Generator",
+      detail: "Find a best hook to your youtube video",
+      brandNameRequired: false,
+      descriptionRequired: true,
+      toneRequired: true,
+      descriptionName: "What is your topic?",
+    },
+    {
+      id: 7,
+      category: "Social Media tool",
+      title: "Instagram Captions",
+      detail: "Create Instagram captions for a photo",
+      brandNameRequired: false,
+      descriptionRequired: true,
+      toneRequired: true,
+      descriptionName: "What is your post about?",
+      descriptionPlaceholder: "e.g. video about how to solve any problem",
+    },
+    {
+      id: 8,
+      category: "Social Media tool",
+      title: "Instagram Product Showcase",
+      detail: "Create copy for showcasing your product on Instagram",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+    {
+      id: 9,
+      category: "Social Media tool",
+      title: "Keyword Generator",
+      detail: "Generate keywords related to your post",
+      brandNameRequired: false,
+      descriptionRequired: true,
+      toneRequired: true,
+      descriptionName: "What topic are you posting about?",
+      descriptionPlaceholder: "e.g. Life Hacks",
+    },
+    {
+      id: 10,
+      category: "Social Media tool",
+      title: "Launch Your Product",
+      detail: "Find the right words to launch a product or event",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+    {
+      id: 11,
+      category: "Social Media tool",
+      title: "Relatable Experiences",
+      detail:
+        "Reach your audience with an experience they'll understand and relate to.",
+      brandNameRequired: false,
+      descriptionRequired: true,
+      toneRequired: false,
+      descriptionName: "What is your target niche",
+      descriptionPlaceholder: "e.g. starting a new career",
+    },
+    {
+      id: 12,
+      category: "Social Media tool",
+      title: "Short Text Hook",
+      detail: "Brainstorm a short, powerful social media post",
+      brandNameRequired: false,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+    {
+      id: 13,
+      category: "Social Media tool",
+      title: "TikTok Brainstorm Topics",
+      detail: "BrainStorm topic for your TikTok videos",
+      brandNameRequired: false,
+      descriptionRequired: true,
+      toneRequired: false,
+      descriptionName: "What is your topic?",
+      descriptionPlaceholder: "e.g. Easy ways to write content",
+    },
+    {
+      id: 14,
+      category: "Social Media tool",
+      title: "Video Call To Action",
+      detail: "Generate powerfull calls to action for any video.",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+      brandName: "What is your video title?",
+      descriptionName: "What is your video about?",
+      brandPlaceholder: "e.g. How to start small business with no money",
+      descriptionPlaceholder: "e.g. a video about how to start a business",
+    },
+    {
+      id: 15,
+      category: "Social Media tool",
+      title: "YouTube Description Intro",
+      detail: "Generate an engaging intro to get more views on YouTube.",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+      brandName: "What is your video title?",
+      descriptionName: "What is your video about?",
+      brandPlaceholder: "e.g. How to start small business with no money",
+      descriptionPlaceholder: "e.g. a video about how to start a business",
+    },
+    {
+      id: 16,
+      category: "Social Media tool",
+      title: "YouTube Video Title",
+      detail: "Generate the best title for your vidos.",
+      brandNameRequired: false,
+      descriptionRequired: true,
+      toneRequired: true,
+      descriptionName: "What is your video about?",
+      brandPlaceholder: "e.g. How to start small business with no money",
+      descriptionPlaceholder: "e.g. a video about how to start a business",
+    },
+  ],
+};
+const sales: Menu = {
+  id: 1,
+  title: "Sales Tools",
+  icon: Loyalty,
+  list: [
+    {
+      id: 1,
+      category: "Sales Tool",
+      title: "Attention-Interest-Desire-Action",
+      detail: "Write a compelling ad, social media post, or email",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+    {
+      id: 2,
+      category: "Sales Tool",
+      title: "Before-After-Bridge",
+      detail:
+        "Write Before-After-Bridge copy for emails, ad campaign, and social media posts.",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+    {
+      id: 3,
+      category: "Sales Tool",
+      title: "Feature to Benefits",
+      detail: "Extract the product's benefits from a list of the features.",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+    {
+      id: 4,
+      category: "Sales Tool",
+      title: "Feature-Advantage-Benefit",
+      detail: "Write an ad that highlights your unique selling point.",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+    {
+      id: 5,
+      category: "Sales Tool",
+      title: "Marketing Angles",
+      detail: "Find new angles for your marketing.",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+    {
+      id: 6,
+      category: "Sales Tool",
+      title: "Pain-Agitate-Solution",
+      detail: "Rewrite text to address a specific customer pain point.",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+    {
+      id: 7,
+      category: "Sales Tool",
+      title: "Problem-Promise-Proof-Proposal",
+      detail:
+        "Draft a proposal that follows the Problem-Promise-Proof Proposal format.",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+    {
+      id: 8,
+      category: "Sales Tool",
+      title: "QUEST Copywriting",
+      detail: "Draft a brief outline for an ad, email, or social media post",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+    },
+  ],
+};
 
-// const writingTools: Menu = {
-//   id: 1,
-//   title: "Writing Tools",
-//   icon: NoteAlt,
-//   list: [
-//     {
-//       id: 1,
-//       category: "Writing Tool",
-//       title: "Adjective Accelerator",
-//     },
-//     {
-//       id: 2,
-//       category: "Writing Tool",
-//       title: "Analogy Generator",
-//     },
-//     {
-//       id: 3,
-//       category: "Writing Tool",
-//       title: "Bullet Point to Blog Section",
-//     },
-//     {
-//       id: 4,
-//       category: "Writing Tool",
-//       title: "Bullet Point to Paragraph",
-//     },
-//     {
-//       id: 5,
-//       category: "Writing Tool",
-//       title: "Cliffhanger",
-//     },
-//     {
-//       id: 6,
-//       category: "Writing Tool",
-//       title: "Essay Intro",
-//     },
-//     {
-//       id: 7,
-//       category: "Writing Tool",
-//       title: "Essay Outline",
-//     },
-//     {
-//       id: 8,
-//       category: "Writing Tool",
-//       title: "Explain Like I'm 5",
-//     },
-//     {
-//       id: 9,
-//       category: "Writing Tool",
-//       title: "Freestyle",
-//     },
-//     {
-//       id: 10,
-//       category: "Writing Tool",
-//       title: "Hero Story Intro",
-//     },
-//     {
-//       id: 11,
-//       category: "Writing Tool",
-//       title: "Hero Story Villain",
-//     },
-//     {
-//       id: 12,
-//       category: "Writing Tool",
-//       title: "Passive To Active Voice",
-//     },
-//     {
-//       id: 14,
-//       category: "Writing Tool",
-//       title: "Press Release Intros",
-//     },
-//     {
-//       id: 15,
-//       category: "Writing Tool",
-//       title: "Rewrite With Keywords",
-//     },
-//     {
-//       id: 16,
-//       category: "Writing Tool",
-//       title: "Sentence Rewriter",
-//     },
-//     {
-//       id: 17,
-//       category: "Writing Tool",
-//       title: "Simplify Sentences",
-//     },
-//     {
-//       id: 18,
-//       category: "Writing Tool",
-//       title: "Tone Changer",
-//     },
-//     {
-//       id: 19,
-//       category: "Writing Tool",
-//       title: "Two Sentence Stories",
-//     },
-//     {
-//       id: 20,
-//       category: "Writing Tool",
-//       title: "Verb Booster",
-//     },
-//   ],
-// };
+const writingTools: Menu = {
+  id: 1,
+  title: "Writing Tools",
+  icon: NoteAlt,
+  list: [
+    {
+      id: 1,
+      category: "Writing Tool",
+      title: "Adjective Accelerator",
+      detail: "Find stronger alternatives for any adjective.",
+      brandNameRequired: false,
+      descriptionRequired: true,
+      toneRequired: false,
+      descriptionName: "Describe your adjective",
+      descriptionPlaceholder: "e.g. simpler",
+    },
+    {
+      id: 2,
+      category: "Writing Tool",
+      title: "Analogy Generator",
+      detail: "Find relatable analogies for any topic.",
+      brandNameRequired: false,
+      descriptionRequired: true,
+      toneRequired: false,
+      descriptionName: "List a topic or two!",
+      descriptionPlaceholder: "e.g. Startups and surfing",
+    },
+    {
+      id: 3,
+      category: "Writing Tool",
+      title: "Bullet Point to Blog Section",
+      detail: "Generate an entire blog section based on a single bullet point.",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+      brandName: "Blog Topic",
+      descriptionName: "What is the main point of the paragraph?",
+      brandPlaceholder: "e.g. How to use AI in daily life",
+      descriptionPlaceholder:
+        "e.g. Ai can be used to track and manage the health.",
+    },
+    {
+      id: 4,
+      category: "Writing Tool",
+      title: "Bullet Point to Paragraph",
+      detail: "Convert a bullet point outline into a full paragraph.",
+      brandNameRequired: true,
+      descriptionRequired: true,
+      toneRequired: true,
+      brandName: "Essay Topic",
+      descriptionName: "What is the main point of the paragraph?",
+      brandPlaceholder: "e.g. How to use AI in daily life",
+      descriptionPlaceholder:
+        "e.g. Ai can be used to track and manage the health.",
+    },
+    {
+      id: 5,
+      category: "Writing Tool",
+      title: "Cliffhanger",
+      detail: "Add a cliffhanger to your paragraph.",
+      brandNameRequired: false,
+      descriptionRequired: true,
+      toneRequired: true,
+      descriptionName: "What is your topic?",
+    },
+    {
+      id: 6,
+      category: "Writing Tool",
+      title: "Essay Intro",
+    },
+    {
+      id: 7,
+      category: "Writing Tool",
+      title: "Essay Outline",
+    },
+    {
+      id: 8,
+      category: "Writing Tool",
+      title: "Explain Like I'm 5",
+    },
+    {
+      id: 9,
+      category: "Writing Tool",
+      title: "Freestyle",
+    },
+    {
+      id: 10,
+      category: "Writing Tool",
+      title: "Hero Story Intro",
+    },
+    {
+      id: 11,
+      category: "Writing Tool",
+      title: "Hero Story Villain",
+    },
+    {
+      id: 12,
+      category: "Writing Tool",
+      title: "Passive To Active Voice",
+    },
+    {
+      id: 14,
+      category: "Writing Tool",
+      title: "Press Release Intros",
+    },
+    {
+      id: 15,
+      category: "Writing Tool",
+      title: "Rewrite With Keywords",
+    },
+    {
+      id: 16,
+      category: "Writing Tool",
+      title: "Sentence Rewriter",
+    },
+    {
+      id: 17,
+      category: "Writing Tool",
+      title: "Simplify Sentences",
+    },
+    {
+      id: 18,
+      category: "Writing Tool",
+      title: "Tone Changer",
+    },
+    {
+      id: 19,
+      category: "Writing Tool",
+      title: "Two Sentence Stories",
+    },
+    {
+      id: 20,
+      category: "Writing Tool",
+      title: "Verb Booster",
+    },
+  ],
+};
 
-// const Brainstorming: Menu = {
-//   id: 1,
-//   title: "Brainstorming Tools",
-//   icon: EmojiObjectsRounded,
-//   list: [
-//     {
-//       id: 1,
-//       category: "Brainstorming Tool",
-//       title: "Growth Ideas",
-//     },
-//     {
-//       id: 2,
-//       category: "Brainstorming Tool",
-//       title: "Name Generator",
-//     },
-//     {
-//       id: 3,
-//       category: "Brainstorming Tool",
-//       title: "Next Product",
-//     },
-//     {
-//       id: 4,
-//       category: "Brainstorming Tool",
-//       title: "Startup Ideas",
-//     },
-//     {
-//       id: 5,
-//       category: "Brainstorming Tool",
-//       title: "Viral Ideas",
-//     },
-//   ],
-// };
+const Brainstorming: Menu = {
+  id: 1,
+  title: "Brainstorming Tools",
+  icon: EmojiObjectsRounded,
+  list: [
+    {
+      id: 1,
+      category: "Brainstorming Tool",
+      title: "Growth Ideas",
+    },
+    {
+      id: 2,
+      category: "Brainstorming Tool",
+      title: "Name Generator",
+    },
+    {
+      id: 3,
+      category: "Brainstorming Tool",
+      title: "Next Product",
+    },
+    {
+      id: 4,
+      category: "Brainstorming Tool",
+      title: "Startup Ideas",
+    },
+    {
+      id: 5,
+      category: "Brainstorming Tool",
+      title: "Viral Ideas",
+    },
+  ],
+};
 
-// const PersonalTools: Menu = {
-//   id: 1,
-//   title: "Personal Tools",
-//   icon: EmojiEmotionsRounded,
-//   list: [
-//     {
-//       id: 1,
-//       category: "Personal tool",
-//       title: "Birthday Card",
-//     },
-//     {
-//       id: 2,
-//       category: "Personal tool",
-//       title: "Clubhouse Bio",
-//     },
-//     {
-//       id: 3,
-//       category: "Personal tool",
-//       title: "Cover Letter",
-//     },
-//     {
-//       id: 4,
-//       category: "Personal tool",
-//       title: "Love Letter",
-//     },
-//     {
-//       id: 5,
-//       category: "Personal tool",
-//       title: "Resume Bullet Points",
-//     },
-//   ],
-// };
+const PersonalTools: Menu = {
+  id: 1,
+  title: "Personal Tools",
+  icon: EmojiEmotionsRounded,
+  list: [
+    {
+      id: 1,
+      category: "Personal tool",
+      title: "Birthday Card",
+    },
+    {
+      id: 2,
+      category: "Personal tool",
+      title: "Clubhouse Bio",
+    },
+    {
+      id: 3,
+      category: "Personal tool",
+      title: "Cover Letter",
+    },
+    {
+      id: 4,
+      category: "Personal tool",
+      title: "Love Letter",
+    },
+    {
+      id: 5,
+      category: "Personal tool",
+      title: "Resume Bullet Points",
+    },
+  ],
+};
 
 export const tools: Menu[] = [
   product,
-  // social,
+  social,
   statupTool,
   // writingTools,
   digitalAdCopy,
   WebsiteCopy,
   Blog,
-  // Email,
-  // sales,
+  Email,
+  sales,
   // Brainstorming,
   // PersonalTools,
 ];
 
 export const searchTools: { id: number; title: string; category: string }[] = [
   ...product.list,
-  // ...social.list,
-  // ...writingTools.list,
+  ...social.list,
   ...statupTool.list,
+  // ...writingTools.list,
   ...digitalAdCopy.list,
   ...WebsiteCopy.list,
-  // ...Blog.list,
-  // ...Email.list,
-  // ...sales.list,
+  ...Blog.list,
+  ...Email.list,
+  ...sales.list,
   // ...Brainstorming.list,
   // ...PersonalTools.list,
 ];

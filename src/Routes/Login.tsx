@@ -12,7 +12,7 @@ import { MuiOtpInput } from "mui-one-time-password-input";
 import LoadingButton from "@mui/lab/LoadingButton";
 import config from "../config";
 import { validateEmail } from "../uitils/validators";
-import { dashboard, facebook, google, logo } from "../assets/images";
+import { dashboard, facebook, google } from "../assets/images";
 import { useAppDispatch } from "../redux/store";
 import { loggedIn } from "../redux/userSlice";
 
@@ -138,7 +138,7 @@ const Login = () => {
       >
         {state === "Email" && (
           <Box sx={{ maxWidth: "350px" }}>
-            <img src={logo} width="60px" style={{ marginBottom: "1rem" }} />
+            {/* <img src={logo} width="60px" style={{ marginBottom: "1rem" }} /> */}
             <Typography variant="h4" color="grey.800">
               Log in or create an account to Writy.ai
             </Typography>
