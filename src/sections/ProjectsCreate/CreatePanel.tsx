@@ -40,11 +40,13 @@ const CreatePanel = () => {
       })
     );
     setLoading(true);
+    const projectId = localStorage.getItem("projectId");
     config.axios
       .post(`/tool/${currentTool.endPoint}`, {
         productName: productVal,
         tone: toneVal,
         description: descriptionVal,
+        projectId: projectId,
       })
       .then((res) => {
         setContent([...content, ...res.data.result]);

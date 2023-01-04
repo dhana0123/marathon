@@ -79,6 +79,8 @@ const TopBar = () => {
         top: 0,
         zIndex: 50,
         background: "white",
+        borderBottom: "1px solid black",
+        borderColor: "grey.200",
       }}
     >
       <Snackbar

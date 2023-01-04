@@ -29,8 +29,8 @@ const CreateProjectCard = () => {
       }}
     >
       <Box textAlign={"center"}>
-        <IconButton>
-          <Add sx={{ color: "white" }} />
+        <IconButton sx={{ backgroundColor: "#18B365" }}>
+          <Add sx={{ color: "white", opacity: 1 }} />
         </IconButton>
         <Typography textAlign={"center"} color={"white"} variant="subtitle1">
           Create New Project

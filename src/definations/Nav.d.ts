@@ -9,7 +9,7 @@ export type Menu = {
     title: string;
     category: string;
     icon?: SvgIcon;
-    detail?: string;
+    detail: string;
     endPoint?: string;
     toneRequired: boolean;
     brandNameRequired: boolean;
