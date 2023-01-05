@@ -7,11 +7,12 @@ import { CloseRounded, CreateRounded } from "@mui/icons-material";
 
 const ProjectCreate = () => {
   const [isEditorShown, setIsEditorShown] = React.useState(true);
+
   const theme = useTheme();
 
   return (
     <Box pb={5}>
-      <Stack direction={"row"}>
+      <Stack direction={"row"} sx={{ position: "sticky", top: 0 }}>
         <Box
           width={{
             xs: "100%",
