@@ -20,6 +20,7 @@ import { Project } from "../../definations/project";
 import { useAppDispatch, useAppSelector } from "../../redux/store";
 import { addProject, selectProject } from "../../redux/projectSliice";
 import { useNavigate } from "react-router-dom";
+import { truncate } from "../../uitils";
 
 type ProjectCardProps = {
   project: Project;
@@ -53,6 +54,7 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
       pt={1}
       borderRadius={"16px"}
       sx={{
+        height: "100%",
         background: "white",
         border:
           id === project._id
@@ -154,13 +156,16 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
         </Menu>
       </Stack>
       <Divider />
-      <Box sx={{ cursor: "pointer" }} onClick={handlProjectClick}>
+      <Box
+        sx={{ cursor: "pointer", height: "100%" }}
+        onClick={handlProjectClick}
+      >
         <Box my={2}>
           <Typography variant="subtitle2" color="gray.700">
             Product/Brand Name
           </Typography>
           <Typography variant="body2" color="grey.600">
-            Marathon the king
+            {project.productName ? project.productName : "....."}
           </Typography>
         </Box>
         <Box>
@@ -168,7 +173,9 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
             Description
           </Typography>
           <Typography variant="body2" color="grey.600">
-            The Best writter you ever found in life. Its simple to use and work.
+            {project.description
+              ? truncate(project.description, 213)
+              : "--------"}
           </Typography>
         </Box>
       </Box>

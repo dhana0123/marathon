@@ -10,6 +10,7 @@ export type Project = {
   tone: string;
   description: string;
   user: string;
+  liked: string[];
   createdAt: string;
   updatedAt: string;
 } & {
@@ -25,6 +26,7 @@ const initialState: Project = {
   description: "",
   tone: "",
   user: "",
+  liked: [],
   createdAt: "",
   updatedAt: "",
   createNewProjectModal: false,
@@ -34,12 +36,13 @@ type AddProjectPayload = {
   _id: string;
   name: string;
   toolsUsed: string[];
-  productName?: "";
-  description?: "";
-  tone?: "";
+  productName?: string;
+  description?: string;
+  tone?: string;
   user: string;
   createdAt: string;
   updatedAt: string;
+  liked?: string[];
 };
 
 type ContentPayload = {
@@ -64,6 +67,7 @@ export const projectSlice = createSlice({
       if (action.payload.description)
         state.description = action.payload.description;
       if (action.payload.tone) state.tone = action.payload.tone;
+      if (action.payload.liked) state.liked = action.payload.liked;
     },
     addContent: (state, action: PayloadAction<ContentPayload>) => {
       if (action.payload.productName)

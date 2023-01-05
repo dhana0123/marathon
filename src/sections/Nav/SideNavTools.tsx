@@ -83,6 +83,7 @@ const SideNavTools = () => {
       >
         {(tools || []).map((tool, idx) => (
           <ListItemButton
+            key={idx}
             sx={{
               borderRadius: "8px",
               p: 1.5,

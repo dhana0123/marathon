@@ -15,17 +15,26 @@ const WritingPad = () => {
   };
 
   return (
-    <Box sx={{ background: "white", width: "100%" }}>
+    <Box
+      sx={{
+        background: "white",
+        width: "100%",
+        height: "100vh",
+      }}
+    >
       <Box>
         <Editor
           editorState={editorState}
           editorStyle={{
-            minHeight: "80vh",
+            height: "75vh",
             padding: "1em",
             paddingTop: 0,
             background: "white",
+            overflowY: "scroll",
           }}
-          toolbarStyle={{ backgroundColor: theme.palette.grey[300] }}
+          toolbarStyle={{
+            backgroundColor: theme.palette.grey[200],
+          }}
           toolbar={{
             options: ["inline", "blockType", "fontSize", "list", "history"],
             inline: {

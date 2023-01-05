@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { addSelectedCurrentTool } from "../../redux/toolsSlice";
 import { useNavigate } from "react-router-dom";
 import type { Tool } from "../../definations/project";
+import { openNewProjectModal } from "../../redux/projectSliice";
 
 type Props = {
   tool: Tool;
@@ -16,8 +17,13 @@ const ToolDetail = ({ tool }: Props) => {
   const navigate = useNavigate();
 
   const handleToolSelect = () => {
+    const projectId = localStorage.getItem("projectId");
+    if (!projectId) {
+      dispatch(openNewProjectModal());
+    } else {
+      navigate("/create");
+    }
     dispatch(addSelectedCurrentTool(tool));
-    navigate("/create");
   };
 
   return (

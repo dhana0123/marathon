@@ -2,6 +2,10 @@ export type Project = {
   _id: string;
   name: string;
   toolsUsed: string[];
+  productName?: string;
+  description?: string;
+  liked?: string[];
+  too?: string;
   user: string;
   createdAt: string;
   updatedAt: string;

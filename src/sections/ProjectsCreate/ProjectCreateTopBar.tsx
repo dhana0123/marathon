@@ -21,10 +21,20 @@ import {
 } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
 
-const ProjectCreateTopBar = () => {
+type Props = {
+  setShowSaved: React.Dispatch<React.SetStateAction<boolean>>;
+  title: string;
+};
+
+const ProjectCreateTopBar = ({ setShowSaved, title }: Props) => {
   const [value, setValue] = React.useState(0);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    if (newValue === 1) {
+      setShowSaved(true);
+    } else {
+      setShowSaved(false);
+    }
   };
   const [snakOpen, setSnakOpen] = React.useState(false);
   const [alertMessage, setAlertMessage] = React.useState("");
@@ -69,58 +79,64 @@ const ProjectCreateTopBar = () => {
   };
 
   return (
-    <Stack
-      py={1}
-      direction={"row"}
-      justifyContent="space-between"
-      alignItems="center"
-    >
-      <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        open={snakOpen}
-        autoHideDuration={6000}
-        onClose={() => setSnakOpen(false)}
-      >
-        <Alert
-          onClose={() => setSnakOpen(false)}
-          severity={alertType}
-          sx={{ width: "100%" }}
-        >
-          {alertMessage}
-        </Alert>
-      </Snackbar>
-
-      <InputBase
-        inputRef={projectInput}
-        required
-        onBlur={updateProjectName}
-        value={name}
-        sx={{
-          color: "grey.800",
-          mt: "-1rem",
-          borderBottom: isProjectInputFocus
-            ? `1.4px dashed ${theme.palette.grey[400]}`
-            : "inherit",
-          mr: 3,
-        }}
-        onChange={(e) => {
-          dispatch(updageProjectName(e.target.value));
-          setIsProjectInputFocus(true);
-        }}
-      />
-
+    <>
       <Box>
-        <Tabs
-          sx={{ mt: -6 }}
-          value={value}
-          onChange={handleChange}
-          aria-label="basic tabs example"
-        >
-          <Tab sx={{ fontSize: "0.85rem" }} label="Create" />
-          <Tab sx={{ fontSize: "0.85rem" }} label="Saved" />
-        </Tabs>
+        <Typography variant="h5" color={"primary.main"}>
+          {title}
+        </Typography>
       </Box>
-      {/* <IconButton onClick={moreMenuHandler} sx={{ marginTop: -1.8 }}>
+      <Stack
+        py={1}
+        direction={"row"}
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Snackbar
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+          open={snakOpen}
+          autoHideDuration={6000}
+          onClose={() => setSnakOpen(false)}
+        >
+          <Alert
+            onClose={() => setSnakOpen(false)}
+            severity={alertType}
+            sx={{ width: "100%" }}
+          >
+            {alertMessage}
+          </Alert>
+        </Snackbar>
+
+        <InputBase
+          inputRef={projectInput}
+          required
+          onBlur={updateProjectName}
+          value={name}
+          sx={{
+            color: "grey.800",
+            mt: "-1rem",
+            borderBottom: isProjectInputFocus
+              ? `1.4px dashed ${theme.palette.grey[400]}`
+              : "inherit",
+            mr: 3,
+          }}
+          onChange={(e) => {
+            dispatch(updageProjectName(e.target.value));
+            setIsProjectInputFocus(true);
+          }}
+        />
+
+        <Box>
+          <Tabs
+            sx={{ mt: -6 }}
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+          >
+            <Tab sx={{ fontSize: "0.85rem" }} label="Create" />
+            <Tab sx={{ fontSize: "0.85rem" }} label="Saved" />
+          </Tabs>
+        </Box>
+        {/* <IconButton onClick={moreMenuHandler} sx={{ marginTop: -1.8 }}>
         <MoreVert />
       </IconButton>
       <Menu
@@ -185,7 +201,8 @@ const ProjectCreateTopBar = () => {
           </Typography>
         </MenuItem>
       </Menu> */}
-    </Stack>
+      </Stack>
+    </>
   );
 };
 

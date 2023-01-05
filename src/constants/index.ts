@@ -44,6 +44,7 @@ const digitalAdCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "adCopyVariant",
     },
     {
       id: 2,
@@ -53,6 +54,7 @@ const digitalAdCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "facebookHeadline",
     },
     {
       id: 3,
@@ -62,6 +64,7 @@ const digitalAdCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "facebookLinkDescription",
     },
     {
       id: 4,
@@ -71,6 +74,7 @@ const digitalAdCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "facebookListicle",
     },
     {
       id: 5,
@@ -80,6 +84,7 @@ const digitalAdCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "facebookPrimaryText",
     },
     {
       id: 6,
@@ -89,6 +94,7 @@ const digitalAdCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "generalAdCopy",
     },
     {
       id: 7,
@@ -98,6 +104,7 @@ const digitalAdCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "googleDescription",
     },
     {
       id: 8,
@@ -107,6 +114,7 @@ const digitalAdCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "googleHeadline",
     },
     {
       id: 9,
@@ -116,6 +124,7 @@ const digitalAdCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "linkedinAdCopy",
     },
   ],
 };
@@ -125,17 +134,17 @@ const statupTool: Menu = {
   title: "Startup Tools",
   icon: BuildRounded,
   list: [
-    {
-      id: 1,
-      category: "Startup tool",
-      title: "Audience Refiner",
-      detail: "Discover the right audience for your business.",
-      toneRequired: false,
-      brandNameRequired: false,
-      descriptionRequired: true,
-      descriptionName: "Describe your audience",
-      descriptionPlaceholder: "e.g. small business owners",
-    },
+    // {
+    //   id: 1,
+    //   category: "Startup tool",
+    //   title: "Audience Refiner",
+    //   detail: "Discover the right audience for your business.",
+    //   toneRequired: false,
+    //   brandNameRequired: false,
+    //   descriptionRequired: true,
+    //   descriptionName: "Describe your audience",
+    //   descriptionPlaceholder: "e.g. small business owners",
+    // },
     {
       id: 2,
       category: "Startup tool",
@@ -144,6 +153,7 @@ const statupTool: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "brandMission",
     },
     {
       id: 3,
@@ -153,6 +163,7 @@ const statupTool: Menu = {
       toneRequired: false,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "brandVoice",
     },
     {
       id: 4,
@@ -162,6 +173,7 @@ const statupTool: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "brandMotto",
     },
     {
       id: 5,
@@ -171,6 +183,7 @@ const statupTool: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "valueProposition",
     },
   ],
 };
