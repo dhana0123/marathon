@@ -16,7 +16,7 @@ const DetailModal = () => {
         right: "00px",
         bottom: "30px",
         height: showTools ? "99vh" : "0px",
-        transition: ".4s",
+        transition: ".5s",
         zIndex: 100,
         overflow: "hidden",
       }}

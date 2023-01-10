@@ -132,7 +132,7 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem sx={{ borderRadius: "8px", my: 0.5, mt: 1 }}>
+          {/* <MenuItem sx={{ borderRadius: "8px", my: 0.5, mt: 1 }}>
             <ListItemIcon>
               <ModeEditOutlineOutlined
                 sx={{ color: "grey.700", fontSize: "20px" }}
@@ -141,7 +141,7 @@ const ProjectCard = ({ project, deleteProject }: ProjectCardProps) => {
             <Typography variant="subtitle2" color="grey.700">
               Edit
             </Typography>
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem
             sx={{ borderRadius: "8px", my: 0.5 }}
             onClick={() => deleteProject(project._id)}

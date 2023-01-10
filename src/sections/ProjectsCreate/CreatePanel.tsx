@@ -5,6 +5,7 @@ import {
   FormControl,
   Typography,
   InputLabel,
+  Button,
   MenuItem,
   SelectChangeEvent,
   Select,
@@ -30,7 +31,6 @@ const CreatePanel = () => {
   const [loading, setLoading] = React.useState(false);
   const [content, setContent] = React.useState<string[]>([]);
   const [showSaved, setShowSaved] = React.useState(false);
-
   const dispatch = useAppDispatch();
 
   const generateContentHandler = (position?: string) => {
@@ -82,6 +82,7 @@ const CreatePanel = () => {
       sx={{
         maxWidth: "543px",
         m: "auto",
+        position: "relative",
       }}
     >
       <Box
@@ -110,7 +111,6 @@ const CreatePanel = () => {
         </Stack>
       ) : (
         <>
-          {" "}
           <Box
             border={(theme) => `1px solid ${theme.palette.grey[200]}`}
             sx={{
@@ -199,13 +199,15 @@ const CreatePanel = () => {
               </LoadingButton>
             </Box>
           </Box>
-          <Results
-            loading={loading}
-            setLoading={setLoading}
-            content={content}
-            setContent={setContent}
-            generateContentHandler={generateContentHandler}
-          />
+          <Box>
+            <Results
+              loading={loading}
+              setLoading={setLoading}
+              content={content}
+              setContent={setContent}
+              generateContentHandler={generateContentHandler}
+            />
+          </Box>
         </>
       )}
     </Box>

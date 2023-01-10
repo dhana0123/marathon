@@ -3,13 +3,14 @@ import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
 import {
   Box,
   SwipeableDrawer,
-  ClickAwayListener,
+  Button,
   Snackbar,
   Alert,
+  IconButton,
 } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import SideNavTools from "../sections/Nav/SideNavTools";
 import TopBar from "../sections/Nav/TopBar";
 import DetailModal from "../sections/DetailTools/DetailModal";
@@ -18,6 +19,7 @@ import { addProject } from "../redux/projectSliice";
 import { useAppDispatch, useAppSelector } from "../redux/store";
 import config from "../config";
 import { closeSnack, selectSnackbar } from "../redux/SnackMessage";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 
 const drawerWidth = 260;
 
@@ -72,8 +74,24 @@ export default function Main() {
   const [open, setOpen] = React.useState(false);
   const { isModalOpen, message, messageType } = useAppSelector(selectSnackbar);
   const theme = useTheme();
-
+  const containerRef = React.useRef<HTMLDivElement>();
   const dispatch = useAppDispatch();
+  const location = useLocation();
+
+  const isCreatePage = () => {
+    const path = location.pathname.split("/")[1];
+    if (path === "create") {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  isCreatePage();
+
+  const gotToTop = () => {
+    containerRef?.current?.scrollTo({ behavior: "smooth", top: 0 });
+  };
 
   React.useEffect(() => {
     const projectId = localStorage.getItem("projectId");
@@ -135,10 +153,27 @@ export default function Main() {
       >
         <DetailModal />
         <Box sx={{ position: "relative" }}>
-          <Box sx={{ height: "100vh", overflowY: "scroll" }}>
+          <Box sx={{ height: "100vh", overflowY: "scroll" }} ref={containerRef}>
             <TopBar />
             <Outlet />
           </Box>
+          {isCreatePage() && (
+            <IconButton
+              onClick={gotToTop}
+              sx={{
+                position: "absolute",
+                bottom: "2rem",
+                right: { xs: "1rem", sm: "16rem" },
+                backgroundColor: "grey.800",
+                color: "white",
+                "&:hover": {
+                  backgroundColor: "grey.700",
+                },
+              }}
+            >
+              <ArrowDropUpIcon />
+            </IconButton>
+          )}
         </Box>
       </Box>
       <Snackbar

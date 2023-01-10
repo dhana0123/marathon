@@ -19,6 +19,12 @@ const Results = ({
   setContent,
   generateContentHandler,
 }: Props) => {
+  const containerRef = React.useRef<HTMLDivElement>();
+
+  React.useEffect(() => {
+    containerRef?.current?.scrollIntoView({ behavior: "smooth" });
+  }, [loading]);
+
   return (
     <Box mt={5} mb={"10rem"}>
       <Stack spacing={3}>
@@ -27,17 +33,21 @@ const Results = ({
         ))}
       </Stack>
       {loading ? (
-        <Player
-          autoplay
-          loop
-          src={animation}
-          style={{ height: "300px", width: "300px", marginTop: "-0.5em" }}
-        >
-          <Controls
-            visible={false}
-            buttons={["play", "repeat", "frame", "debug"]}
-          />
-        </Player>
+        <>
+          <Player
+            autoplay
+            loop
+            src={animation}
+            style={{ height: "270px", width: "300px", marginTop: "-0.5em" }}
+          >
+            <Controls
+              visible={false}
+              buttons={["play", "repeat", "frame", "debug"]}
+            />
+          </Player>
+
+          <Box sx={{ mt: 1 }} ref={containerRef}></Box>
+        </>
       ) : (
         content.length > 0 && (
           <Button
