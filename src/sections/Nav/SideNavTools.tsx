@@ -57,7 +57,7 @@ const SideNavTools = () => {
     <Box
       sx={{
         width: { xs: "260px" },
-        backgroundColor: theme.palette.grey[800],
+        // backgroundColor: theme.palette.grey[800],
         height: "100%",
       }}
     >
@@ -79,7 +79,7 @@ const SideNavTools = () => {
       <List
         component="nav"
         aria-labelledby="nested-list-subheader"
-        sx={{ py: 1, px: 2, backgroundColor: theme.palette.grey[800] }}
+        sx={{ py: 1, px: 2 }}
       >
         {(tools || []).map((tool, idx) => (
           <ListItemButton
@@ -99,15 +99,16 @@ const SideNavTools = () => {
                 sx={{
                   width: "1.4rem",
                   height: "1.4rem",
-                  color: true
-                    ? theme.palette.primary.light
-                    : theme.palette.primary.main,
+                  // color: true
+                  //   ? theme.palette.primary.light
+                  //   : theme.palette.primary.main,
+                  color: theme.palette.primary.main,
                 }}
               />
             </ListItemIcon>
             <Typography
               variant="subtitle2"
-              color={isSelected(tool.title) ? "primary.light" : "grey.200"}
+              color={isSelected(tool.title) ? "primary.main" : "grey.800"}
               sx={{
                 ml: "-1rem",
               }}

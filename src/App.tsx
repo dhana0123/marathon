@@ -14,6 +14,7 @@ import {
   ProjectCreate,
   Plans,
   Contact,
+  Profile,
 } from "./Routes";
 import DetailTools from "./sections/DetailTools";
 import Projects from "./sections/Projects";
@@ -40,6 +41,7 @@ function App() {
             <Route path="/" element={<Main />}>
               <Route index element={<Projects />} />
               <Route path="create" element={<ProjectCreate />} />
+              <Route path="profile" element={<Profile />} />
             </Route>
             <Route path="/dashbord" element={<DashBoard />}>
               <Route index element={<DetailTools />} />

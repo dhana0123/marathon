@@ -22,7 +22,7 @@ const Projects = () => {
 
   React.useEffect(() => {
     getProjectList();
-  });
+  }, []);
 
   const getProjectList = () => {
     const userId = localStorage.getItem("userId");

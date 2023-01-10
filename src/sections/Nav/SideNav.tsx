@@ -29,7 +29,7 @@ const SideNav = () => {
     <Box
       sx={{
         width: { xs: "260px" },
-        backgroundColor: theme.palette.grey[800],
+        // backgroundColor: theme.palette.grey[800],
         height: "100%",
       }}
     >

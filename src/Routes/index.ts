@@ -5,5 +5,15 @@ import DashBoard from "./DashBoard";
 import ProjectCreate from "./ProjectCreate";
 import Plans from "./Plans";
 import Contact from "./Contact";
+import Profile from "./Profile";
 
-export { Landing, Login, Fallback, DashBoard, ProjectCreate, Plans, Contact };
+export {
+  Landing,
+  Login,
+  Fallback,
+  DashBoard,
+  ProjectCreate,
+  Plans,
+  Contact,
+  Profile,
+};

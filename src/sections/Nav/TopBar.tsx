@@ -237,7 +237,12 @@ const TopBar = () => {
               <Typography variant="subtitle2">Email</Typography>
               <Typography variant="caption">BsanthoshDhan@gamil.com</Typography>
             </Box>
-            <MenuItem sx={{ borderRadius: "8px", my: 0.5, mt: 1 }}>
+            <MenuItem
+              sx={{ borderRadius: "8px", my: 0.5, mt: 1 }}
+              onClick={() => {
+                navigate("/profile");
+              }}
+            >
               <ListItemIcon>
                 <PersonOutlined fontSize="small" sx={{ color: "grey.700" }} />
               </ListItemIcon>
@@ -245,14 +250,14 @@ const TopBar = () => {
                 Profile
               </Typography>
             </MenuItem>
-            <MenuItem sx={{ borderRadius: "8px", my: 0.5 }}>
+            {/* <MenuItem sx={{ borderRadius: "8px", my: 0.5 }}>
               <ListItemIcon>
                 <SettingsOutlined fontSize="small" sx={{ color: "grey.700" }} />
               </ListItemIcon>
               <Typography variant="subtitle2" color="grey.700">
                 Settings
               </Typography>
-            </MenuItem>
+            </MenuItem> */}
             <MenuItem
               sx={{ borderRadius: "8px", mt: 0.5 }}
               onClick={() => dispatch(loggedOut())}

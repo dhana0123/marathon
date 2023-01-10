@@ -100,7 +100,7 @@ export default function Main() {
           },
         }}
       >
-        <Box sx={{ background: theme.palette.grey[800], height: "100%" }}>
+        <Box sx={{ height: "100%" }}>
           <DrawerHeader>
             {/* <IconButton onClick={handleDrawer}>
             {theme.direction === "rtl" ? (

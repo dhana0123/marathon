@@ -1,22 +1,22 @@
 import type { Menu } from "../definations/Nav";
 import {
-  WebRounded,
-  PlayLessonRounded,
-  Inventory2Rounded,
-  BuildRounded,
-  ArticleRounded,
-  EmailRounded,
-  Recommend,
-  Loyalty,
-  NoteAlt,
-  EmojiObjectsRounded,
-  EmojiEmotionsRounded,
+  WebOutlined,
+  PlayLessonOutlined,
+  Inventory2Outlined,
+  BuildOutlined,
+  ArticleOutlined,
+  EmailOutlined,
+  RecommendOutlined,
+  LoyaltyOutlined,
+  NoteAltOutlined,
+  EmojiObjectsOutlined,
+  EmojiEmotionsOutlined,
 } from "@mui/icons-material";
 
 const product: Menu = {
   id: 1,
   title: "Product Tools",
-  icon: Inventory2Rounded,
+  icon: Inventory2Outlined,
   list: [
     {
       id: 1,
@@ -34,7 +34,7 @@ const product: Menu = {
 const digitalAdCopy: Menu = {
   id: 2,
   title: "Digital Ad Copy",
-  icon: PlayLessonRounded,
+  icon: PlayLessonOutlined,
   list: [
     {
       id: 1,
@@ -132,7 +132,7 @@ const digitalAdCopy: Menu = {
 const statupTool: Menu = {
   id: 3,
   title: "Startup Tools",
-  icon: BuildRounded,
+  icon: BuildOutlined,
   list: [
     // {
     //   id: 1,
@@ -191,7 +191,7 @@ const statupTool: Menu = {
 const WebsiteCopy: Menu = {
   id: 4,
   title: "WebSite Copy",
-  icon: WebRounded,
+  icon: WebOutlined,
   list: [
     {
       id: 1,
@@ -296,7 +296,7 @@ const WebsiteCopy: Menu = {
 const Blog: Menu = {
   id: 5,
   title: "Blog Tools",
-  icon: ArticleRounded,
+  icon: ArticleOutlined,
   list: [
     {
       id: 1,
@@ -419,7 +419,7 @@ const Blog: Menu = {
 const Email: Menu = {
   id: 6,
   title: "Email/Letter",
-  icon: EmailRounded,
+  icon: EmailOutlined,
   list: [
     {
       id: 1,
@@ -491,7 +491,7 @@ const Email: Menu = {
 const social: Menu = {
   id: 7,
   title: "Social Media Tools",
-  icon: Recommend,
+  icon: RecommendOutlined,
   list: [
     {
       id: 1,
@@ -672,7 +672,7 @@ const social: Menu = {
 const sales: Menu = {
   id: 1,
   title: "Sales Tools",
-  icon: Loyalty,
+  icon: LoyaltyOutlined,
   list: [
     {
       id: 1,
@@ -754,7 +754,7 @@ const sales: Menu = {
 const writingTools: Menu = {
   id: 1,
   title: "Writing Tools",
-  icon: NoteAlt,
+  icon: NoteAltOutlined,
   list: [
     {
       id: 1,
@@ -984,7 +984,7 @@ const writingTools: Menu = {
 const Brainstorming: Menu = {
   id: 1,
   title: "Brainstorming Tools",
-  icon: EmojiObjectsRounded,
+  icon: EmojiObjectsOutlined,
   list: [
     {
       id: 1,
@@ -1038,7 +1038,7 @@ const Brainstorming: Menu = {
 const PersonalTools: Menu = {
   id: 1,
   title: "Personal Tools",
-  icon: EmojiEmotionsRounded,
+  icon: EmojiEmotionsOutlined,
   list: [
     {
       id: 1,

@@ -6,7 +6,7 @@ import WritingPad from "../sections/ProjectsCreate/WritingPad";
 import { CloseRounded, CreateRounded } from "@mui/icons-material";
 
 const ProjectCreate = () => {
-  const [isEditorShown, setIsEditorShown] = React.useState(true);
+  const [isEditorShown, setIsEditorShown] = React.useState(false);
 
   const theme = useTheme();
 
@@ -21,7 +21,7 @@ const ProjectCreate = () => {
             transition: theme.transitions.create(["width"]),
           }}
         >
-          {!isEditorShown && (
+          {/* {!isEditorShown && (
             <Button
               onClick={() => setIsEditorShown(true)}
               startIcon={
@@ -46,7 +46,7 @@ const ProjectCreate = () => {
             >
               Open Editor
             </Button>
-          )}
+          )} */}
           <CreatePanel />
         </Box>
 
