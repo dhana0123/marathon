@@ -55,9 +55,9 @@ const CreatePanel = () => {
       })
       .then((res) => {
         if (position === "main") {
-          setContent([...res.data.result]);
+          setContent([...res.data]);
         } else {
-          setContent([...content, ...res.data.result]);
+          setContent([...content, ...res.data]);
         }
         setLoading(false);
       })

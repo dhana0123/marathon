@@ -116,13 +116,15 @@ const Results = ({ text, type }: Props) => {
             border: `1px solid ${theme.palette.grey[200]}`,
             backgroundColor: "white",
             borderRadius: "8px",
-            cursor: "pointer",
+            whiteSpace: "prev",
             "&:hover": { boxShadow: theme.shadows[4] },
           }}
         >
-          <Typography sx={{ fontSize: "1.01rem" }} color="grey.800">
-            {text}
-          </Typography>
+          <pre style={{ whiteSpace: "pre-wrap" }}>
+            <Typography sx={{ fontSize: "1.01rem" }} color="grey.800">
+              {text.trim()}
+            </Typography>
+          </pre>
           <Stack
             spacing={1}
             mt={2.2}
