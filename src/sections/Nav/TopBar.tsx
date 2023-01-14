@@ -13,6 +13,7 @@ import {
   MenuItem,
   Typography,
   useTheme,
+  useMediaQuery,
   InputBase,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -30,12 +31,17 @@ import config from "../../config";
 import { selectProject, updageProjectName } from "../../redux/projectSliice";
 import { useAppSelector, useAppDispatch } from "../../redux/store";
 
-const TopBar = () => {
+type Props = {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const TopBar = ({ setOpen }: Props) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const theme = useTheme();
   const navigate = useNavigate();
   const { name, id } = useAppSelector(selectProject);
   const dispatch = useAppDispatch();
+  const matches = useMediaQuery("(max-width:600px)");
 
   const [snackOpen, setSnackOpen] = React.useState(false);
   const [snackMessage, setSnackMessage] = React.useState("");
@@ -118,8 +124,8 @@ const TopBar = () => {
                   color: "grey.800",
                   fontWeight: "bold",
                   pr: 3.7,
-                  width: "16rem",
-                  fontSize: "1.3rem",
+                  width: { xs: "8rem", sm: "16rem" },
+                  fontSize: { xs: "1.1rem", sm: "1.3rem" },
                   mt: "-.5rem",
                   borderBottom: isProjectInputFocus
                     ? `2px dashed ${theme.palette.grey[500]}`
@@ -150,6 +156,9 @@ const TopBar = () => {
             justifyContent="space-between"
           >
             <IconButton
+              onClick={() => {
+                setOpen(true);
+              }}
               sx={{
                 backgroundColor: "grey.100",
                 display: { xs: "inherit", sm: "none" },
@@ -164,6 +173,7 @@ const TopBar = () => {
                   onClick={handleClick}
                   sx={{
                     backgroundColor: "grey.300",
+                    ml: 2,
                   }}
                 >
                   <PersonRounded
@@ -175,15 +185,16 @@ const TopBar = () => {
                   />
                 </IconButton>
               </Tooltip>
-
-              <Button
-                startIcon={<Verified />}
-                variant="contained"
-                disableElevation
-                onClick={() => navigate("/plans")}
-              >
-                Upgrade to Pro
-              </Button>
+              {!matches ? (
+                <Button
+                  startIcon={<Verified />}
+                  variant="contained"
+                  disableElevation
+                  onClick={() => navigate("/plans")}
+                >
+                  Upgrade to Pro
+                </Button>
+              ) : null}
             </Stack>
           </Stack>
 

@@ -7,6 +7,7 @@ import {
   Snackbar,
   Alert,
   IconButton,
+  ClickAwayListener,
 } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -144,7 +145,15 @@ export default function Main() {
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
       >
-        <SideNavTools />
+        <ClickAwayListener
+          onClickAway={() => {
+            setOpen(false);
+          }}
+        >
+          <>
+            <SideNavTools />
+          </>
+        </ClickAwayListener>
       </SwipeableDrawer>
       <Box
         component="main"
@@ -154,8 +163,23 @@ export default function Main() {
         <DetailModal />
         <Box sx={{ position: "relative" }}>
           <Box sx={{ height: "100vh", overflowY: "scroll" }} ref={containerRef}>
-            <TopBar />
+            <TopBar setOpen={setOpen} />
             <Outlet />
+            <Snackbar
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              open={isModalOpen}
+              autoHideDuration={6000}
+              onClose={() => dispatch(closeSnack())}
+            >
+              <Alert
+                onClose={() => dispatch(closeSnack())}
+                severity={messageType}
+                sx={{ width: "100%" }}
+              >
+                {message}
+              </Alert>
+            </Snackbar>
+            <NewProjectDialog />
           </Box>
           {isCreatePage() && (
             <IconButton
@@ -176,21 +200,6 @@ export default function Main() {
           )}
         </Box>
       </Box>
-      <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-        open={isModalOpen}
-        autoHideDuration={6000}
-        onClose={() => dispatch(closeSnack())}
-      >
-        <Alert
-          onClose={() => dispatch(closeSnack())}
-          severity={messageType}
-          sx={{ width: "100%" }}
-        >
-          {message}
-        </Alert>
-      </Snackbar>
-      <NewProjectDialog />
     </Box>
   );
 }

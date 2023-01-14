@@ -157,12 +157,12 @@ const MobileView = ({ projectList, deleteProject }: MobileProps) => {
   const theme = useTheme();
   return (
     <Container>
-      <Box px={2} py={2}>
+      <Box py={2}>
         <Box
           sx={{ border: `1px solid ${theme.palette.grey[200]}` }}
           boxShadow={(theme) => theme.shadows[4]}
           borderRadius={"8px"}
-          px={2}
+          px={{ xs: 0, sm: 2 }}
         >
           <CreateProjectList />
           {(projectList || []).map((project) => {

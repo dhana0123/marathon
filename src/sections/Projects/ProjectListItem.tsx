@@ -50,7 +50,6 @@ const ProjectListItem = ({ project, deleteProject }: Props) => {
 
   return (
     <Stack
-      onClick={handlProjectClick}
       direction={"row"}
       alignItems={"center"}
       justifyContent="space-between"
@@ -65,7 +64,11 @@ const ProjectListItem = ({ project, deleteProject }: Props) => {
         },
       }}
     >
-      <Stack direction={"row"} alignItems={"center"}>
+      <Stack
+        direction={"row"}
+        alignItems={"center"}
+        onClick={handlProjectClick}
+      >
         <IconButton sx={{ mr: 1 }}>
           <DescriptionOutlined sx={{ color: "grey.700", fontSize: "22px" }} />
         </IconButton>
@@ -124,7 +127,7 @@ const ProjectListItem = ({ project, deleteProject }: Props) => {
           transformOrigin={{ horizontal: "right", vertical: "top" }}
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
-          <MenuItem sx={{ borderRadius: "8px", my: 0.5, mt: 1 }}>
+          {/* <MenuItem sx={{ borderRadius: "8px", my: 0.5, mt: 1 }}>
             <ListItemIcon>
               <ModeEditOutlineOutlined
                 sx={{ color: "grey.700", fontSize: "20px" }}
@@ -133,7 +136,7 @@ const ProjectListItem = ({ project, deleteProject }: Props) => {
             <Typography variant="subtitle2" color="grey.700">
               Edit
             </Typography>
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem
             sx={{ borderRadius: "8px", my: 0.5 }}
             onClick={() => deleteProject(project._id)}

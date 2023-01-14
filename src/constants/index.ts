@@ -199,6 +199,7 @@ const WebsiteCopy: Menu = {
       title: "Call to Action",
       detail: "Generate right Call to action to your website",
       toneRequired: true,
+      endPoint: "callToAction",
       brandNameRequired: true,
       descriptionRequired: true,
     },
