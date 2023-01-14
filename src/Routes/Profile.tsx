@@ -37,7 +37,15 @@ const Profile = () => {
   }, []);
   return (
     <Container sx={{ mt: 4 }}>
-      <Box p={2} sx={{ borderRadius: "10px", background: "white" }}>
+      <Box
+        p={2}
+        sx={{
+          borderRadius: "10px",
+          background: "white",
+          margin: "auto",
+          maxWidth: "600px",
+        }}
+      >
         <Box p={2}>
           <Typography variant="h4">Profile details</Typography>
           <Typography pt={2} variant="subtitle1">
@@ -66,7 +74,7 @@ const Profile = () => {
                 {userDetail?.subscription.usedWordsCount}
               </Typography>
               <Typography pt={1} variant="subtitle1">
-                Words used
+                Words remaining
               </Typography>
             </Box>
             <Box sx={{ textAlign: "center" }}>

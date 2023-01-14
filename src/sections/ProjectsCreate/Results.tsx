@@ -3,21 +3,24 @@ import { Box, Stack, Button } from "@mui/material";
 import ResultCard from "./ResultCard";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import animation from "../../assets/images/animation.json";
+import NoMoreTextCardComp from "./NoMoreTextCard";
 
 type Props = {
   loading: boolean;
-  content: string[];
-  setContent: React.Dispatch<React.SetStateAction<string[]>>;
+  content: { id: string; text: string }[];
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   generateContentHandler: () => void;
+  NoMoreTextCard: boolean;
+  NoMoreMessageText: string;
 };
 
 const Results = ({
   loading,
   setLoading,
   content,
-  setContent,
   generateContentHandler,
+  NoMoreTextCard,
+  NoMoreMessageText,
 }: Props) => {
   const containerRef = React.useRef<HTMLDivElement>();
 
@@ -29,8 +32,11 @@ const Results = ({
     <Box mt={5} mb={"10rem"}>
       <Stack spacing={3}>
         {(content || []).map((item) => (
-          <ResultCard key={item} text={item} />
+          <ResultCard key={item.id} content={item} />
         ))}
+        {!loading && NoMoreTextCard && (
+          <NoMoreTextCardComp NoMoreMessageText={NoMoreMessageText} />
+        )}
       </Stack>
       {loading ? (
         <>

@@ -4,8 +4,11 @@ export type Project = {
   toolsUsed: string[];
   productName?: string;
   description?: string;
-  liked?: string[];
-  too?: string;
+  liked?: {
+    id: string;
+    text: string;
+  }[];
+  tools?: string;
   user: string;
   createdAt: string;
   updatedAt: string;

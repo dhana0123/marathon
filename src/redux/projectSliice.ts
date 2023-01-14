@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "./store";
+import { stat } from "fs";
 
 export type Project = {
   id: string;
@@ -10,7 +11,10 @@ export type Project = {
   tone: string;
   description: string;
   user: string;
-  liked: string[];
+  liked?: {
+    id: string;
+    text: string;
+  }[];
   createdAt: string;
   updatedAt: string;
 } & {
@@ -42,7 +46,10 @@ type AddProjectPayload = {
   user: string;
   createdAt: string;
   updatedAt: string;
-  liked?: string[];
+  liked?: {
+    id: string;
+    text: string;
+  }[];
 };
 
 type ContentPayload = {
@@ -76,6 +83,13 @@ export const projectSlice = createSlice({
         state.description = action.payload.description;
       if (action.payload.tone) state.tone = action.payload.tone;
     },
+    addLike: (state, action: PayloadAction<{ id: string; text: string }>) => {
+      state.liked = state.liked?.filter((obj) => obj.id !== action.payload.id);
+      state.liked?.push(action.payload);
+    },
+    removeLike: (state, action: PayloadAction<string | undefined>) => {
+      state.liked = state.liked?.filter((obj) => obj.id !== action.payload);
+    },
     updageProjectName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
     },
@@ -103,6 +117,8 @@ export const {
   openNewProjectModal,
   closeNewProjectModal,
   addContent,
+  addLike,
+  removeLike,
 } = projectSlice.actions;
 export const selectProject = (state: RootState) => state.project;
 export const selectProjectModal = (state: RootState) =>

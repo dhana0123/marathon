@@ -20,6 +20,7 @@ import { addContent, selectProject } from "../../redux/projectSliice";
 import { updateSnack } from "../../redux/SnackMessage";
 import ResultCard from "./ResultCard";
 import { Stack } from "@mui/system";
+import NoMoreTextCard from "./NoMoreTextCard";
 
 const CreatePanel = () => {
   const { currentTool } = useAppSelector(selectTool);
@@ -29,8 +30,12 @@ const CreatePanel = () => {
   const [descriptionVal, setDescriptionVal] = React.useState(description);
   const [toneVal, setToneVal] = React.useState(tone);
   const [loading, setLoading] = React.useState(false);
-  const [content, setContent] = React.useState<string[]>([]);
+  const [content, setContent] = React.useState<{ id: string; text: string }[]>(
+    []
+  );
   const [showSaved, setShowSaved] = React.useState(false);
+  const [NoMoreTextCard, setNoMoreTextCard] = React.useState(false);
+  const [NoMoreMessageText, setNoMoreTextMessage] = React.useState("");
   const dispatch = useAppDispatch();
 
   const generateContentHandler = (position?: string) => {
@@ -46,18 +51,26 @@ const CreatePanel = () => {
     );
     setLoading(true);
     const projectId = localStorage.getItem("projectId");
+    const user = localStorage.getItem("userId");
     config.axios
       .post(`/tool/${currentTool.endPoint}`, {
         productName: productVal,
         tone: toneVal,
         description: descriptionVal,
         projectId: projectId,
+        user,
       })
       .then((res) => {
-        if (position === "main") {
-          setContent([...res.data]);
+        if (res.data.result) {
+          if (position === "main") {
+            setContent([...res.data.result]);
+          } else {
+            setContent([...content, ...res.data.result]);
+          }
+          setNoMoreTextCard(false);
         } else {
-          setContent([...content, ...res.data]);
+          setNoMoreTextMessage(res.data.message);
+          setNoMoreTextCard(true);
         }
         setLoading(false);
       })
@@ -80,7 +93,7 @@ const CreatePanel = () => {
   return (
     <Box
       sx={{
-        maxWidth: "543px",
+        maxWidth: "600px",
         m: "auto",
         position: "relative",
       }}
@@ -105,8 +118,15 @@ const CreatePanel = () => {
       </Box>
       {showSaved ? (
         <Stack spacing={2} pt={7}>
-          {(liked || []).map((text, idx) => {
-            return <ResultCard type={"save"} key={idx} text={text} />;
+          {(liked || []).map((like, idx) => {
+            return (
+              <ResultCard
+                type={"save"}
+                key={like.id}
+                savedId={like?.id}
+                savedText={like.text}
+              />
+            );
           })}
         </Stack>
       ) : (
@@ -204,8 +224,9 @@ const CreatePanel = () => {
               loading={loading}
               setLoading={setLoading}
               content={content}
-              setContent={setContent}
               generateContentHandler={generateContentHandler}
+              NoMoreTextCard={NoMoreTextCard}
+              NoMoreMessageText={NoMoreMessageText}
             />
           </Box>
         </>

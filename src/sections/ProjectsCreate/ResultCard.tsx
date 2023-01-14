@@ -12,13 +12,16 @@ import { useDispatch } from "react-redux";
 import { updateSnack } from "../../redux/SnackMessage";
 import config from "../../config";
 import { Type } from "typescript";
+import { addLike, removeLike } from "../../redux/projectSliice";
 
 type Props = {
-  text: string;
+  content?: { id: string; text: string };
   type?: "save" | "result";
+  savedId?: string;
+  savedText?: string;
 };
 
-const Results = ({ text, type }: Props) => {
+const Results = ({ content, type, savedId, savedText }: Props) => {
   const [isCopied, setIsCopied] = React.useState(false);
   const [isSaved, setIsSaved] = React.useState(false);
   const [isRemoved, setIsRemoved] = React.useState(false);
@@ -28,7 +31,9 @@ const Results = ({ text, type }: Props) => {
 
   const handleCopy = () => {
     setIsCopied(true);
-    navigator.clipboard.writeText(text);
+    if (content) {
+      navigator.clipboard.writeText(content.text);
+    }
     dispatch(
       updateSnack({
         isModalOpen: true,
@@ -42,9 +47,13 @@ const Results = ({ text, type }: Props) => {
     const projectId = localStorage.getItem("projectId");
     if (type === "save") {
       config.axios
-        .post(`project/saved/${projectId}`, { liked: text })
+        .post(`project/saved/remove/${projectId}`, {
+          likedId: savedId,
+          text: savedText,
+        })
         .then((res) => {
           setIsSavedRemoved(true);
+          dispatch(removeLike(savedId));
           dispatch(
             updateSnack({
               isModalOpen: true,
@@ -71,9 +80,15 @@ const Results = ({ text, type }: Props) => {
     const projectId = localStorage.getItem("projectId");
     if (!isSaved) {
       config.axios
-        .post(`/project/${projectId}`, { liked: text })
+        .post(`/project/saved/add/${projectId}`, {
+          likedId: content?.id,
+          text: content?.text,
+        })
         .then((res) => {
           setIsSaved(true);
+          if (content) {
+            dispatch(addLike({ id: content.id, text: content?.text }));
+          }
           dispatch(
             updateSnack({
               isModalOpen: true,
@@ -87,7 +102,7 @@ const Results = ({ text, type }: Props) => {
             updateSnack({
               isModalOpen: true,
               message: err.message,
-              messageType: "success",
+              messageType: "error",
             })
           );
         });
@@ -121,8 +136,8 @@ const Results = ({ text, type }: Props) => {
           }}
         >
           <pre style={{ whiteSpace: "pre-wrap" }}>
-            <Typography sx={{ fontSize: "1.01rem" }} color="grey.800">
-              {text.trim()}
+            <Typography sx={{ fontSize: "1.03rem" }} color="grey.800">
+              {content ? content.text.trim() : savedText?.trim()}
             </Typography>
           </pre>
           <Stack
@@ -180,13 +195,13 @@ const Results = ({ text, type }: Props) => {
                 >
                   {isSaved ? "Saved" : "Save"}
                 </Button>
-                <Button
+                {/* <Button
                   sx={{ fontSize: { xs: "13px", sm: "14px" } }}
                   startIcon={<FavoriteBorderRounded fontSize="small" />}
                   size="small"
                 >
                   More Like This
-                </Button>
+                </Button> */}
               </>
             )}
             <Button
