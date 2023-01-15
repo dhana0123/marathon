@@ -266,6 +266,7 @@ const WebsiteCopy: Menu = {
       descriptionRequired: true,
       descriptionName: "What are you generating questions for?",
       descriptionPlaceholder: "e.g. best email service",
+      endPoint: "questionGenerator",
     },
     {
       id: 8,
@@ -275,6 +276,7 @@ const WebsiteCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "socialProofText",
     },
     {
       id: 9,
@@ -284,6 +286,7 @@ const WebsiteCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "subHeaders",
     },
     {
       id: 10,
@@ -296,6 +299,7 @@ const WebsiteCopy: Menu = {
       descriptionName: "Your Testimonial",
       descriptionPlaceholder:
         "writy.ai is simple to use and saves my valuable time and resource!",
+      endPoint: "testimonial",
     },
   ],
 };

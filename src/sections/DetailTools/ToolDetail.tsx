@@ -39,6 +39,7 @@ const ToolDetail = ({ tool }: Props) => {
         "&:hover": {
           boxShadow: theme.shadows[8],
           backgorund: "primary.lighter",
+          color: "primary.main",
         },
       }}
     >
