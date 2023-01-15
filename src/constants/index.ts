@@ -212,6 +212,7 @@ const WebsiteCopy: Menu = {
       brandNameRequired: false,
       descriptionRequired: true,
       descriptionName: "What is the event?",
+      endPoint: "eventCopy",
     },
     {
       id: 3,
@@ -221,6 +222,7 @@ const WebsiteCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "landingPageHeroText",
     },
     {
       id: 4,
@@ -230,6 +232,7 @@ const WebsiteCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "listicle",
     },
     {
       id: 5,
@@ -239,6 +242,7 @@ const WebsiteCopy: Menu = {
       toneRequired: true,
       brandNameRequired: true,
       descriptionRequired: true,
+      endPoint: "metaDescription",
     },
     {
       id: 6,
@@ -249,6 +253,8 @@ const WebsiteCopy: Menu = {
       brandNameRequired: false,
       descriptionRequired: true,
       descriptionName: "What is the microcopy for?",
+      descriptionPlaceholder: "e.g. Thanks for buying our product",
+      endPoint: "microcopy",
     },
     {
       id: 7,

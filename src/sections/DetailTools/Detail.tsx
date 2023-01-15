@@ -26,7 +26,7 @@ const Detail = () => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Typography variant="h4" py={2} sx={{ color: "grey.800" }}>
+        <Typography variant="h4" py={2} sx={{ color: "primary.main" }}>
           {currentDetailTool}
         </Typography>
         <Box>
